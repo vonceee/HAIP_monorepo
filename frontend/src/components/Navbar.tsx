@@ -2,8 +2,21 @@ import { Button } from "@/components/ui/button";
 import { ModeToggle } from "./mode-toggle";
 import { useGoogleLogin } from "@react-oauth/google";
 import api from "@/lib/axios";
+import { useAuth } from "@/hooks/useAuth";
+import { Link } from "react-router-dom";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export const Navbar = () => {
+  const { user, setUser } = useAuth();
+
   const login = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       try {
@@ -11,9 +24,9 @@ export const Navbar = () => {
         const response = await api.post("/auth/google", {
           token: tokenResponse.access_token,
         });
-        console.log("Backend response:", response.data);
+
         if (response.data.user) {
-          // Optionally handle successful login (e.g. redirect or state update)
+          setUser(response.data.user);
           window.location.href = "/dashboard";
         }
       } catch (error) {
@@ -21,6 +34,16 @@ export const Navbar = () => {
       }
     },
   });
+
+  const handleLogout = async () => {
+    try {
+      await api.post("/logout");
+      setUser(null);
+      window.location.href = "/";
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
 
   return (
     <header className="sticky border-b-[1px] top-0 z-40 w-full bg-white dark:border-b-slate-700 dark:bg-background">
@@ -35,10 +58,53 @@ export const Navbar = () => {
           </a>
         </div>
 
-        <div className="flex gap-2">
-          <Button variant="ghost" onClick={() => login()}>
-            Login
-          </Button>
+        <div className="flex gap-2 items-center">
+          {user ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className="relative h-8 w-8 rounded-full"
+                >
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage
+                      src={user.avatar}
+                      alt={user.name}
+                      referrerPolicy="no-referrer"
+                    />
+                    <AvatarFallback>{user.name?.charAt(0)}</AvatarFallback>
+                  </Avatar>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56" align="end" forceMount>
+                <DropdownMenuLabel className="font-normal">
+                  <div className="flex flex-col space-y-1">
+                    <p className="text-sm font-medium leading-none">
+                      {user.name}
+                    </p>
+                    <p className="text-xs leading-none text-muted-foreground">
+                      {user.email}
+                    </p>
+                  </div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                  <Link to="/dashboard">Dashboard</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/profile">Profile Settings</Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={handleLogout}>
+                  Log out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <Button variant="ghost" onClick={() => login()}>
+              Login
+            </Button>
+          )}
           <ModeToggle />
         </div>
       </div>

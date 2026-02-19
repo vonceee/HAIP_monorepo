@@ -122,7 +122,7 @@ export default function Profile() {
                                 )}
                                 value={data.bio}
                                 onChange={(e) => setData('bio', e.target.value)}
-                                placeholder="Tell us a little bit about yourself"
+                                placeholder="tell us a little bit about yourself"
                                 maxLength={160}
                             />
                             <div className="flex justify-between text-xs text-muted-foreground">

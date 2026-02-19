@@ -7,8 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 
-// Simple UI components if not available yet, or import from shadcn
-// Assuming shadcn components are available as per package.json
+import api from "@/lib/axios";
 
 export default function Profile() {
   const { user, loading } = useAuth();
@@ -38,31 +37,20 @@ export default function Profile() {
     setErrors({});
 
     try {
-      // CSRF protection for Laravel Sanctum/Session
-      await fetch("/sanctum/csrf-cookie");
+      // Axios automatically handles CSRF if configured with withCredentials
+      await api.get("/sanctum/csrf-cookie");
 
-      const response = await fetch("/settings/profile", {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          "X-XSRF-TOKEN": getCookie("XSRF-TOKEN") || "",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await api.patch("/settings/profile", formData);
 
-      if (response.ok) {
+      if (response.status === 200) {
         setStatus("saved");
         setTimeout(() => setStatus("idle"), 2000);
-      } else {
-        const data = await response.json();
-        if (data.errors) {
-          setErrors(data.errors);
-        }
-        setStatus("error");
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error updating profile:", error);
+      if (error.response && error.response.data && error.response.data.errors) {
+        setErrors(error.response.data.errors);
+      }
       setStatus("error");
     }
   };
@@ -78,7 +66,7 @@ export default function Profile() {
           <div className="space-y-2">
             <h1 className="text-3xl font-bold">Profile Settings</h1>
             <p className="text-muted-foreground">
-              Update your profile details and public information.
+              update your profile details and public information.
             </p>
           </div>
 
@@ -133,7 +121,7 @@ export default function Profile() {
                 onChange={(e) =>
                   setFormData({ ...formData, bio: e.target.value })
                 }
-                placeholder="Tell us a little bit about yourself"
+                placeholder="tell us a little bit about yourself"
                 maxLength={160}
               />
               <div className="flex justify-between text-xs text-muted-foreground">
@@ -172,10 +160,4 @@ export default function Profile() {
       <Footer />
     </div>
   );
-}
-
-function getCookie(name: string) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop()?.split(";").shift();
 }

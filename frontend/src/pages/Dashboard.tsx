@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { useAuth } from "@/hooks/useAuth";
@@ -31,8 +32,12 @@ const Dashboard = () => {
           <div className="grid gap-4 md:grid-cols-2">
             <div className="p-4 bg-secondary/50 rounded-md">
               <h3 className="font-medium mb-2">Profile Status</h3>
-              <p className="text-sm">Username: {user?.username || "Not set"}</p>
-              <p className="text-sm">Email: {user?.email}</p>
+              <p className="text-sm mb-4">
+                Username: {user?.username || "Not set"}
+              </p>
+              <Button asChild variant="outline" size="sm">
+                <Link to="/profile">Edit Profile</Link>
+              </Button>
             </div>
           </div>
         </div>
