@@ -1,38 +1,65 @@
 <?php
 
+use App\Models\User;
+use Google\Client as GoogleClient;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
-use Laravel\WorkOS\Http\Requests\AuthKitAuthenticationRequest;
-use Laravel\WorkOS\Http\Requests\AuthKitLoginRequest;
-use Laravel\WorkOS\Http\Requests\AuthKitLogoutRequest;
 
-Route::get('login', function (Illuminate\Http\Request $request) {
-    $provider = $request->input('provider', 'authkit');
+Route::post('/auth/google', function (Request $request) {
+    $request->validate([
+        'token' => ['required', 'string'],
+    ]);
 
-    if ($provider === 'google') {
-        $provider = 'GoogleOAuth';
+    $client = new GoogleClient(['client_id' => config('services.google.client_id')]);
+
+    $payload = null;
+
+    try {
+        $payload = $client->verifyIdToken($request->token);
+    } catch (\Exception $e) {
+        // Token might be an access token
     }
 
-    WorkOS\WorkOS::configure();
+    if (!$payload) {
+        $response = Http::get('https://www.googleapis.com/oauth2/v3/userinfo', [
+            'access_token' => $request->token,
+        ]);
 
-    $url = (new WorkOS\UserManagement)->getAuthorizationUrl(
-        config('services.workos.redirect_url'),
-        $state = [
-            'state' => Illuminate\Support\Str::random(20),
-            'previous_url' => base64_encode(Illuminate\Support\Facades\URL::previous()),
-        ],
-        $provider,
-        screenHint: $request->input('screen_hint'),
-    );
+        if ($response->successful()) {
+            $payload = $response->json();
+        }
+    }
 
-    session()->put('state', json_encode($state));
+    if ($payload) {
+        $user = User::updateOrCreate(
+            ['email' => $payload['email']],
+            [
+                'name' => $payload['name'],
+                'google_id' => $payload['sub'],
+                'avatar' => $payload['picture'] ?? '',
+                'email_verified_at' => now(),
+                'password' => null,
+            ]
+        );
 
-    return Inertia\Inertia::location($url);
-})->middleware(['guest'])->name('login');
+        Auth::login($user);
 
-Route::get('authenticate', function (AuthKitAuthenticationRequest $request) {
-    return tap(redirect()->intended(route('dashboard')), fn () => $request->authenticate());
-})->middleware(['guest']);
+        return response()->json([
+            'user' => $user,
+            'message' => 'Authenticated successfully'
+        ]);
+    }
 
-Route::post('logout', function (AuthKitLogoutRequest $request) {
-    return $request->logout();
-})->middleware(['auth'])->name('logout');
+    return response()->json(['error' => 'Invalid token'], 401);
+});
+
+Route::post('/logout', function (Request $request) {
+    Auth::guard('web')->logout();
+
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return response()->noContent();
+});

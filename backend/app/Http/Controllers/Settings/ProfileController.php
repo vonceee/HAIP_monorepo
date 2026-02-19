@@ -4,21 +4,18 @@ namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\ProfileUpdateRequest;
-use App\Models\User;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
-use Inertia\Response;
-use Laravel\WorkOS\Http\Requests\AuthKitAccountDeletionRequest;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
     /**
-     * Show the user's profile settings page.
+     * Show the user's profile settings.
      */
-    public function edit(Request $request): Response
+    public function edit(Request $request)
     {
-        return Inertia::render('settings/profile', [
+        return response()->json([
+            'user' => $request->user(),
             'status' => $request->session()->get('status'),
         ]);
     }
@@ -26,20 +23,33 @@ class ProfileController extends Controller
     /**
      * Update the user's profile settings.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(ProfileUpdateRequest $request)
     {
-        $request->user()->update(['name' => $request->name]);
+        $request->user()->fill($request->validated());
 
-        return to_route('profile.edit');
+        if ($request->user()->isDirty('email')) {
+            $request->user()->email_verified_at = null;
+        }
+
+        $request->user()->save();
+
+        return response()->json(['message' => 'Profile updated.']);
     }
 
     /**
      * Delete the user's account.
      */
-    public function destroy(AuthKitAccountDeletionRequest $request): RedirectResponse
+    public function destroy(Request $request)
     {
-        return $request->delete(
-            using: fn (User $user) => $user->delete()
-        );
+        $user = $request->user();
+
+        Auth::logout();
+
+        $user->delete();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return response()->noContent();
     }
 }

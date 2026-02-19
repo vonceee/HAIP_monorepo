@@ -8,6 +8,8 @@
     "mcp": true,
     "sail": false,
     "skills": [
+        "inertia-react-development",
+        "tailwindcss-development",
         "wayfinder-development"
     ]
 }
