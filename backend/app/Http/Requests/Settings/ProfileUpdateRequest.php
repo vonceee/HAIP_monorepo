@@ -16,6 +16,8 @@ class ProfileUpdateRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
+            'username' => ['nullable', 'string', 'max:30', 'alpha_dash', 'unique:users,username,' . $this->user()->id],
+            'bio' => ['nullable', 'string', 'max:160'],
         ];
     }
 }

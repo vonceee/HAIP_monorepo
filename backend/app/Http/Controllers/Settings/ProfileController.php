@@ -6,13 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\ProfileUpdateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class ProfileController extends Controller
 {
     /**
      * Show the user's profile settings.
      */
-    public function edit(Request $request)
+    public function edit(Request $request): \Illuminate\Http\JsonResponse
     {
         return response()->json([
             'user' => $request->user(),
@@ -33,7 +34,7 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return response()->json(['message' => 'Profile updated.']);
+        return response()->json(['status' => 'profile-updated']);
     }
 
     /**

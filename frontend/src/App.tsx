@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { About } from "./components/About";
 // import { Cta } from "./components/Cta";
 // import { FAQ } from "./components/FAQ";
@@ -16,6 +17,8 @@ import { ScrollToTop } from "./components/ScrollToTop";
 // import { Testimonials } from "./components/Testimonials";
 import { LectureView } from "./components/lecture/LectureView";
 import { Lecture } from "./types";
+import Profile from "./pages/Profile";
+import Dashboard from "./pages/Dashboard";
 import "./App.css";
 
 function App() {
@@ -31,13 +34,24 @@ function App() {
   }
 
   return (
-    <>
-      <Navbar />
-      <About />
-      <Features onLectureSelect={setSelectedLecture} />
-      <Footer />
-      <ScrollToTop />
-    </>
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Navbar />
+              <About />
+              <Features onLectureSelect={setSelectedLecture} />
+              <Footer />
+              <ScrollToTop />
+            </>
+          }
+        />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+    </Router>
   );
 }
 

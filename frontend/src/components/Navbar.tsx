@@ -1,22 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "./mode-toggle";
 import { useGoogleLogin } from "@react-oauth/google";
+import api from "@/lib/axios";
 
 export const Navbar = () => {
   const login = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       try {
-        const response = await fetch("http://localhost:8000/auth/google", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({ token: tokenResponse.access_token }),
+        await api.get("/sanctum/csrf-cookie");
+        const response = await api.post("/auth/google", {
+          token: tokenResponse.access_token,
         });
-        const data = await response.json();
-        console.log("Backend response:", data);
-        if (data.user) {
+        console.log("Backend response:", response.data);
+        if (response.data.user) {
           // Optionally handle successful login (e.g. redirect or state update)
           window.location.href = "/dashboard";
         }
