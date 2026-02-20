@@ -8,7 +8,6 @@ const api = axios.create({
   withCredentials: true,
 });
 
-// Add CSRF token interceptor for Sanctum
 api.interceptors.request.use((config) => {
   const token = document.cookie
     .split("; ")
