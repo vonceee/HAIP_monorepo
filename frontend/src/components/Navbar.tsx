@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ModeToggle } from "./mode-toggle";
 import api from "@/lib/axios";
 import { useAuth } from "@/hooks/useAuth";
+import { googleLogout } from "@react-oauth/google";
 import { Link } from "react-router-dom";
 import {
   DropdownMenu,
@@ -19,10 +20,12 @@ export const Navbar = () => {
   const handleLogout = async () => {
     try {
       await api.post("/logout");
-      setUser(null);
-      window.location.href = "/";
     } catch (error) {
       console.error("Logout failed:", error);
+    } finally {
+      googleLogout();
+      setUser(null);
+      window.location.href = "/";
     }
   };
 
@@ -35,7 +38,12 @@ export const Navbar = () => {
             href="/"
             className="ml-2 font-bold text-xl flex items-center"
           >
-            <span className="ml-2">HAIP</span>
+            <span className="ml-3 text-xl font-bold text-slate-800 tracking-tight">
+              HAIP{" "}
+              <span className="text-slate-400 font-normal hidden sm:inline">
+                | Hazard Awareness
+              </span>
+            </span>{" "}
           </a>
         </div>
 

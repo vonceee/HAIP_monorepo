@@ -37,15 +37,6 @@ interface FeaturesProps {
 export const Features = ({ onLectureSelect }: FeaturesProps) => {
   return (
     <section id="library" className="container py-8 sm:py-12 space-y-8">
-      {/* Section Header */}
-      <h2 className="text-3xl lg:text-4xl font-bold md:text-center">
-        <span className="inline-block bg-card px-8 py-3 rounded-full shadow-lg border">
-          <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
-            Disaster Library
-          </span>
-        </span>
-      </h2>
-
       {/* Grid Layout containing the shadcn Cards */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {lectures.map((lecture) => {

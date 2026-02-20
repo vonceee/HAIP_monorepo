@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import api from "@/lib/axios";
 
 interface User {
   id: number;
@@ -14,12 +15,9 @@ export function useAuth() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/user")
-      .then((res) => {
-        if (res.ok) return res.json();
-        throw new Error("not authenticated");
-      })
-      .then((data) => setUser(data))
+    api
+      .get("/api/user")
+      .then((res) => setUser(res.data))
       .catch(() => setUser(null))
       .finally(() => setLoading(false));
   }, []);
