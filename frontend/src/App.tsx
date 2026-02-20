@@ -19,6 +19,7 @@ import { LectureView } from "./components/lecture/LectureView";
 import { Lecture } from "./types";
 import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashboard";
+import AuthPage from "./pages/AuthPage";
 import background from "./assets/background-img.webp";
 import "./App.css";
 
@@ -58,6 +59,7 @@ function App() {
             </div>
           }
         />
+        <Route path="/login" element={<AuthPage />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>

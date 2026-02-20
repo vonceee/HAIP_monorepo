@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "./mode-toggle";
-import { useGoogleLogin } from "@react-oauth/google";
 import api from "@/lib/axios";
 import { useAuth } from "@/hooks/useAuth";
 import { Link } from "react-router-dom";
@@ -16,24 +15,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export const Navbar = () => {
   const { user, setUser } = useAuth();
-
-  const login = useGoogleLogin({
-    onSuccess: async (tokenResponse) => {
-      try {
-        await api.get("/sanctum/csrf-cookie");
-        const response = await api.post("/auth/google", {
-          token: tokenResponse.access_token,
-        });
-
-        if (response.data.user) {
-          setUser(response.data.user);
-          window.location.href = "/dashboard";
-        }
-      } catch (error) {
-        console.error("Login failed:", error);
-      }
-    },
-  });
 
   const handleLogout = async () => {
     try {
@@ -101,8 +82,8 @@ export const Navbar = () => {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <Button variant="ghost" onClick={() => login()}>
-              Login
+            <Button variant="ghost" asChild>
+              <Link to="/login">Login</Link>
             </Button>
           )}
           <ModeToggle />

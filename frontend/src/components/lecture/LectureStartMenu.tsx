@@ -54,7 +54,7 @@ export const LectureStartMenu: React.FC<LectureStartMenuProps> = ({
               className={`inline-flex items-center px-4 py-1.5 rounded-full border-white/20 bg-black/40 backdrop-blur-md ${theme.accentColor} font-mono text-xs md:text-sm tracking-widest uppercase mb-2 shadow-lg hover:bg-black/50`}
             >
               <TopicIcon className="w-4 h-4 mr-2" />
-              Mission Protocol: {lecture.topic}
+              {lecture.topic}
             </Badge>
 
             {/* Title */}
