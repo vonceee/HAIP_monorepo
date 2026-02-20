@@ -17,3 +17,5 @@ require __DIR__ . '/settings.php';
 Route::get('/sanctum/csrf-cookie', function () {
     return response()->noContent();
 });
+
+require __DIR__ . '/auth.php';

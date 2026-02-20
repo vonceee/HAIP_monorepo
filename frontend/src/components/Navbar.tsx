@@ -19,7 +19,7 @@ export const Navbar = () => {
 
   const handleLogout = async () => {
     try {
-      await api.post("/api/logout");
+      await api.post("/logout");
     } catch (error) {
       console.error("Logout failed:", error);
     } finally {

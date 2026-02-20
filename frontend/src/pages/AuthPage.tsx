@@ -18,7 +18,7 @@ export default function AuthPage() {
     onSuccess: async (tokenResponse) => {
       try {
         await api.get("/sanctum/csrf-cookie");
-        const response = await api.post("/api/google", {
+        const response = await api.post("/google", {
           token: tokenResponse.access_token,
         });
 
