@@ -83,7 +83,7 @@ export const DecisionGame: React.FC<DecisionGameProps> = ({
 
   if (showResults) {
     return (
-      <div className="w-full h-full flex flex-col items-center justify-center p-4 md:p-8 animate-in fade-in duration-500">
+      <div className="w-full flex flex-col items-center justify-center py-12 px-4 animate-in fade-in duration-500">
         <div className="w-full max-w-2xl flex flex-col items-center p-6 md:p-10 bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl text-center shadow-2xl">
           <Activity
             className={`w-12 h-12 md:w-16 md:h-16 ${theme.accent} mb-4 md:mb-6`}
@@ -111,10 +111,10 @@ export const DecisionGame: React.FC<DecisionGameProps> = ({
   }
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-start md:justify-center max-w-6xl mx-auto overflow-y-auto custom-scrollbar p-4 md:p-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] md:[&::-webkit-scrollbar]:block md:[scrollbar-width:auto]">
-      <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 pb-8 md:pb-0">
+    <div className="w-full max-w-6xl mx-auto p-4 md:p-6 lg:p-8">
+      <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 pb-8">
         {/* Left Col: Scenario Description */}
-        <div className="flex flex-col justify-start md:justify-center space-y-4 md:space-y-6">
+        <div className="flex flex-col justify-start space-y-4 md:space-y-6">
           <div
             className={`inline-flex items-center px-3 py-1 rounded-full border border-white/10 bg-black/40 backdrop-blur-md w-fit ${theme.accent} font-mono text-xs uppercase tracking-widest`}
           >
@@ -144,7 +144,7 @@ export const DecisionGame: React.FC<DecisionGameProps> = ({
         </div>
 
         {/* Right Col: Options & Feedback */}
-        <div className="flex flex-col gap-3 md:gap-4 justify-start md:justify-center">
+        <div className="flex flex-col gap-3 md:gap-4 justify-start">
           {!isAnswered ? (
             <div className="space-y-3 md:space-y-4 animate-in slide-in-from-right-8 fade-in duration-500">
               <p className="text-slate-400 text-xs md:text-sm font-bold uppercase tracking-wider mb-1 md:mb-2">
@@ -154,7 +154,7 @@ export const DecisionGame: React.FC<DecisionGameProps> = ({
                 <button
                   key={idx}
                   onClick={() => handleOptionClick(idx)}
-                  className={`w-full text-left p-4 md:p-6 rounded-xl md:rounded-2xl border-2 transition-all duration-300 group relative overflow-hidden bg-black/40 border-white/10 hover:border-white/40 hover:bg-white/5 active:scale-[0.98]`}
+                  className="w-full text-left p-4 md:p-6 rounded-xl md:rounded-2xl border-2 transition-all duration-300 group relative overflow-hidden bg-black/40 border-white/10 hover:border-white/40 hover:bg-white/5 active:scale-[0.98]"
                 >
                   <div className="flex items-center justify-between relative z-10">
                     <span className="text-base md:text-lg text-slate-100 font-bold group-hover:text-white pr-4">

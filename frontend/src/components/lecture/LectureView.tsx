@@ -47,21 +47,18 @@ export const LectureView: React.FC<LectureViewProps> = ({
   const slides = useMemo(() => {
     const s: Slide[] = [];
 
-    // Map sections from the lecture data
     if (lecture.sections && lecture.sections.length > 0) {
       lecture.sections.forEach((section) => {
-        if (section.layout === "complete") return; // Skip complete section here, added at end
+        if (section.layout === "complete") return;
 
         s.push({
-          type: section.layout || "standard", // Fallback to "standard" if layout is not defined
+          type: section.layout || "standard",
           title: section.title,
-          data: section, // Pass the whole section object which has layoutData
+          data: section,
         });
       });
     }
 
-    // Insert Decision Game Slide appends to the end if exists (or we can make it a section in data.ts)
-    // Keeping backward compatibility for now if it's separate in types
     if (lecture.decisionGame && lecture.decisionGame.length > 0) {
       s.push({
         type: "decision-game",
@@ -70,7 +67,6 @@ export const LectureView: React.FC<LectureViewProps> = ({
       });
     }
 
-    // Insert Final Quiz Slide
     if (lecture.finalQuiz && lecture.finalQuiz.length > 0) {
       s.push({
         type: "final-quiz",
@@ -79,7 +75,6 @@ export const LectureView: React.FC<LectureViewProps> = ({
       });
     }
 
-    // Insert Lecture Complete Slide at the very end
     s.push({
       type: "complete",
       title: "Completion",
@@ -100,7 +95,6 @@ export const LectureView: React.FC<LectureViewProps> = ({
     }
   }, [activeSlideIndex]);
 
-  // Force uniform theme for all lectures
   const theme = THEME_STYLES.General;
   const activeSlide = slides[activeSlideIndex];
   const isFirstSlide = activeSlideIndex === 0;
@@ -121,6 +115,51 @@ export const LectureView: React.FC<LectureViewProps> = ({
     }
   };
 
+  const BackgroundLayers = () => (
+    <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 opacity-40 pointer-events-none">
+        <ImageWithLoader
+          src={lecture.imageUrl}
+          alt="Background"
+          containerClassName="w-full h-full"
+          className="w-full h-full object-cover filter blur-sm scale-110 animate-pulse"
+          style={{ animationDuration: "10s" }}
+        />
+      </div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_rgba(0,0,0,0.4)_100%)] pointer-events-none" />
+    </div>
+  );
+
+  const ScreenShell = ({
+    children,
+    onBack: handleBack,
+    backLabel = "Back",
+    scrollClassName,
+  }: {
+    children: React.ReactNode;
+    onBack: () => void;
+    backLabel?: string;
+    scrollClassName?: string;
+  }) => (
+    <div
+      ref={containerRef}
+      className={`h-screen supports-[height:100dvh]:h-[100dvh] w-full flex flex-col bg-gradient-to-br ${theme.bgGradient} text-white font-sans overflow-hidden relative`}
+    >
+      <BackgroundLayers />
+      <LectureTopBar
+        topic={lecture.topic}
+        onBack={handleBack}
+        backLabel={backLabel}
+        theme={theme}
+      />
+      <div
+        className={`flex-1 overflow-y-auto w-full relative z-10 custom-scrollbar ${scrollClassName ?? "p-4"}`}
+      >
+        {children}
+      </div>
+    </div>
+  );
+
   // --- MISSION BRIEFING SCREEN ---
   if (showStartMenu) {
     return (
@@ -140,145 +179,71 @@ export const LectureView: React.FC<LectureViewProps> = ({
   // --- LEARNING COMPETENCIES SCREEN ---
   if (showCompetencies) {
     return (
-      <div
-        ref={containerRef}
-        className={`h-screen supports-[height:100dvh]:h-[100dvh] w-full flex flex-col bg-gradient-to-br ${theme.bgGradient} text-white font-sans overflow-hidden relative`}
+      <ScreenShell
+        onBack={() => {
+          setShowCompetencies(false);
+          setShowStartMenu(true);
+        }}
       >
-        {/* Background Layers */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 opacity-40 pointer-events-none">
-            <ImageWithLoader
-              src={lecture.imageUrl}
-              alt="Background"
-              containerClassName="w-full h-full"
-              className="w-full h-full object-cover filter blur-sm scale-110 animate-pulse"
-              style={{ animationDuration: "10s" }}
-            />
-          </div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_rgba(0,0,0,0.4)_100%)] pointer-events-none" />
-        </div>
-
-        {/* TOP BAR - ALWAYS VISIBLE (Reused) */}
-        <LectureTopBar
-          topic={lecture.topic}
-          onBack={() => {
+        <LearningCompetenciesController
+          lecture={lecture}
+          onNext={() => {
             setShowCompetencies(false);
-            setShowStartMenu(true);
+            setShowObjectives(true);
+            setShowSimulation(false);
           }}
-          backLabel="Back"
-          theme={theme}
         />
-
-        <div className="flex-1 overflow-y-auto w-full relative z-10 custom-scrollbar">
-          <LearningCompetenciesController
-            lecture={lecture}
-            onNext={() => {
-              setShowCompetencies(false);
-              setShowObjectives(true);
-              setShowSimulation(false);
-            }}
-          />
-        </div>
-      </div>
+      </ScreenShell>
     );
   }
 
   // --- LEARNING OBJECTIVES SCREEN ---
   if (showObjectives) {
     return (
-      <div
-        ref={containerRef}
-        className={`h-screen supports-[height:100dvh]:h-[100dvh] w-full flex flex-col bg-gradient-to-br ${theme.bgGradient} text-white font-sans overflow-hidden relative`}
+      <ScreenShell
+        onBack={() => {
+          setShowObjectives(false);
+          setShowCompetencies(true);
+        }}
+        scrollClassName="p-4 lg:p-8"
       >
-        {/* Background Layers */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 opacity-40 pointer-events-none">
-            <ImageWithLoader
-              src={lecture.imageUrl}
-              alt="Background"
-              containerClassName="w-full h-full"
-              className="w-full h-full object-cover filter blur-sm scale-110 animate-pulse"
-              style={{ animationDuration: "10s" }}
-            />
-          </div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_rgba(0,0,0,0.4)_100%)] pointer-events-none" />
-        </div>
-
-        {/* TOP BAR - ALWAYS VISIBLE (Reused) */}
-        <LectureTopBar
-          topic={lecture.topic}
+        <LearningObjectivesController
+          lecture={lecture}
+          onNext={() => {
+            setShowObjectives(false);
+            setShowSimulation(true);
+          }}
           onBack={() => {
             setShowObjectives(false);
             setShowCompetencies(true);
           }}
-          backLabel="Back"
-          theme={theme}
         />
-
-        <div className="flex-1 overflow-y-auto w-full relative z-10 custom-scrollbar flex items-center justify-center p-4">
-          <LearningObjectivesController
-            lecture={lecture}
-            onNext={() => {
-              setShowObjectives(false);
-              setShowSimulation(true);
-              // Active slide index is already 0, so we just hide this overlay to show slides
-            }}
-            onBack={() => {
-              setShowObjectives(false);
-              setShowCompetencies(true);
-            }}
-          />
-        </div>
-      </div>
+      </ScreenShell>
     );
   }
 
   // --- SIMULATION SCREEN ---
   if (showSimulation) {
     return (
-      <div
-        ref={containerRef}
-        className={`h-screen supports-[height:100dvh]:h-[100dvh] w-full flex flex-col bg-gradient-to-br ${theme.bgGradient} text-white font-sans overflow-hidden relative`}
+      <ScreenShell
+        onBack={() => {
+          setShowSimulation(false);
+          setShowObjectives(true);
+        }}
+        scrollClassName="flex flex-col items-center p-4"
       >
-        {/* Background Layers */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 opacity-40 pointer-events-none">
-            <ImageWithLoader
-              src={lecture.imageUrl}
-              alt="Background"
-              containerClassName="w-full h-full"
-              className="w-full h-full object-cover filter blur-sm scale-110 animate-pulse"
-              style={{ animationDuration: "10s" }}
-            />
-          </div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_rgba(0,0,0,0.4)_100%)] pointer-events-none" />
-        </div>
-
-        {/* TOP BAR - ALWAYS VISIBLE (Reused) */}
-        <LectureTopBar
-          topic={lecture.topic}
+        <LearningSimulationsController
+          lecture={lecture}
+          theme={theme}
+          onNext={() => {
+            setShowSimulation(false);
+          }}
           onBack={() => {
             setShowSimulation(false);
             setShowObjectives(true);
           }}
-          backLabel="Back"
-          theme={theme}
         />
-
-        <div className="flex-1 overflow-y-auto w-full relative z-10 custom-scrollbar flex flex-col items-center p-4">
-          <LearningSimulationsController
-            lecture={lecture}
-            theme={theme}
-            onNext={() => {
-              setShowSimulation(false);
-            }}
-            onBack={() => {
-              setShowSimulation(false);
-              setShowObjectives(true);
-            }}
-          />
-        </div>
-      </div>
+      </ScreenShell>
     );
   }
 
@@ -288,7 +253,7 @@ export const LectureView: React.FC<LectureViewProps> = ({
       ref={containerRef}
       className={`h-screen supports-[height:100dvh]:h-[100dvh] w-full flex flex-col bg-gradient-to-br ${theme.bgGradient} text-white font-sans overflow-hidden relative`}
     >
-      {/* Background Layers (Persistent from Start Menu) */}
+      {/* Background Layers */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 opacity-40 pointer-events-none">
           <ImageWithLoader
@@ -320,7 +285,7 @@ export const LectureView: React.FC<LectureViewProps> = ({
         </div>
       )}
 
-      {/* TOP BAR - ALWAYS VISIBLE */}
+      {/* TOP BAR */}
       <LectureTopBar
         topic={lecture.topic}
         onBack={onBack}

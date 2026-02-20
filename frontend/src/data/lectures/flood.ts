@@ -498,59 +498,114 @@ export const floodLecture: Lecture = {
   ],
   finalQuiz: [
     {
-      id: "q1",
-      question:
-        "Which of the following is a natural sign of an impending tropical cyclone?",
-      options: [
-        "Prolonged dry and hot days with dusty air",
-        "Suddenly calm sea with a rapidly receding shoreline",
-        "Dark, thick clouds and rapidly shifting winds with continuous heavy rain",
-        "Cracks appearing on slopes and tilting trees",
+      "id": "q1",
+      "question": "The local weather bureau reports that a low-pressure area (LPA) has entered the Philippine Area of Responsibility (PAR). What should the barangay officials do to forecast possible hazards?",
+      "options": [
+        "Wait until heavy rains start before preparing.",
+        "Monitor PAGASA updates and prepare for possible storm signals.",
+        "Ignore the report since LPA rarely develops into a typhoon.",
+        "Focus only on temperature forecasts."
       ],
-      correctAnswer: 2,
+      "correctAnswer": 1
     },
     {
-      id: "q2",
-      question:
-        "What does a rapidly receding shoreline before a typhoon most likely indicate?",
-      options: [
-        "Low tide caused by the full moon",
-        "An approaching storm surge",
-        "The end of the typhoon's rainfall",
-        "Improved swimming conditions",
+      "id": "q2",
+      "question": "Meteorologists observe rapid cloud buildup and dropping air pressure in a coastal area. What can be forecasted from these conditions?",
+      "options": [
+        "Clear and dry weather.",
+        "Possible thunderstorm or heavy rainfall.",
+        "Volcanic eruption nearby.",
+        "Increasing temperature in the area."
       ],
-      correctAnswer: 1,
+      "correctAnswer": 1
     },
     {
-      id: "q3",
-      question:
-        "Which PAGASA color-coded flood warning level requires immediate evacuation?",
-      options: [
-        "Yellow Alert — monitor water levels",
-        "Green Alert — no immediate danger",
-        "Orange Alert — prepare for possible evacuation",
-        "Red Alert — evacuation is necessary",
+      "id": "q3",
+      "question": "A social media post says, “A super typhoon will hit the Philippines tomorrow,” but PAGASA has not issued any warning. How can you verify the accuracy of this claim?",
+      "options": [
+        "Share it immediately to alert others.",
+        "Wait to see if it rains the next day.",
+        "Check the official PAGASA or NDRRMC bulletins.",
+        "Believe the post because it has thousands of likes."
       ],
-      correctAnswer: 3,
+      "correctAnswer": 2
     },
     {
-      id: "q4",
-      question:
-        "The 2006 Leyte landslide was preceded by which visible warning sign?",
-      options: [
-        "A receding shoreline",
-        "Spiraling cloud formations via satellite",
-        "Days of intense rainfall and visible ground cracks",
-        "A sudden drop in river water levels",
+      "id": "q4",
+      "question": "Your phone app shows a severe flood warning, but local authorities haven’t announced anything yet. What should you do to ensure accuracy before acting?",
+      "options": [
+        "Compare the information with government advisories.",
+        "Ignore it since there’s no official announcement.",
+        "Immediately evacuate without checking.",
+        "Ask friends if they heard the same news."
       ],
-      correctAnswer: 2,
+      "correctAnswer": 0
     },
     {
-      id: "q5",
-      question:
-        "Which agency issues El Niño advisories and drought forecasts in the Philippines?",
-      options: ["PHIVOLCS", "NDRRMC", "PAGASA", "DENR"],
-      correctAnswer: 2,
+      "id": "q5",
+      "question": "After days of heavy rain, a hillside community experiences a landslide. What is the most likely cause of this hazard?",
+      "options": [
+        "Strong winds loosened the trees.",
+        "Prolonged rainfall saturated the soil, weakening its stability.",
+        "Earthquake vibrations caused the slope to collapse.",
+        "The land was too dry before the rain."
+      ],
+      "correctAnswer": 1
     },
+    {
+      "id": "q6",
+      "question": "Flooding occurred in a city even after only moderate rain. What could be the main contributing factor?",
+      "options": [
+        "The city’s drainage system is clogged or inadequate.",
+        "There was too much sunlight before the rain.",
+        "The city is too far from the coast.",
+        "Wind direction caused water to pile up."
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "id": "q7",
+      "question": "Weather records show that a certain province often experiences strong typhoons every last quarter of the year. What pattern can be recognized from this data?",
+      "options": [
+        "The area is safe during any season.",
+        "The province is located along the common typhoon path during monsoon months.",
+        "The typhoons are random events.",
+        "The frequency is caused by human activity."
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "id": "q8",
+      "question": "In the past five years, flash floods always occur shortly after intense rainfall lasting more than an hour. What does this pattern suggest?",
+      "options": [
+        "The floods are caused by sea-level rise.",
+        "There is a predictable relationship between rainfall intensity and flooding.",
+        "Floods happen by coincidence.",
+        "Rainfall has no connection to flooding."
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "id": "q9",
+      "question": "PAGASA raises a Tropical Cyclone Wind Signal No. 3 for your area. What should your family do first?",
+      "options": [
+        "Go to the nearest open field to watch the winds.",
+        "Secure your house, prepare a go-bag, and stay tuned to official updates.",
+        "Wait for the rain to stop before preparing.",
+        "Continue normal activities as long as there’s power."
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "id": "q10",
+      "question": "Your school is in a flood-prone area, and heavy rains have been continuous since early morning. As a student leader, what is the best decision to recommend to the principal?",
+      "options": [
+        "Continue classes until dismissal time.",
+        "Wait for official cancellation from the mayor’s office.",
+        "Suspend classes early and ensure students get home safely.",
+        "Ask everyone to stay and observe the rainfall pattern."
+      ],
+      "correctAnswer": 2
+    }
   ],
 };
