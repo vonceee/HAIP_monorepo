@@ -19,7 +19,8 @@
         "eslint-import-resolver-typescript": "^4.4.4",
         "eslint-plugin-import": "^2.32.0",
         "prettier": "^3.4.2",
-        "typescript-eslint": "^8.23.0"
+        "typescript-eslint": "^8.23.0",
+        "laravel-vite-plugin": "^1.0.0"
     },
     "dependencies": {
         "vite": "^6.0.0"
