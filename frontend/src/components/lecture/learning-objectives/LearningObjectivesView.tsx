@@ -44,7 +44,7 @@ export const LearningObjectivesView: React.FC<LearningObjectivesViewProps> = ({
               {data.title}
             </h2>
             <p className="text-slate-300 text-base md:text-xl font-light mt-4 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              Complete the following objectives to proceed.
+              complete the following objectives to proceed.
             </p>
           </div>
         </div>

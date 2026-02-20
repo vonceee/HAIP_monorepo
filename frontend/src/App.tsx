@@ -19,6 +19,7 @@ import { LectureView } from "./components/lecture/LectureView";
 import { Lecture } from "./types";
 import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashboard";
+import background from "./assets/background-img.webp";
 import "./App.css";
 
 function App() {
@@ -39,13 +40,22 @@ function App() {
         <Route
           path="/"
           element={
-            <>
+            <div
+              style={{
+                backgroundImage: `url(${background})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                minHeight: "100vh",
+                width: "100%",
+              }}
+            >
               <Navbar />
               <About />
               <Features onLectureSelect={setSelectedLecture} />
               <Footer />
               <ScrollToTop />
-            </>
+            </div>
           }
         />
         <Route path="/profile" element={<Profile />} />

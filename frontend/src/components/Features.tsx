@@ -8,7 +8,7 @@ import {
   PlayCircle,
 } from "lucide-react";
 
-import { lectures } from "../data/lectures";
+import { lectures } from "../data/lectures"; // Importing from modular lecture registry
 import { Lecture } from "../types";
 
 // --- DYNAMIC STYLING MAPS ---
@@ -39,8 +39,10 @@ export const Features = ({ onLectureSelect }: FeaturesProps) => {
     <section id="library" className="container py-8 sm:py-12 space-y-8">
       {/* Section Header */}
       <h2 className="text-3xl lg:text-4xl font-bold md:text-center">
-        <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
-          Disaster Library
+        <span className="inline-block bg-card px-8 py-3 rounded-full shadow-lg border">
+          <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
+            Disaster Library
+          </span>
         </span>
       </h2>
 
@@ -56,7 +58,7 @@ export const Features = ({ onLectureSelect }: FeaturesProps) => {
             <Card
               key={lecture.id}
               onClick={() => onLectureSelect?.(lecture)}
-              className={`group relative overflow-hidden flex flex-col h-full cursor-pointer transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] ${hoverStyle}`}
+              className={`bg-card text-card-foreground shadow-lg group relative overflow-hidden flex flex-col h-full cursor-pointer transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] ${hoverStyle}`}
             >
               {/* Tactical Header Bar */}
               <div className={`h-1.5 w-full ${colorStyle}`} />

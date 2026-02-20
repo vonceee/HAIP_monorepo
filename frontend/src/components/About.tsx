@@ -3,7 +3,7 @@ import hazardIllustration from "../assets/pilot.png";
 export const About = () => {
   return (
     <section id="about" className="container py-8 sm:py-12">
-      <div className="bg-muted/50 border rounded-lg py-12 px-6 md:p-12">
+      <div className="bg-card text-card-foreground border rounded-lg py-12 px-6 md:p-12 shadow-xl">
         <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
           <img
             src={hazardIllustration}
