@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
-Route::post('/auth/google', function (Request $request) {
+Route::post('google', function (Request $request) {
     $request->validate([
         'token' => ['required', 'string'],
     ]);
@@ -55,7 +55,7 @@ Route::post('/auth/google', function (Request $request) {
     return response()->json(['error' => 'Invalid token'], 401);
 });
 
-Route::post('/logout', function (Request $request) {
+Route::post('logout', function (Request $request) {
     Auth::guard('web')->logout();
 
     $request->session()->invalidate();
