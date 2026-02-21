@@ -19,3 +19,7 @@ Route::get('/sanctum/csrf-cookie', function () {
 });
 
 require __DIR__ . '/auth.php';
+
+Route::middleware('auth')->get('/api/user', function (\Illuminate\Http\Request $request) {
+    return $request->user();
+});
