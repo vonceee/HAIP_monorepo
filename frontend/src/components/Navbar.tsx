@@ -1,9 +1,8 @@
+import { Link } from "react-router-dom";
+import { LogOut, LayoutDashboard, UserCog } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "./mode-toggle";
-import api from "@/lib/axios";
-import { useAuth } from "@/hooks/useAuth";
-import { googleLogout } from "@react-oauth/google";
-import { Link } from "react-router-dom";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,48 +11,41 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useAuth } from "@/hooks/navbar/useAuth";
+import { useLogout } from "@/hooks/navbar/useLogout";
+import { useUserInitials } from "@/hooks/navbar/useUserInitials";
 
 export const Navbar = () => {
-  const { user, setUser } = useAuth();
-
-  const handleLogout = async () => {
-    try {
-      await api.post("/logout");
-    } catch (error) {
-      console.error("Logout failed:", error);
-    } finally {
-      googleLogout();
-      setUser(null);
-      window.location.href = "/";
-    }
-  };
+  const { user } = useAuth();
+  const { logout} = useLogout();
+  const initials = useUserInitials();
 
   return (
-    <header className="sticky border-b-[1px] top-0 z-40 w-full bg-white dark:border-b-slate-700 dark:bg-background">
-      <div className="container h-14 px-4 w-full flex justify-between items-center mx-auto">
-        <div className="font-bold flex">
-          <a
-            rel="noreferrer noopener"
-            href="/"
-            className="ml-2 font-bold text-xl flex items-center"
-          >
-            <span className="ml-3 text-xl font-bold text-slate-800 tracking-tight">
-              HAIP{" "}
-              <span className="text-slate-400 font-normal hidden sm:inline">
-                | Hazard Awareness
-              </span>
-            </span>{" "}
-          </a>
-        </div>
+    <header className="sticky top-0 z-40 w-full border-b bg-background">
+      <div className="container mx-auto flex h-14 items-center justify-between px-4">
 
-        <div className="flex gap-2 items-center">
+        {/* Logo */}
+        <Link
+          to="/"
+          aria-label="HAIP — Hazard Awareness home"
+          className="flex items-center gap-2 text-xl font-bold tracking-tight text-foreground"
+        >
+          HAIP
+          <span className="hidden text-base font-normal text-muted-foreground sm:inline">
+            | Hazard Awareness
+          </span>
+        </Link>
+
+        {/* Right controls */}
+        <div className="flex items-center gap-2">
           {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
-                  className="relative h-8 w-8 rounded-full"
+                  size="icon"
+                  className="rounded-full"
+                  aria-label="User menu"
                 >
                   <Avatar className="h-8 w-8">
                     <AvatarImage
@@ -61,30 +53,42 @@ export const Navbar = () => {
                       alt={user.name}
                       referrerPolicy="no-referrer"
                     />
-                    <AvatarFallback>{user.name?.charAt(0)}</AvatarFallback>
+                    <AvatarFallback className="text-xs">
+                      {initials}
+                    </AvatarFallback>
                   </Avatar>
                 </Button>
               </DropdownMenuTrigger>
+
               <DropdownMenuContent className="w-56" align="end" forceMount>
                 <DropdownMenuLabel className="font-normal">
-                  <div className="flex flex-col space-y-1">
-                    <p className="text-sm font-medium leading-none">
-                      {user.name}
-                    </p>
-                    <p className="text-xs leading-none text-muted-foreground">
-                      {user.email}
-                    </p>
-                  </div>
+                  <p className="text-sm font-medium">{user.name}</p>
+                  <p className="text-xs text-muted-foreground">{user.email}</p>
                 </DropdownMenuLabel>
+
                 <DropdownMenuSeparator />
+
                 <DropdownMenuItem asChild>
-                  <Link to="/dashboard">Dashboard</Link>
+                  <Link to="/dashboard" className="flex items-center gap-2">
+                    <LayoutDashboard className="h-4 w-4" />
+                    Dashboard
+                  </Link>
                 </DropdownMenuItem>
+
                 <DropdownMenuItem asChild>
-                  <Link to="/profile">Profile Settings</Link>
+                  <Link to="/profile" className="flex items-center gap-2">
+                    <UserCog className="h-4 w-4" />
+                    Profile Settings
+                  </Link>
                 </DropdownMenuItem>
+
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={handleLogout}>
+
+                <DropdownMenuItem
+                  onClick={ () => logout() }
+                  className="flex items-center gap-2 text-destructive focus:text-destructive"
+                >
+                  <LogOut className="h-4 w-4" />
                   Log out
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -94,6 +98,7 @@ export const Navbar = () => {
               <Link to="/login">Login</Link>
             </Button>
           )}
+
           <ModeToggle />
         </div>
       </div>

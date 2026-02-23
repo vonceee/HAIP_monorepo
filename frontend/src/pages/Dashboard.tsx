@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/hooks/navbar/useAuth";
 
 const Dashboard = () => {
   const { user, loading } = useAuth();

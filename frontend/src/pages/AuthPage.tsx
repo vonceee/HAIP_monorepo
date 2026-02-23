@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import api from "@/lib/axios";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/hooks/navbar/useAuth";
 import illustration from "@/assets/auth-page/cvnesbsefbe.jpg";
 
 export default function AuthPage() {
