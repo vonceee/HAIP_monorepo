@@ -1,10 +1,9 @@
-import React, { useRef } from "react";
-import { Lecture } from "../../types.ts";
-import { Play, Clock } from "lucide-react";
-import { THEME_STYLES } from "./theme";
-import { Badge } from "../ui/badge";
+import React, { useEffect, useState, useRef } from "react";
+import { Lecture } from "../../types";
+import { Clock, ArrowRight, Layers } from "lucide-react";
 import { Button } from "../ui/button";
-import { Card, CardContent } from "../ui/card";
+import { LectureTopBar } from "./layout/LectureTopBar";
+import { THEME_STYLES } from "./theme";
 
 export interface LectureStartMenuProps {
   lecture: Lecture;
@@ -17,134 +16,124 @@ export const LectureStartMenu: React.FC<LectureStartMenuProps> = ({
   onStart,
   onBack,
 }) => {
+  const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-
   const theme = THEME_STYLES.General;
-  const TopicIcon = theme.icon;
-  const titleSize =
-    lecture.title.length > 20
-      ? "text-3xl sm:text-4xl md:text-6xl"
-      : "text-4xl sm:text-5xl md:text-7xl";
+
+  const sections = lecture.sections || [];
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setIsVisible(true), 100);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   return (
     <div
-      className={`fixed inset-0 z-50 overflow-y-auto bg-gradient-to-br ${theme.bgGradient} text-white`}
+      className={`h-screen fixed inset-0 z-50 flex flex-col font-sans text-white overflow-hidden bg-gradient-to-br ${theme.bgGradient}`}
       ref={containerRef}
     >
-      {/* Background Image Layer */}
-      <div className="fixed top-0 left-0 w-full h-[100lvh] opacity-40 pointer-events-none">
-        <img
-          src={lecture.imageUrl}
-          alt="Background"
-          className="w-full h-full object-cover filter blur-sm scale-110 will-change-transform"
-        />
+      {/* Background Layers */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 opacity-40">
+          <img
+            src={lecture.imageUrl}
+            alt="Background"
+            className="w-full h-full object-cover filter blur-xl scale-110"
+          />
+        </div>
+        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_rgba(0,0,0,0.8)_100%)]" />
       </div>
 
-      {/* Radial Gradient Overlay */}
-      <div className="fixed inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_rgba(0,0,0,0.4)_100%)] pointer-events-none" />
+      <div className="relative z-10 flex flex-col h-full w-full">
+        <LectureTopBar
+          topic={lecture.topic}
+          onBack={onBack}
+          backLabel="Back to Lectures"
+          theme={theme}
+        />
 
-      {/* Content Wrapper */}
-      <div className="relative min-h-full flex items-center justify-center p-4 sm:p-6">
-        <div className="relative z-10 max-w-6xl w-full flex flex-col lg:flex-row gap-8 lg:gap-16 items-center animate-in fade-in zoom-in duration-500 py-6 lg:py-0">
-          {/* Left Side: Mission Details */}
-          <div className="flex-1 text-center lg:text-left space-y-6 w-full">
-            {/* Mission Protocol Badge */}
-            <Badge
-              variant="outline"
-              className={`inline-flex items-center px-4 py-1.5 rounded-full border-white/20 bg-black/40 backdrop-blur-md ${theme.accentColor} font-mono text-xs md:text-sm tracking-widest uppercase mb-2 shadow-lg hover:bg-black/50`}
-            >
-              <TopicIcon className="w-4 h-4 mr-2" />
-              {lecture.topic}
-            </Badge>
-
-            {/* Title */}
-            <h1
-              className={`${titleSize} font-black uppercase tracking-tighter leading-none drop-shadow-[0_0_25px_rgba(0,0,0,0.8)]`}
-            >
-              {lecture.title}
-            </h1>
-
-            {/* Description */}
-            <p className="text-slate-200 text-base md:text-xl font-light leading-relaxed border-l-4 border-white/20 pl-6 bg-gradient-to-r from-black/40 to-transparent p-2 rounded-r-lg backdrop-blur-sm text-left">
-              {lecture.description}
-            </p>
-
-            {/* Stats: Duration & Difficulty */}
-            <div className="flex flex-wrap gap-4 justify-center lg:justify-start pt-2">
-              <div className="bg-black/40 border border-white/10 px-6 py-3 rounded-xl backdrop-blur-md flex flex-col items-center lg:items-start min-w-[120px]">
-                <div className="text-slate-400 text-[10px] uppercase tracking-wider mb-1 font-bold">
-                  Duration
-                </div>
-                <div className="text-xl font-bold flex items-center text-white">
-                  <Clock className="w-4 h-4 mr-2 text-slate-400" />
-                  {lecture.readTime}:00
+        <div className="flex-1 overflow-y-auto px-6 py-12 md:py-20 custom-scrollbar flex items-center">
+          <div
+            className={`max-w-6xl mx-auto w-full transition-all duration-700 ease-out ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+            }`}
+          >
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+              {/* Left Column - Image Container */}
+              <div className="order-2 lg:order-1 relative group w-full max-w-md mx-auto lg:max-w-none">
+                {/* Glow effect */}
+                <div
+                  className={`absolute -inset-4 bg-gradient-to-tr ${theme.bgGradient} rounded-[2.5rem] blur-2xl opacity-20 group-hover:opacity-40 transition duration-700`}
+                />
+                <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-black/40 aspect-[4/3] lg:aspect-square flex items-center justify-center pointer-events-none">
+                  <img
+                    src={lecture.imageUrl}
+                    alt={lecture.title}
+                    className="w-full h-full object-cover opacity-90 transition-transform duration-1000 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 shadow-[inset_0_0_50px_rgba(0,0,0,0.5)]" />
                 </div>
               </div>
-              <div className="bg-black/40 border border-white/10 px-6 py-3 rounded-xl backdrop-blur-md flex flex-col items-center lg:items-start min-w-[120px]">
-                <div className="text-slate-400 text-[10px] uppercase tracking-wider mb-1 font-bold">
-                  Difficulty
+
+              {/* Right Column - Info */}
+              <div className="order-1 lg:order-2 flex flex-col gap-6 lg:gap-8 text-center lg:text-left">
+                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
+                  <div
+                    className={`px-4 py-1.5 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-xs font-black uppercase tracking-widest ${theme.accentColor}`}
+                  >
+                    {lecture.topic}
+                  </div>
                 </div>
-                <div className={`text-xl font-bold ${theme.accentColor}`}>
-                  {lecture.difficulty.toUpperCase()}
+
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tighter leading-[1.05] text-white">
+                  {lecture.title}
+                </h1>
+
+                <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-medium max-w-2xl mx-auto lg:mx-0">
+                  {lecture.description}
+                </p>
+
+                {/* Stats */}
+                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 py-6 border-y border-white/10">
+                  <div className="flex items-center gap-3 px-5 py-3 rounded-xl bg-white/5 border border-white/10 shadow-inner">
+                    <Clock className={`w-5 h-5 ${theme.accentColor}`} />
+                    <span className="text-sm font-bold text-slate-200 uppercase tracking-wide">
+                      {lecture.readTime} min read
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3 px-5 py-3 rounded-xl bg-white/5 border border-white/10 shadow-inner">
+                    <Layers className={`w-5 h-5 ${theme.accentColor}`} />
+                    <span className="text-sm font-bold text-slate-200 uppercase tracking-wide tabular-nums">
+                      {sections.length} Modules
+                    </span>
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row items-stretch justify-center lg:justify-start gap-4 pt-2">
+                  <Button
+                    onClick={onStart}
+                    size="lg"
+                    className={`h-14 px-8 font-black text-sm uppercase tracking-widest ${theme.buttonBg} ${theme.buttonHover} text-white border-0 ring-0 rounded-xl shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] transition-all flex-1 sm:flex-none`}
+                  >
+                    Start Mission
+                    <ArrowRight className="ml-3 w-5 h-5" />
+                  </Button>
+                  <Button
+                    onClick={onBack}
+                    size="lg"
+                    variant="outline"
+                    className="h-14 px-8 font-black text-sm uppercase tracking-widest bg-white/5 hover:bg-white/10 text-white border-white/10 hover:border-white/20 rounded-xl shadow-lg transition-all flex-1 sm:flex-none"
+                  >
+                    Abort
+                  </Button>
                 </div>
               </div>
             </div>
           </div>
-
-          {/* Right Side: Mission Card */}
-          <Card className="w-full max-w-md bg-black/50 backdrop-blur-xl border-white/10 rounded-2xl shadow-2xl relative overflow-hidden group border">
-            {/* Card Accent Line */}
-            <div
-              className={`absolute top-0 left-0 w-full h-1 ${theme.buttonBg}`}
-            />
-
-            <CardContent className="space-y-6 pt-8">
-              {/* Competencies List */}
-              <ul className="space-y-4">
-                {lecture.competencies.slice(0, 3).map((comp, i) => (
-                  <li
-                    key={i}
-                    className="flex items-start text-base sm:text-lg text-slate-200"
-                  >
-                    <div
-                      className={`mt-2 mr-3 w-2 h-2 rounded-full ${theme.buttonBg} shadow-[0_0_8px_currentColor] flex-shrink-0`}
-                    />
-                    <span className="leading-snug font-medium break-words min-w-0">
-                      {comp.description}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-
-              {/* Action Buttons */}
-              <div className="space-y-4 pt-4">
-                {/* Initialize Button */}
-                <div className="relative">
-                  <Button
-                    size="lg"
-                    onClick={onStart}
-                    className={`w-full group/btn relative overflow-hidden ${theme.buttonBg} ${theme.buttonHover} text-white font-black uppercase tracking-wider py-6 sm:py-8 text-lg rounded-xl shadow-lg hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] border-0 ring-0`}
-                  >
-                    <span className="relative z-10 flex items-center justify-center">
-                      Initialize <Play className="w-5 h-5 ml-2 fill-current" />
-                    </span>
-                    <div className="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-[-200%] transition-transform duration-700 ease-in-out" />
-                  </Button>
-                </div>
-
-                {/* Abort Button */}
-                <div className="relative">
-                  <Button
-                    variant="ghost"
-                    onClick={onBack}
-                    className="w-full text-xs text-slate-500 hover:text-white uppercase tracking-widest hover:bg-white/5"
-                  >
-                    Abort Mission
-                  </Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
         </div>
       </div>
     </div>

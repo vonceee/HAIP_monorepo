@@ -153,7 +153,7 @@ export const LectureView: React.FC<LectureViewProps> = ({
         theme={theme}
       />
       <div
-        className={`flex-1 overflow-y-auto w-full relative z-10 custom-scrollbar ${scrollClassName ?? "p-4"}`}
+        className={`flex-1 overflow-y-auto w-full relative z-10 custom-scrollbar ${scrollClassName ?? ""}`}
       >
         {children}
       </div>

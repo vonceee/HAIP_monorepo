@@ -60,7 +60,7 @@ export interface Lecture {
   description: string;
   topic: HazardTopic;
   imageUrl: string;
-  bgMusicUrl?: string; // Optional
+  bgMusicUrl?: string;
   readTime: number; // minutes
   difficulty: "Beginner" | "Intermediate" | "Advanced";
   objectives: string[];

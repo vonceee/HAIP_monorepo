@@ -7,9 +7,9 @@ interface LectureTopBarProps {
   backLabel?: string;
   theme: {
     accentColor: string;
-    buttonBg: string; // Used for consistency if we add more controls later
+    buttonBg: string;
   };
-  extraContent?: React.ReactNode; // For the right side content if it varies
+  extraContent?: React.ReactNode;
 }
 
 export const LectureTopBar: React.FC<LectureTopBarProps> = ({
@@ -31,9 +31,7 @@ export const LectureTopBar: React.FC<LectureTopBarProps> = ({
         <span className="text-xs uppercase tracking-wide hidden sm:inline">
           {backLabel}
         </span>
-        {/* Mobile short label if needed, but the design uses hidden sm:inline. 
-            LectureView had a specific mobile label "Exit" for the slides view. 
-            We can handle that via the backLabel prop or just stick to the design. */}
+
         <span className="text-xs uppercase tracking-wide sm:hidden">
           {backLabel === "Exit Mission" ? "Exit" : backLabel}
         </span>

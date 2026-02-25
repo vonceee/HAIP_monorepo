@@ -10,9 +10,5 @@ interface LearningCompetenciesControllerProps {
 export const LearningCompetenciesController: React.FC<
   LearningCompetenciesControllerProps
 > = ({ lecture, onNext }) => {
-  const competencies = lecture.competencies || [];
-
-  return (
-    <LearningCompetenciesView competencies={competencies} onNext={onNext} />
-  );
+  return <LearningCompetenciesView lecture={lecture} onNext={onNext} />;
 };

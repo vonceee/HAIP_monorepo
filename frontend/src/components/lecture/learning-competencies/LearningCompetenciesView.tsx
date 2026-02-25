@@ -1,21 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Lecture } from "../../../types";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Competency } from "../../../types";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle2,
+  Target,
+  BookOpen,
+  Layers,
+} from "lucide-react";
 import { THEME_STYLES } from "../theme";
 
 interface LearningCompetenciesViewProps {
-  competencies: Competency[];
+  lecture: Lecture;
   onNext: () => void;
 }
 
 export const LearningCompetenciesView: React.FC<
   LearningCompetenciesViewProps
-> = ({ competencies, onNext }) => {
+> = ({ lecture, onNext }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const theme = THEME_STYLES.General; // Default theme for consistency
+  const theme = THEME_STYLES.General;
+
+  const sections = lecture.sections || [];
+  const competencies = lecture.competencies || [];
 
   useEffect(() => {
     const timer = window.setTimeout(() => setIsVisible(true), 100);
@@ -24,68 +32,146 @@ export const LearningCompetenciesView: React.FC<
 
   return (
     <div
-      className={`h-full md:min-h-[60vh] flex flex-col transition-all duration-700 ease-out text-white ${
+      className={`h-full w-full mx-auto flex flex-col flex-1 min-h-[calc(100vh-120px)] transition-all duration-700 ease-out ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
       }`}
     >
-      <div className="flex-1 space-y-8 p-4">
-        {/* Header Section */}
-        <div className="space-y-4 text-center md:text-left">
-          <div>
-            <h3 className="text-2xl md:text-4xl font-black uppercase tracking-tighter leading-none drop-shadow-lg">
-              Learning Competencies
-            </h3>
-            <p className="text-slate-400 text-sm md:text-lg font-light mt-2 max-w-2xl mx-auto md:mx-0">
-              master the following key skills to successfully complete the
-              mission objectives.
+      {/* Header */}
+      <div className="px-6 pt-6 pb-5 border-b border-white/8">
+        <div className="flex items-start justify-between gap-6">
+          <div className="space-y-1">
+            <p
+              className={`text-xs font-bold uppercase tracking-widest ${theme.accentColor} opacity-80`}
+            >
+              Lecture Overview
             </p>
+            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter leading-none text-white">
+              {lecture.title || "Course Modules"}
+            </h2>
+          </div>
+          <div className="flex items-center gap-3 shrink-0 pt-1">
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10">
+              <Layers className="w-3.5 h-3.5 text-slate-400" />
+              <span className="text-xs font-semibold text-slate-300 tabular-nums">
+                {sections.length} Modules
+              </span>
+            </div>
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10">
+              <Target className="w-3.5 h-3.5 text-slate-400" />
+              <span className="text-xs font-semibold text-slate-300 tabular-nums">
+                {competencies.length} Competencies
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="flex flex-1 overflow-hidden">
+        {/* Left: Modules */}
+        <div className="flex-1 overflow-y-auto px-6 py-5">
+          <div className="flex items-center gap-2 mb-4">
+            <BookOpen className={`w-4 h-4 ${theme.accentColor}`} />
+            <h3 className="text-xs font-bold uppercase tracking-widest">
+              Course Modules
+            </h3>
+          </div>
+
+          <div className="space-y-2">
+            {sections.length > 0 ? (
+              sections.map((section, index) => (
+                <div
+                  key={section.id || index}
+                  className="group flex items-center gap-4 p-4 rounded-xl border border-white/10 bg-black/40 backdrop-blur-md hover:bg-black/60 hover:border-white/20 transition-all duration-300 shadow-xl"
+                >
+                  {/* Index number */}
+                  <div className="shrink-0 flex items-center justify-center w-9 h-9 rounded-lg bg-black/40 border border-white/10">
+                    <span
+                      className={`text-xs font-black tabular-nums ${theme.accentColor}`}
+                    >
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-semibold text-slate-200 text-sm leading-snug group-hover:text-white transition-colors truncate">
+                      {section.title ||
+                        (index === 0
+                          ? "Introduction"
+                          : index === 1
+                            ? "Effect Analysis"
+                            : `Module ${index + 1}`)}
+                    </h4>
+                  </div>
+
+                  {/* Hover arrow */}
+                  <ArrowRight className="w-4 h-4 text-slate-600 group-hover:text-slate-400 group-hover:translate-x-0.5 transition-all shrink-0" />
+                </div>
+              ))
+            ) : (
+              <div className="text-sm text-slate-500 text-center py-16 border border-dashed border-white/10 rounded-xl bg-black/20">
+                No modules available for this lecture.
+              </div>
+            )}
           </div>
         </div>
 
-        {/* Competencies Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-          {competencies.map((comp, index) => (
-            <Card
-              key={index}
-              className="group bg-black/40 backdrop-blur-md border-white/10 hover:bg-black/50 transition-all duration-300 overflow-hidden relative"
-            >
-              {/* Card Accent Line */}
-              <div
-                className={`absolute top-0 left-0 w-1 h-full ${theme.buttonBg} opacity-50 group-hover:opacity-100 transition-opacity`}
-              />
+        {/* Divider */}
+        <div className="w-px bg-white/8 shrink-0" />
 
-              <CardHeader className="pb-2 pl-6">
-                <div className="flex justify-between items-start gap-4">
+        {/* Right: Competencies */}
+        <div className="w-[440px] lg:w-[550px] shrink-0 overflow-y-auto px-5 py-5">
+          <div className="flex items-center gap-2 mb-4">
+            <Target className={`w-4 h-4 ${theme.accentColor}`} />
+            <h3 className="text-xs font-bold uppercase tracking-widest">
+              Learning Competencies
+            </h3>
+          </div>
+
+          <ul className="space-y-3">
+            {competencies.map((comp, i) => (
+              <li
+                key={i}
+                className="group relative flex flex-col gap-2.5 p-4 rounded-xl border border-white/10 bg-black/40 backdrop-blur-md hover:bg-black/60 hover:border-white/20 transition-all duration-300 overflow-hidden shadow-xl"
+              >
+                {/* Accent bar */}
+                <div
+                  className={`absolute left-0 top-0 bottom-0 w-[3px] ${theme.buttonBg} opacity-40 group-hover:opacity-80 transition-opacity rounded-l-xl`}
+                />
+
+                <div className="flex items-center justify-between gap-3 pl-3">
                   <Badge
                     variant="outline"
-                    className="font-mono text-xs border-white/20 bg-white/5 text-slate-300"
+                    className="font-mono text-[10px] border-white/15 bg-black/30 text-slate-400 px-2 py-0.5 tracking-wider"
                   >
                     {comp.code}
                   </Badge>
                   <CheckCircle2
-                    className={`w-5 h-5 text-slate-600 group-hover:${theme.accentColor} transition-colors`}
+                    className={`w-4 h-4 group-hover:text-slate-400 transition-colors shrink-0`}
                   />
                 </div>
-              </CardHeader>
-              <CardContent className="pl-6">
-                <p className="text-sm md:text-base leading-relaxed font-medium text-slate-200">
+
+                <p className="text-xs leading-relaxed pl-3 group-hover:text-slate-300 transition-colors">
                   {comp.description}
                 </p>
-              </CardContent>
-            </Card>
-          ))}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 
-      {/* Action Footer */}
-      <div className="sticky bottom-0 backdrop-blur-sm p-8 mt-8 -mx-4 md:static md:mt-12 md:mx-0">
-        <div className="flex justify-end">
+      {/* Footer */}
+      <div className="shrink-0 px-6 py-4 border-t border-white/8 bg-black/20 backdrop-blur-sm">
+        <div className="flex items-center justify-between">
+          <p className="text-xs">review all modules before continuing</p>
           <Button
             onClick={onNext}
             size="lg"
-            className={`w-full md:w-auto shadow-lg hover:shadow-xl transition-all font-bold text-lg h-14 md:h-12 uppercase tracking-wide ${theme.buttonBg} ${theme.buttonHover} text-white border-0 ring-0`}
+            className={`min-w-[160px] font-bold text-sm h-11 uppercase tracking-widest ${theme.buttonBg} ${theme.buttonHover} text-white border-0 ring-0 rounded-xl shadow-lg transition-all`}
           >
-            Next <ArrowRight className="ml-2 w-5 h-5" />
+            Continue
+            <ArrowRight className="ml-2 w-4 h-4" />
           </Button>
         </div>
       </div>
