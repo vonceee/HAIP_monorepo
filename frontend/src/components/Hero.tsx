@@ -1,11 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
-import { Link } from "react-router-dom";
 import backgroundImg from "@/assets/background-img.webp";
 
 export function Hero() {
   return (
-    <section className="w-full h-screen flex flex-col justify-center bg-background pb-12">
+    <section className="w-full min-h-[100dvh] lg:h-screen lg:max-h-[100dvh] flex flex-col justify-center bg-background pt-24 pb-16 md:py-0">
       <div className="container mx-auto grid items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16">
         {/* Text */}
         <div className="flex flex-col gap-6 md:gap-8 lg:pr-8">
@@ -20,10 +19,10 @@ export function Hero() {
           </p>
           <div className="flex flex-col sm:flex-row flex-wrap items-center gap-4 pt-2 md:pt-4">
             <Button size="lg" className="w-full sm:w-auto" asChild>
-              <Link to="#lectures">
+              <a href="#library">
                 Explore Lectures
                 <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5" />
-              </Link>
+              </a>
             </Button>
             <Button
               size="lg"
@@ -31,10 +30,10 @@ export function Hero() {
               className="w-full sm:w-auto"
               asChild
             >
-              <Link to="#how-it-works">
+              <a href="#howItWorks">
                 <Play className="mr-2 h-4 w-4 md:h-5 md:w-5" />
                 How It Works
-              </Link>
+              </a>
             </Button>
           </div>
 

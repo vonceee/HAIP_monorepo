@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { MedalIcon, MapIcon, PlaneIcon, GiftIcon } from "../components/Icons";
+import { BookOpen, Map, Gamepad2, Award } from "lucide-react";
 
 interface FeatureProps {
   icon: JSX.Element;
@@ -9,28 +9,28 @@ interface FeatureProps {
 
 const features: FeatureProps[] = [
   {
-    icon: <MedalIcon />,
-    title: "Accessibility",
+    icon: <Map className="w-12 h-12 text-primary" />,
+    title: "1. Choose a Module",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quas provident cum",
+      "browse our library of safety topics including fire, road, water, online, and home hazards.",
   },
   {
-    icon: <MapIcon />,
-    title: "Community",
+    icon: <BookOpen className="w-12 h-12 text-primary" />,
+    title: "2. Learn Concepts",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quas provident cum",
+      "each lecture uses simulation and real-world scenarios with built-in checkpoints.",
   },
   {
-    icon: <PlaneIcon />,
-    title: "Scalability",
+    icon: <Gamepad2 className="w-12 h-12 text-primary" />,
+    title: "3. Interactive Simulation",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quas provident cum",
+      "fun quizzes reinforce key lessons and help kids test their knowledge.",
   },
   {
-    icon: <GiftIcon />,
-    title: "Gamification",
+    icon: <Award className="w-12 h-12 text-primary" />,
+    title: "4. Test Your Knowledge",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum quas provident cum",
+      "complete a topic to unlock a collectible safety badge and share your achievement.",
   },
 ];
 
@@ -38,35 +38,40 @@ export const HowItWorks = () => {
   return (
     <section
       id="howItWorks"
-      className="container text-center py-24 sm:py-32"
+      className="w-full min-h-[100dvh] lg:h-screen lg:max-h-[100dvh] flex flex-col justify-center bg-muted/20 py-16 sm:py-24"
     >
-      <h2 className="text-3xl md:text-4xl font-bold ">
-        How It{" "}
-        <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
-          Works{" "}
-        </span>
-        Step-by-Step Guide
-      </h2>
-      <p className="md:w-3/4 mx-auto mt-4 mb-8 text-xl text-muted-foreground">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veritatis
-        dolor pariatur sit!
-      </p>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 className="text-2xl font-extrabold tracking-tight sm:text-3xl md:text-4xl mb-4">
+          How It{" "}
+          <span className="bg-gradient-to-r from-primary to-primary/60 text-transparent bg-clip-text">
+            Works
+          </span>
+        </h2>
+        <p className="max-w-[85%] text-muted-foreground sm:text-md drop-shadow-sm font-medium mx-auto mb-12">
+          master disaster readiness through our simple, four-step learning
+          process.
+        </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {features.map(({ icon, title, description }: FeatureProps) => (
-          <Card
-            key={title}
-            className="bg-muted/50"
-          >
-            <CardHeader>
-              <CardTitle className="grid gap-4 place-items-center">
-                {icon}
-                {title}
-              </CardTitle>
-            </CardHeader>
-            <CardContent>{description}</CardContent>
-          </Card>
-        ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 relative">
+          {features.map(({ icon, title, description }: FeatureProps) => (
+            <Card
+              key={title}
+              className="bg-card shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-border/50 hover:border-primary/50 relative z-10"
+            >
+              <CardHeader className="pb-4">
+                <CardTitle className="grid gap-4 place-items-center text-xl font-bold">
+                  <div className="p-4 rounded-full bg-primary/10 mb-2 transition-transform duration-300 group-hover:scale-110">
+                    {icon}
+                  </div>
+                  {title}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-muted-foreground font-medium text-sm sm:text-base leading-relaxed">
+                {description}
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
     </section>
   );

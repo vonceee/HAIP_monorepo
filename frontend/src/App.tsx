@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { About } from "./components/About";
+// import { About } from "./components/About";
 // import { Cta } from "./components/Cta";
 // import { FAQ } from "./components/FAQ";
 import { Features } from "./components/Features";
 import { Footer } from "./components/Footer";
 import { Hero } from "./components/Hero";
-// import { HowItWorks } from "./components/HowItWorks";
+import { HowItWorks } from "./components/HowItWorks";
 import { Navbar } from "./components/Navbar";
 // import { Newsletter } from "./components/Newsletter";
 // import { Pricing } from "./components/Pricing";
@@ -20,7 +20,6 @@ import { Lecture } from "./types";
 import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashboard";
 import AuthPage from "./pages/AuthPage";
-import background from "./assets/background-img.webp";
 import "./App.css";
 
 function App() {
@@ -41,20 +40,12 @@ function App() {
         <Route
           path="/"
           element={
-            <div
-              style={{
-                backgroundImage: `url(${background})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-                minHeight: "100vh",
-                width: "100%",
-              }}
-            >
+            <div>
               <Navbar />
               <Hero />
-              <About />
+              {/* <About /> */}
               <Features onLectureSelect={setSelectedLecture} />
+              <HowItWorks />
               <Footer />
               <ScrollToTop />
             </div>
