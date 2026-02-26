@@ -5,15 +5,15 @@ import backgroundImg from "@/assets/background-img.webp";
 
 export function Hero() {
   return (
-    <section className="relative w-full min-h-[100dvh] flex flex-col justify-center bg-background overflow-hidden py-24 md:py-32 lg:py-0">
+    <section className="w-full h-screen flex flex-col justify-center bg-background pb-12">
       <div className="container mx-auto grid items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16">
         {/* Text */}
         <div className="flex flex-col gap-6 md:gap-8 lg:pr-8">
-          <h1 className="text-balance text-4xl font-extrabold leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl xl:text-7xl">
+          <h1 className="text-balance text-4xl font-extrabold leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl">
             Teaching Youth to <span className="text-primary">Stay Safe</span>{" "}
             Through Play
           </h1>
-          <p className="max-w-[85%] text-pretty leading-relaxed text-muted-foreground sm:text-lg sm:max-w-md md:max-w-lg lg:text-xl">
+          <p className="max-w-[85%] text-pretty leading-relaxed text-muted-foreground sm:text-lg sm:max-w-md md:max-w-lg lg:text-lg">
             HAIP makes hazard awareness fun and memorable for learners with
             interactive lectures, quizzes, and real-world scenarios they can
             explore at their own pace.
@@ -74,7 +74,7 @@ export function Hero() {
           <div className="overflow-hidden rounded-2xl shadow-2xl">
             <img
               src={backgroundImg}
-              className="h-[300px] sm:h-[400px] lg:h-[500px] w-full object-cover"
+              className="h-[300px] sm:h-[400px] lg:h-[450px] w-full object-cover"
             />
           </div>
           {/* Floating Badge */}
