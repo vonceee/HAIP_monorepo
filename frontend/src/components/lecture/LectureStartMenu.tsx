@@ -38,7 +38,7 @@ export const LectureStartMenu: React.FC<LectureStartMenuProps> = ({
           <img
             src={lecture.imageUrl}
             alt="Background"
-            className="w-full h-full object-cover filter blur-xl scale-110"
+            className="w-full h-full object-cover"
           />
         </div>
         <div className="absolute inset-0 bg-black/60" />
@@ -53,9 +53,9 @@ export const LectureStartMenu: React.FC<LectureStartMenuProps> = ({
           theme={theme}
         />
 
-        <div className="flex-1 overflow-y-auto px-6 py-12 md:py-20 custom-scrollbar flex items-center">
+        <div className="flex-1 overflow-y-auto px-6 py-24 md:py-0 custom-scrollbar flex flex-col">
           <div
-            className={`max-w-6xl mx-auto w-full transition-all duration-700 ease-out ${
+            className={`max-w-6xl mx-auto my-auto shrink-0 w-full transition-all duration-700 ease-out ${
               isVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-8"
@@ -63,12 +63,12 @@ export const LectureStartMenu: React.FC<LectureStartMenuProps> = ({
           >
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               {/* Left Column - Image Container */}
-              <div className="order-2 lg:order-1 relative group w-full max-w-md mx-auto lg:max-w-none">
+              <div className="order-2 lg:order-1 relative group w-full lg:max-w-none">
                 {/* Glow effect */}
                 <div
                   className={`absolute -inset-4 bg-gradient-to-tr ${theme.bgGradient} rounded-[2.5rem] blur-2xl opacity-20 group-hover:opacity-40 transition duration-700`}
                 />
-                <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-black/40 aspect-[4/3] lg:aspect-square flex items-center justify-center pointer-events-none">
+                <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-black/40 flex items-center justify-center pointer-events-none">
                   <img
                     src={lecture.imageUrl}
                     alt={lecture.title}
@@ -97,14 +97,14 @@ export const LectureStartMenu: React.FC<LectureStartMenuProps> = ({
                 </p>
 
                 {/* Stats */}
-                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 py-6 border-y border-white/10">
-                  <div className="flex items-center gap-3 px-5 py-3 rounded-xl bg-white/5 border border-white/10 shadow-inner">
+                <div className="flex flex-wrap gap-4">
+                  <div className="flex items-center gap-3">
                     <Clock className={`w-5 h-5 ${theme.accentColor}`} />
                     <span className="text-sm font-bold text-slate-200 uppercase tracking-wide">
                       {lecture.readTime} min read
                     </span>
                   </div>
-                  <div className="flex items-center gap-3 px-5 py-3 rounded-xl bg-white/5 border border-white/10 shadow-inner">
+                  <div className="flex items-center gap-3 px-5 py-3">
                     <Layers className={`w-5 h-5 ${theme.accentColor}`} />
                     <span className="text-sm font-bold text-slate-200 uppercase tracking-wide tabular-nums">
                       {sections.length} Modules
@@ -117,16 +117,16 @@ export const LectureStartMenu: React.FC<LectureStartMenuProps> = ({
                   <Button
                     onClick={onStart}
                     size="lg"
-                    className={`h-14 px-8 font-black text-sm uppercase tracking-widest ${theme.buttonBg} ${theme.buttonHover} text-white border-0 ring-0 rounded-xl shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] transition-all flex-1 sm:flex-none`}
+                    className={`h-14 px-8 font-black text-sm uppercase tracking-widest ${theme.buttonBg} ${theme.buttonHover} text-white border-0 ring-0 rounded-xl shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] transition-all w-full sm:w-auto shrink-0`}
                   >
-                    Start Mission
+                    Start
                     <ArrowRight className="ml-3 w-5 h-5" />
                   </Button>
                   <Button
                     onClick={onBack}
                     size="lg"
                     variant="outline"
-                    className="h-14 px-8 font-black text-sm uppercase tracking-widest bg-white/5 hover:bg-white/10 text-white border-white/10 hover:border-white/20 rounded-xl shadow-lg transition-all flex-1 sm:flex-none"
+                    className="h-14 px-8 font-black text-sm uppercase tracking-widest bg-white/5 hover:bg-white/10 text-white border-white/10 hover:border-white/20 rounded-xl shadow-lg transition-all w-full sm:w-auto shrink-0"
                   >
                     Abort
                   </Button>

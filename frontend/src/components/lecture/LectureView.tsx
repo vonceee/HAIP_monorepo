@@ -205,7 +205,6 @@ export const LectureView: React.FC<LectureViewProps> = ({
           setShowObjectives(false);
           setShowCompetencies(true);
         }}
-        scrollClassName="p-4 lg:p-8"
       >
         <LearningObjectivesController
           lecture={lecture}
@@ -230,7 +229,6 @@ export const LectureView: React.FC<LectureViewProps> = ({
           setShowSimulation(false);
           setShowObjectives(true);
         }}
-        scrollClassName="flex flex-col items-center p-4"
       >
         <LearningSimulationsController
           lecture={lecture}
@@ -301,7 +299,7 @@ export const LectureView: React.FC<LectureViewProps> = ({
       </div>
 
       <div
-        className="flex-1 overflow-y-auto lg:overflow-y-hidden w-full mx-auto p-4 sm:p-6 lg:p-8 custom-scrollbar px-8 lg:px-12 relative z-10"
+        className="flex-1 overflow-y-auto lg:overflow-y-hidden w-full custom-scrollbar px-8 lg:px-12 relative z-10"
         ref={contentScrollRef}
       >
         <div className="h-full">

@@ -4,7 +4,7 @@ import backgroundImg from "@/assets/background-img.webp";
 
 export function Hero() {
   return (
-    <section className="w-full min-h-[100dvh] lg:h-screen lg:max-h-[100dvh] flex flex-col justify-center bg-background pt-24 pb-16 md:py-0">
+    <section className="w-full min-h-[100dvh] lg:h-screen lg:max-h-[100dvh] flex flex-col justify-center bg-background pt-24 pb-12 md:pt-0">
       <div className="container mx-auto grid items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16">
         {/* Text */}
         <div className="flex flex-col gap-6 md:gap-8 lg:pr-8">
@@ -69,7 +69,7 @@ export function Hero() {
         </div>
 
         {/* Image */}
-        <div className="relative mx-auto w-full max-w-md md:max-w-none mt-8 md:mt-0">
+        <div className="relative w-full md:max-w-none md:mt-0">
           <div className="overflow-hidden rounded-2xl shadow-2xl">
             <img
               src={backgroundImg}
@@ -77,7 +77,7 @@ export function Hero() {
             />
           </div>
           {/* Floating Badge */}
-          <div className="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 rounded-xl bg-card px-4 py-2 sm:px-6 sm:py-4 shadow-xl border border-border">
+          <div className="absolute -bottom-4 -left-2 sm:-bottom-6 sm:-left-6 rounded-xl bg-card px-4 py-2 sm:px-6 sm:py-4 shadow-xl border border-border">
             <p className="text-xs sm:text-sm font-bold text-foreground">
               Hazard Awareness
             </p>

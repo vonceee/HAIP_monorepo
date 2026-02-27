@@ -25,12 +25,12 @@ export const LearningObjectivesView: React.FC<LearningObjectivesViewProps> = ({
 
   return (
     <div
-      className={`h-full w-full max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 lg:gap-16 items-center lg:items-stretch justify-center flex-1 min-h-[calc(100vh-120px)] p-1 lg:p-0 transition-all duration-700 ease-out ${
+      className={`h-full w-full max-w-7xl mx-auto flex flex-col lg:flex-row gap-4 lg:gap-16 items-center lg:items-stretch justify-center flex-1 min-h-[calc(100vh-120px)] lg:p-0 transition-all duration-700 ease-out ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
       }`}
     >
       {/* Left Column: Header & Context */}
-      <div className="flex-1 w-full lg:max-w-xl space-y-6 flex flex-col justify-center lg:h-full lg:py-12">
+      <div className="shrink-0 lg:flex-1 w-full lg:max-w-xl space-y-4 lg:space-y-6 flex flex-col justify-center lg:h-full lg:py-12 pt-6 px-4 lg:px-0 lg:pt-0">
         <div className="space-y-4 text-center lg:text-left">
           <div className="inline-flex items-center justify-center lg:justify-start">
             <div
@@ -51,9 +51,11 @@ export const LearningObjectivesView: React.FC<LearningObjectivesViewProps> = ({
       </div>
 
       {/* Right Column: Objectives List & Actions */}
-      <div className="w-full lg:flex-1 flex flex-col gap-6 lg:max-w-2xl lg:py-0">
+      {/* flex-1 ensures this column grows to fill available height on mobile,
+          giving `sticky bottom-0` a proper scroll container to anchor to */}
+      <div className="w-full lg:flex-1 flex-1 flex flex-col gap-6 lg:max-w-2xl lg:py-0">
         {/* Objectives List */}
-        <ul className="grid gap-3 md:gap-4 w-full flex-1 content-center">
+        <ul className="grid gap-3 md:gap-4 w-full flex-1 content-center px-4 lg:px-0">
           {data.objectives.map((objective) => (
             <li
               key={objective.id}
@@ -71,8 +73,8 @@ export const LearningObjectivesView: React.FC<LearningObjectivesViewProps> = ({
           ))}
         </ul>
 
-        {/* Action Footer */}
-        <div className="sticky bottom-0 p-4 -mx-4 lg:mx-0 z-20 border-t border-white/10">
+        {/* Action Footer — sticky on mobile, static on lg+ */}
+        <div className="sticky bottom-0 p-4 z-20 border-t border-white/10 lg:static lg:border-0">
           <div className="flex items-center justify-between gap-4">
             {/* Back Button */}
             <div>

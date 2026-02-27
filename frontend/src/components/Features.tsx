@@ -33,7 +33,7 @@ export const Features = ({ onLectureSelect }: FeaturesProps) => {
   return (
     <section
       id="library"
-      className="relative w-full min-h-screen flex flex-col justify-center py-16 sm:py-24 overflow-hidden"
+      className="relative w-full min-h-[100dvh] lg:h-screen lg:max-h-[100dvh] flex flex-col justify-center py-16 md:pt-32 md:pb-24 overflow-hidden"
     >
       {/* Background Image Layer */}
       <div

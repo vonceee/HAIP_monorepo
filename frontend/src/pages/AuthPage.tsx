@@ -1,36 +1,22 @@
-import { useState } from "react";
-import { useGoogleLogin } from "@react-oauth/google";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import api from "@/lib/axios";
-import { useAuth } from "@/hooks/navbar/useAuth";
 import illustration from "@/assets/auth-page/cvnesbsefbe.jpg";
+import { useAuthForm } from "@/hooks/useAuthForm";
 
 export default function AuthPage() {
-  const [isLogin, setIsLogin] = useState(true);
-  const { setUser } = useAuth();
-  const navigate = useNavigate();
-
-  const loginWithGoogle = useGoogleLogin({
-    prompt: "select_account",
-    onSuccess: async (tokenResponse) => {
-      try {
-        await api.get("/sanctum/csrf-cookie");
-        const response = await api.post("/google", {
-          token: tokenResponse.access_token,
-        });
-
-        if (response.data.user) {
-          setUser(response.data.user);
-          navigate("/dashboard");
-        }
-      } catch (error) {
-        console.error("Login failed:", error);
-      }
-    },
-  });
+  const {
+    isLogin,
+    setIsLogin,
+    formData,
+    loading,
+    error,
+    setError,
+    handleChange,
+    handleSubmit,
+    loginWithGoogle,
+  } = useAuthForm();
 
   return (
     <div className="min-h-screen w-full grid grid-cols-1 lg:grid-cols-2 bg-white dark:bg-slate-950 font-sans">
@@ -56,7 +42,10 @@ export default function AuthPage() {
             <p className="text-sm font-medium text-slate-600 dark:text-slate-400">
               {isLogin ? "Don't have an account? " : "Already a user? "}
               <button
-                onClick={() => setIsLogin(!isLogin)}
+                onClick={() => {
+                  setIsLogin(!isLogin);
+                  setError(null);
+                }}
                 className="text-primary hover:text-primary/80 font-bold transition-colors"
                 type="button"
               >
@@ -64,6 +53,12 @@ export default function AuthPage() {
               </button>
             </p>
           </div>
+
+          {error && (
+            <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 px-4 py-3 rounded-sm text-sm">
+              {error}
+            </div>
+          )}
 
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
@@ -76,7 +71,7 @@ export default function AuthPage() {
             </div>
           </div>
 
-          <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+          <form className="space-y-5" onSubmit={handleSubmit}>
             {!isLogin && (
               <div className="space-y-1.5">
                 <Label
@@ -90,6 +85,9 @@ export default function AuthPage() {
                   placeholder="Enter Full Name"
                   type="text"
                   className="rounded-sm border-slate-300 h-11"
+                  value={formData.name}
+                  onChange={handleChange}
+                  disabled={loading}
                 />
               </div>
             )}
@@ -105,6 +103,9 @@ export default function AuthPage() {
                 placeholder="Enter Email Address"
                 type="email"
                 className="rounded-sm border-slate-300 h-11"
+                value={formData.email}
+                onChange={handleChange}
+                disabled={loading}
               />
             </div>
             <div className="space-y-1.5">
@@ -119,6 +120,9 @@ export default function AuthPage() {
                 type="password"
                 placeholder="Enter Password"
                 className="rounded-sm border-slate-300 h-11"
+                value={formData.password}
+                onChange={handleChange}
+                disabled={loading}
               />
             </div>
 
@@ -128,6 +132,7 @@ export default function AuthPage() {
                   type="checkbox"
                   id="keepLogged"
                   className="h-4 w-4 rounded border-slate-300 text-primary focus:ring-primary"
+                  disabled={loading}
                 />
                 <Label
                   htmlFor="keepLogged"
@@ -146,8 +151,40 @@ export default function AuthPage() {
               )}
             </div>
 
-            <Button className="w-full h-12 bg-slate-400 hover:bg-slate-500 text-white font-bold rounded-sm text-base mt-4 transition-colors">
-              {isLogin ? "Log In" : "Sign Up"}
+            <Button
+              className="w-full h-12 bg-slate-400 hover:bg-slate-500 text-white font-bold rounded-sm text-base mt-4 transition-colors"
+              disabled={loading}
+              type="submit"
+            >
+              {loading ? (
+                <span className="flex items-center justify-center gap-2">
+                  <svg
+                    className="animate-spin h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                  Processing...
+                </span>
+              ) : isLogin ? (
+                "Log In"
+              ) : (
+                "Sign Up"
+              )}
             </Button>
           </form>
 
@@ -168,6 +205,7 @@ export default function AuthPage() {
               onClick={() => loginWithGoogle()}
               className="w-full h-11 bg-white hover:bg-slate-50 border-slate-300 text-slate-700 font-medium rounded-sm flex items-center justify-center gap-3 transition-colors"
               type="button"
+              disabled={loading}
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path
