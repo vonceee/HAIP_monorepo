@@ -62,7 +62,6 @@ export interface Lecture {
   imageUrl: string;
   bgMusicUrl?: string;
   readTime: number; // minutes
-  difficulty: "Beginner" | "Intermediate" | "Advanced";
   objectives: string[];
   competencies: Competency[];
   sections: LectureSection[];

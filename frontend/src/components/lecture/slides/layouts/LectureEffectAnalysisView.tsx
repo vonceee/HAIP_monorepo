@@ -18,12 +18,6 @@ export interface EffectAnalysisCardData {
   highlight: string;
   icon: string; // icon name as string
   image: string;
-  color: string;
-  borderColor: string;
-  shadowColor: string;
-  iconColor: string;
-  textColor: string;
-  highlightColor: string;
 }
 
 export interface LectureEffectAnalysisContent {
@@ -58,14 +52,14 @@ export const LectureEffectAnalysisView: React.FC<
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch lg:h-[65vh]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch xl:h-[55vh] 2xl:h-[60vh]">
           {content.cards &&
             content.cards.map((card, index) => {
               const CardIcon = iconMap[card.icon] || Zap;
               return (
                 <div
                   key={index}
-                  className={`group relative bg-black border-2 border-white/10 rounded-3xl overflow-hidden ${card.borderColor} transition-all duration-500 hover:-translate-y-2 ${card.shadowColor} flex flex-col justify-end min-h-[55vh] md:min-h-[45vh]`}
+                  className={`group relative bg-black border-2 border-white/10 rounded-3xl overflow-hidden hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_50px_hsl(var(--primary)/0.4)] flex flex-col justify-end min-h-[55vh] md:min-h-[45vh]`}
                 >
                   {/* Full Background Image */}
                   <div className="absolute inset-0 w-full h-full">
@@ -78,15 +72,16 @@ export const LectureEffectAnalysisView: React.FC<
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent opacity-90" />
                   </div>
 
-                  {/* Icon Badge */}
                   <div className="absolute top-6 right-6 z-10 bg-black/40 backdrop-blur-md p-3 rounded-2xl border border-white/10 shadow-lg group-hover:bg-black/60 transition-colors">
-                    <CardIcon className={`w-8 h-8 ${card.iconColor}`} />
+                    <CardIcon
+                      className={`w-8 h-8 text-primary group-hover:text-primary-foreground transition-colors`}
+                    />
                   </div>
 
                   {/* Content Overlay */}
                   <div className="relative z-10 p-6 md:p-8 flex flex-col gap-4">
                     <h4
-                      className={`text-2xl md:text-3xl lg:text-4xl font-black text-white uppercase tracking-wide leading-[0.9] ${card.textColor} drop-shadow-lg`}
+                      className={`text-2xl md:text-3xl 2xl:text-4xl font-black text-white uppercase tracking-wide leading-[0.9] group-hover:text-primary-foreground drop-shadow-lg transition-colors`}
                     >
                       {card.title.split(" ").map((word, i) => (
                         <React.Fragment key={i}>
@@ -102,9 +97,7 @@ export const LectureEffectAnalysisView: React.FC<
                           <React.Fragment key={i}>
                             {part}
                             {i < arr.length - 1 && (
-                              <span
-                                className={`${card.highlightColor} font-bold`}
-                              >
+                              <span className={`text-primary font-bold`}>
                                 {card.highlight}
                               </span>
                             )}

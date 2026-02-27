@@ -1,16 +1,11 @@
 import React from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { THEME_STYLES } from "../theme";
-
-// Inferring ThemeColors type
-type ThemeColors = (typeof THEME_STYLES)["General"];
 
 interface LectureControlsProps {
   currentStep: number;
   totalSteps: number;
   onNext: () => void;
   onPrev: () => void;
-  theme: ThemeColors;
   isFirstSlide?: boolean;
   isLastSlide?: boolean;
 }
@@ -20,7 +15,6 @@ export const LectureControls: React.FC<LectureControlsProps> = ({
   totalSteps,
   onNext,
   onPrev,
-  theme,
   isFirstSlide = false,
   isLastSlide = false,
 }) => {
@@ -47,7 +41,7 @@ export const LectureControls: React.FC<LectureControlsProps> = ({
               key={idx}
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 idx === currentStep
-                  ? `w-6 sm:w-8 ${theme.buttonBg}`
+                  ? `w-6 sm:w-8 bg-primary`
                   : "w-1.5 sm:w-2 bg-white/30"
               }`}
             />
@@ -56,7 +50,7 @@ export const LectureControls: React.FC<LectureControlsProps> = ({
 
         <button
           onClick={onNext}
-          className={`flex items-center px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-bold transition-all shadow-lg ${theme.buttonBg} ${theme.buttonHover} text-white`}
+          className={`flex items-center px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-bold transition-all shadow-lg bg-primary hover:bg-primary/90 text-white`}
         >
           <span className="hidden sm:inline">
             {isLastSlide ? "Finish Mission" : "Next Section"}

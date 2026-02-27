@@ -77,19 +77,17 @@ export const LectureContent: React.FC<LectureContentProps> = ({
 
   // Use specialized layouts based on step or title
   if (currentStep === 0) {
-    return <LectureIntroduction lecture={lecture} theme={theme} />;
+    return <LectureIntroduction lecture={lecture} />;
   }
 
   // Check if title contains "Effect" (case insensitive) to trigger Effects Analysis layout
   if (title && /effect/i.test(title)) {
-    return <LectureEffectAnalysis lecture={lecture} theme={theme} />;
+    return <LectureEffectAnalysis lecture={lecture} />;
   }
 
   // Check for specific detailed hazard layouts
   if (title && ["Ground Rupture"].includes(title)) {
-    return (
-      <LectureHazardDetail lecture={lecture} title={title} theme={theme} />
-    );
+    return <LectureHazardDetail lecture={lecture} title={title} />;
   }
 
   return (

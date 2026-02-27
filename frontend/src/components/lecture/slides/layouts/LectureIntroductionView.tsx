@@ -1,5 +1,5 @@
 import React from "react";
-import { THEME_STYLES } from "../../theme";
+
 import {
   Activity,
   ShieldAlert,
@@ -57,8 +57,6 @@ const iconMap: Record<string, LucideIcon> = {
 export const LectureIntroductionView: React.FC<
   LectureIntroductionViewProps
 > = ({ topic, content }) => {
-  const theme = THEME_STYLES.General;
-
   return (
     <div className="relative w-full h-full overflow-hidden flex flex-col pointer-events-auto">
       <div>
@@ -73,7 +71,7 @@ export const LectureIntroductionView: React.FC<
             <div className="flex-1 space-y-6 w-full animate-in slide-in-from-left-10 duration-700 fade-in">
               <Badge
                 variant="outline"
-                className={`inline-flex items-center px-4 py-1.5 rounded-full border-white/20 bg-black/40 backdrop-blur-md ${theme.accentColor} font-mono text-xs md:text-sm tracking-widest uppercase mb-2 shadow-lg`}
+                className={`inline-flex items-center px-4 py-1.5 rounded-full border-white/20 bg-black/40 backdrop-blur-md text-primary font-mono text-xs md:text-sm tracking-widest uppercase mb-2 shadow-lg`}
               >
                 <Info className="w-4 h-4 mr-2" />
                 Briefing: {topic}
@@ -84,9 +82,7 @@ export const LectureIntroductionView: React.FC<
                   {topic}
                 </h2>
                 <p className="text-xl md:text-2xl font-light text-slate-200 leading-relaxed max-w-2xl">
-                  <span className={`font-bold ${theme.accentColor}`}>
-                    {topic}
-                  </span>{" "}
+                  <span className={`font-bold text-primary`}>{topic}</span>{" "}
                   {content.subTitle}
                 </p>
 
@@ -111,7 +107,7 @@ export const LectureIntroductionView: React.FC<
                       >
                         <CardContent className="p-4 flex items-start gap-4">
                           <div
-                            className={`p-3 rounded-lg bg-white/5 group-hover:bg-white/10 transition-colors ${theme.accentColor}`}
+                            className={`p-3 rounded-lg bg-white/5 group-hover:bg-white/10 transition-colors text-primary`}
                           >
                             <StatIcon className="w-6 h-6" />
                           </div>

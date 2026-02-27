@@ -304,22 +304,15 @@ export const LectureView: React.FC<LectureViewProps> = ({
       >
         <div className="h-full">
           {activeSlide.type === "complete" ? (
-            <LectureComplete lecture={lecture} theme={theme} onHome={onBack} />
+            <LectureComplete lecture={lecture} onHome={onBack} />
           ) : activeSlide.type === "introduction" ? (
-            <LectureIntroduction lecture={lecture} theme={theme} />
+            <LectureIntroduction lecture={lecture} />
           ) : activeSlide.type === "effects-analysis" ? (
-            <LectureEffectAnalysis lecture={lecture} theme={theme} />
+            <LectureEffectAnalysis lecture={lecture} />
           ) : activeSlide.type === "hazard-detail" ? (
-            <LectureHazardDetail
-              lecture={lecture}
-              title={activeSlide.title}
-              theme={theme}
-            />
+            <LectureHazardDetail lecture={lecture} title={activeSlide.title} />
           ) : activeSlide.type === "decision-game" ? (
-            <LectureDecision
-              scenarios={activeSlide.data}
-              topic={lecture.topic}
-            />
+            <LectureDecision scenarios={activeSlide.data} />
           ) : activeSlide.type === "final-quiz" ? (
             <LectureQuiz questions={activeSlide.data} />
           ) : (
@@ -341,7 +334,6 @@ export const LectureView: React.FC<LectureViewProps> = ({
         totalSteps={slides.length}
         onNext={handleNext}
         onPrev={handlePrev}
-        theme={theme}
         isFirstSlide={isFirstSlide}
         isLastSlide={isLastSlide}
       />

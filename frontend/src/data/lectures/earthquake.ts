@@ -23,7 +23,6 @@ export const earthquakeLecture: Lecture = {
   topic: "Earthquake",
   imageUrl: image1,
   readTime: 15,
-  difficulty: "Beginner",
   objectives: [
     "Recognize real-world examples of historical earthquake",
     "Learn safety protocols for before, during, and after an earthquake",
@@ -87,12 +86,6 @@ export const earthquakeLecture: Lecture = {
             highlight: "soft soils",
             icon: "Home",
             image: pBXuXnF,
-            color: "orange",
-            borderColor: "hover:border-orange-500",
-            shadowColor: "hover:shadow-[0_0_50px_rgba(249,115,22,0.4)]",
-            iconColor: "text-orange-400",
-            textColor: "group-hover:text-orange-100",
-            highlightColor: "text-orange-400",
           },
           {
             title: "Infrastructure Disruption",
@@ -101,12 +94,6 @@ export const earthquakeLecture: Lecture = {
             highlight: "critical networks",
             icon: "Zap",
             image: P2c24Fz,
-            color: "red",
-            borderColor: "hover:border-red-500",
-            shadowColor: "hover:shadow-[0_0_50px_rgba(239,68,68,0.4)]",
-            iconColor: "text-red-400",
-            textColor: "group-hover:text-red-100",
-            highlightColor: "text-red-400",
           },
           {
             title: "Psychological Stress",
@@ -115,17 +102,10 @@ export const earthquakeLecture: Lecture = {
             highlight: "long after",
             icon: "HeartPulse",
             image: nieyw10,
-            color: "purple",
-            borderColor: "hover:border-purple-500",
-            shadowColor: "hover:shadow-[0_0_50px_rgba(168,85,247,0.4)]",
-            iconColor: "text-purple-400",
-            textColor: "group-hover:text-purple-100",
-            highlightColor: "text-purple-400",
           },
         ],
       },
     },
-    // 3. Hazard Detail: Ground Rupture
     {
       id: "ground-rupture",
       title: "Ground Rupture",
@@ -135,34 +115,23 @@ export const earthquakeLecture: Lecture = {
         title: "Ground Rupture",
         description:
           "The visible tearing or displacement of the ground surface along an active fault during an earthquake.",
-        features: [
-          {
-            title: "Vertical Offset",
-            description:
-              "One side lifts higher than the other, creating steep scarps.",
-          },
-          {
-            title: "Horizontal Shift",
-            description:
-              "Ground moves sideways, severing roads and utility lines.",
-          },
-        ],
         effects: [
           {
-            label: "Structural Tearing",
-            description: "Foundations split apart instantly.",
+            label: "Direct Structural Damage",
+            description:
+              "Buildings, bridges, and pipelines crossing fault lines are torn apart.",
           },
           {
-            label: "Uninhabitable Zones",
-            description: "Permanent no-build zones.",
+            label: "Land Use Impact",
+            description:
+              "Fault zones become uninhabitable, limiting urban expansion and zoning.",
+          },
+          {
+            label: "Economic Consequences",
+            description:
+              "Relocation and reconstruction costs increase drastically.",
           },
         ],
-        protocol: {
-          title: "The 5-Meter Rule",
-          description:
-            "Permanent structures are strictly prohibited within 5 meters on both sides of the active fault trace.",
-          highlight: "5 meters",
-        },
         images: [
           {
             src: gr1_mz2zqMV,
@@ -178,10 +147,16 @@ export const earthquakeLecture: Lecture = {
               "Surface rupture observed in North Cotabato after the 2019 earthquake.",
             sourceUrl: "https://www.youtube.com/watch?v=tSeflXdLrJE",
           },
+          {
+            src: gr2_nSEuU4D,
+            alt: "Cotabato Rupture",
+            caption:
+              "Surface rupture observed in North Cotabato after the 2019 earthquake.",
+            sourceUrl: "https://www.youtube.com/watch?v=tSeflXdLrJE",
+          },
         ],
       },
     },
-    // 4. Hazard Detail: Liquefaction
     {
       id: "liquefaction",
       title: "Liquefaction",
@@ -190,33 +165,23 @@ export const earthquakeLecture: Lecture = {
       layoutData: {
         title: "Liquefaction",
         description:
-          "A phenomenon where saturated soil loses its strength and behaves like a liquid due to intense ground shaking.",
-        features: [
-          {
-            title: "Loss of Strength",
-            description: "Solid ground turns into a quicksand-like substance.",
-          },
-          {
-            title: "Sinking Structures",
-            description: "Buildings and heavy objects sink or tilt.",
-          },
-        ],
+          "The process where water-saturated, loose soil behaves like a liquid during intense shaking.",
         effects: [
           {
-            label: "Foundation Failure",
-            description: "Buildings can collapse or tilt dangerously.",
+            label: "Building Instability",
+            description: "Houses, bridges, and towers sink, tilt, or collapse.",
           },
           {
-            label: "Sand Boils",
-            description: "Water and sand erupting from the ground.",
+            label: "Underground Damage",
+            description:
+              "Bursting of pipelines and sewage systems due to soil movement.",
+          },
+          {
+            label: "Economic Disruption",
+            description:
+              "Industrial zones built on reclaimed or soft land experience high recovery costs.",
           },
         ],
-        protocol: {
-          title: "Check Soil Quality",
-          description:
-            "Assess soil type and compactness before construction in prone areas.",
-          highlight: "soil type",
-        },
         images: [
           {
             src: XkdS1Sh,
@@ -228,10 +193,14 @@ export const earthquakeLecture: Lecture = {
             alt: "Tilted Building",
             caption: "Buildings tilting due to loss of soil bearing capacity.",
           },
+          {
+            src: XkdS1Sh,
+            alt: "Liquefaction Damage",
+            caption: "Ground failure caused by liquefaction.",
+          },
         ],
       },
     },
-    // 5. Hazard Detail: Earthquake-Induced Landslides
     {
       id: "landslides",
       title: "Landslides",
@@ -240,34 +209,23 @@ export const earthquakeLecture: Lecture = {
       layoutData: {
         title: "Landslides",
         description:
-          "The downward movement of rock, soil, and debris triggered by ground shaking on slopes.",
-        features: [
-          {
-            title: "Slope Failure",
-            description: "Shaking destabilizes weak or steep slopes.",
-          },
-          {
-            title: "Debris Flow",
-            description: "Rapid movement of soil and rocks.",
-          },
-        ],
+          "Downhill movement of rocks and soil triggered by ground shaking, especially in mountainous or steep terrains.",
         effects: [
           {
-            label: "Buried Communities",
-            description: "Entire villages can be covered by debris.",
+            label: "Burial of Settlements",
+            description:
+              "Entire villages can be buried, as seen in upland communities of Luzon.",
           },
           {
-            label: "Blocked Roads",
+            label: "Isolation of Areas",
+            description: "Blocked roads hinder rescue and relief operations.",
+          },
+          {
+            label: "Environmental Damage",
             description:
-              "Transportation networks severed by impassable debris.",
+              "Landslides destroy vegetation, leading to erosion and loss of biodiversity.",
           },
         ],
-        protocol: {
-          title: "Avoid Steep Slopes",
-          description:
-            "Stay away from steep cliffs and slopes during and after earthquakes.",
-          highlight: "steep slopes",
-        },
         images: [
           {
             src: l1_2lNocmC,
@@ -279,10 +237,14 @@ export const earthquakeLecture: Lecture = {
             alt: "Road Blockage",
             caption: "Road blocked by landslide debris.",
           },
+          {
+            src: l1_2lNocmC,
+            alt: "Landslide",
+            caption: "Massive landslide triggered by seismic activity.",
+          },
         ],
       },
     },
-    // 6. Hazard Detail: Tsunami
     {
       id: "tsunami",
       title: "Tsunami",
@@ -291,33 +253,24 @@ export const earthquakeLecture: Lecture = {
       layoutData: {
         title: "Tsunami",
         description:
-          "Series of giant sea waves generated by undersea earthquakes, landslides, or volcanic eruptions.",
-        features: [
-          {
-            title: "Water Displacement",
-            description: "Vertical movement of the seafloor displaces water.",
-          },
-          {
-            title: "Wave Propagation",
-            description: "Waves travel at high speeds across the ocean.",
-          },
-        ],
+          "A series of large sea waves generated by undersea earthquakes that displace huge volumes of water.",
         effects: [
           {
-            label: "Coastal Flooding",
-            description: "Massive inundation of coastal areas.",
+            label: "Coastal Inundation",
+            description:
+              "Flooding destroys homes, ports, and coastal infrastructure.",
           },
           {
-            label: "Destruction of structures",
-            description: "Buildings and infrastructure swept away.",
+            label: "Loss of Lives",
+            description:
+              "People near the shorelines have little time to evacuate.",
+          },
+          {
+            label: "Environmental Impact",
+            description:
+              "Saltwater contamination damages crops and freshwater sources.",
           },
         ],
-        protocol: {
-          title: "Move to Higher Ground",
-          description:
-            "Immediately evacuate to higher ground if you feel strong shaking near the coast.",
-          highlight: "higher ground",
-        },
         images: [
           {
             src: t1_Vs1VkOm_d,
@@ -329,10 +282,14 @@ export const earthquakeLecture: Lecture = {
             alt: "Tsunami Damage",
             caption: "Aftermath of a tsunami inundation.",
           },
+          {
+            src: t1_Vs1VkOm_d,
+            alt: "Tsunami Wave",
+            caption: "Approaching tsunami wave.",
+          },
         ],
       },
     },
-    // 7. Hazard Detail: Infrastructure Failures
     {
       id: "infra-failure",
       title: "Infrastructure Failures",
@@ -341,33 +298,24 @@ export const earthquakeLecture: Lecture = {
       layoutData: {
         title: "Infrastructure Failures",
         description:
-          "Secondary hazards resulting from damage to man-made structures and utility systems.",
-        features: [
-          {
-            title: "Fire",
-            description: "Gas leaks and electrical shorts causing fires.",
-          },
-          {
-            title: "Dam Failure",
-            description: "Breach of dams leading to downstream flooding.",
-          },
-        ],
+          "Secondary hazards caused by damaged gas lines, power systems, and industrial facilities during or after earthquakes.",
         effects: [
           {
             label: "Urban Fires",
-            description: "Widespread fires in densely populated areas.",
+            description:
+              "Breakouts spread rapidly when water lines are broken.",
           },
           {
-            label: "Power Outages",
-            description: "Loss of electricity and communication.",
+            label: "Pollution",
+            description:
+              "Chemical leaks from factories contaminate the air and soil.",
+          },
+          {
+            label: "Extended Recovery",
+            description:
+              " Fire-damaged areas require longer rebuilding periods.",
           },
         ],
-        protocol: {
-          title: "Check for Hazards",
-          description:
-            "Check for gas leaks and electrical damage. Turn off utilities if safe.",
-          highlight: "gas leaks",
-        },
         images: [
           {
             src: i1_7udUQp3,
@@ -378,6 +326,11 @@ export const earthquakeLecture: Lecture = {
             src: i2_MRcTqhO,
             alt: "Infrastructure Damage",
             caption: "Damaged infrastructure posing safety risks.",
+          },
+          {
+            src: i1_7udUQp3,
+            alt: "Fire",
+            caption: "Fire breaking out after an earthquake.",
           },
         ],
       },

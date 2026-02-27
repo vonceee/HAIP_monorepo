@@ -5,36 +5,37 @@ export const volcanoLecture: Lecture = {
   id: "lecture-volcano-101",
   title: "Volcano-Related Hazards",
   description:
-    "Learn about various hazards associated with volcanic eruptions and how to recognize signs of impending activity.",
+    "a deep dive into recognizing the early warning signs of volcanic eruptions, including pyroclastic flows, ash fall, lahars, and lava flows.",
   topic: "Volcano",
   imageUrl: image3,
-  readTime: 12,
-  difficulty: "Advanced",
+  readTime: 20,
   gameType: "volcanic-eruption-sim",
-  objectives: ["Explain volcano-related hazards", "Recognize eruption signs", "Understand hazard impacts"],
+  objectives: [
+    "Explain volcano-related hazards",
+    "Recognize eruption signs",
+    "Understand hazard impacts",
+  ],
   competencies: [
     {
-      description:
-        "Explain various volcano-related hazards",
+      description: "Explain various volcano-related hazards",
       code: "DRR11/12-Ih-i-24",
     },
     {
-      description:
-        "Recognize signs of an impending volcanic eruption",
+      description: "Recognize signs of an impending volcanic eruption",
       code: "DRR11/12-Ih-i-25",
     },
   ],
   sections: [
-    // 1. Introduction
     {
       id: "intro",
       title: "Introduction",
       content: "",
       layout: "introduction",
       layoutData: {
-        subTitle: "Volcanoes are powerful natural systems that can both create landforms and cause large-scale destruction.",
+        subTitle:
+          "Volcanoes are powerful natural systems that can both create landforms and cause large-scale destruction.",
         secondaryInfo:
-          "When magma, gas, and ash escape from deep within the Earth, the surrounding environment and communities may experience severe hazards. Recognizing these hazards—and the early signs of an impending eruption—is critical for forecasting, evacuation planning, and saving lives.",
+          "When magma, gas, and ash escape from deep within the Earth, the surrounding environment and communities may experience severe hazards. Recognizing these hazards—and the early signs of an impending eruption—is critical for forecasting, evacuation planning, and saving lives. “Volcanic eruptions cannot be stopped, but their impacts can be reduced through awareness and preparedness.”",
         reference: "PHIVOLCS, 2023",
         stats: [
           {
@@ -67,87 +68,57 @@ export const volcanoLecture: Lecture = {
         cards: [
           {
             title: "Pyroclastic Flow",
-            description: "Fast-moving mixture of hot gases, ash, and rocks that rush down slopes at over 100 km/h.",
+            description:
+              "A fast-moving mixture of hot gases, ash, and volcanic rocks that rush down the slopes of a volcano at speeds over 100 km/h. Temperature: Can reach up to 800°C.",
             highlight: "over 100 km/h",
             icon: "Zap",
             image:
               "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800&q=80", // Pyroclastic
-            color: "red",
-            borderColor: "hover:border-red-500",
-            shadowColor: "hover:shadow-[0_0_50px_rgba(239,68,68,0.4)]",
-            iconColor: "text-red-400",
-            textColor: "group-hover:text-red-100",
-            highlightColor: "text-red-400",
           },
           {
             title: "Ash Fall",
-            description: "Volcanic ash and rock fragments that fall to the ground, collapsing roofs and contaminating water.",
+            description:
+              "Volcanic ash and rock fragments that fall to the ground, collapsing roofs and contaminating water.",
             highlight: "collapsing roofs",
             icon: "Mountain",
             image:
               "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&q=80", // Ash
-            color: "gray",
-            borderColor: "hover:border-gray-500",
-            shadowColor: "hover:shadow-[0_0_50px_rgba(107,114,128,0.4)]",
-            iconColor: "text-gray-400",
-            textColor: "group-hover:text-gray-100",
-            highlightColor: "text-gray-400",
           },
           {
             title: "Lahars",
-            description: "Mixtures of volcanic ash, rocks, and water that flow down valleys, burying communities.",
+            description:
+              "Mixtures of volcanic ash, rocks, and water that flow down valleys, burying communities.",
             highlight: "burying communities",
             icon: "Waves",
             image:
               "https://images.unsplash.com/photo-1502396105423-424a1005e839?w=800&q=80", // Lahar/Lava
-            color: "brown",
-            borderColor: "hover:border-amber-600",
-            shadowColor: "hover:shadow-[0_0_50px_rgba(161,98,7,0.4)]",
-            iconColor: "text-amber-600",
-            textColor: "group-hover:text-amber-100",
-            highlightColor: "text-amber-600",
           },
           {
             title: "Lava Flows",
-            description: "Molten rock that flows from the crater, destroying farmland and infrastructure.",
+            description:
+              "Molten rock that flows from the crater, destroying farmland and infrastructure.",
             highlight: "destroying farmland",
             icon: "Flame",
             image:
               "https://images.unsplash.com/photo-1502396105423-424a1005e839?w=800&q=80", // Lava
-            color: "orange",
-            borderColor: "hover:border-orange-500",
-            shadowColor: "hover:shadow-[0_0_50px_rgba(249,115,22,0.4)]",
-            iconColor: "text-orange-400",
-            textColor: "group-hover:text-orange-100",
-            highlightColor: "text-orange-400",
           },
           {
             title: "Volcanic Gases",
-            description: "Toxic gases like sulfur dioxide that poison air and form acid rain.",
+            description:
+              "Toxic gases like sulfur dioxide that poison air and form acid rain.",
             highlight: "poison air",
             icon: "Cloud",
             image:
               "https://images.unsplash.com/photo-1541845157-a6d4d10029b7?w=800&q=80", // Gas/Cloud
-            color: "green",
-            borderColor: "hover:border-green-500",
-            shadowColor: "hover:shadow-[0_0_50px_rgba(34,197,94,0.4)]",
-            iconColor: "text-green-400",
-            textColor: "group-hover:text-green-100",
-            highlightColor: "text-green-400",
           },
           {
             title: "Volcanic Tsunamis",
-            description: "Large sea waves from underwater eruptions that flood coastal communities.",
+            description:
+              "Large sea waves from underwater eruptions that flood coastal communities.",
             highlight: "flood coastal communities",
             icon: "Waves",
             image:
               "https://images.unsplash.com/photo-1476900543704-4312b78632f8?w=800&q=80", // Tsunami/Water
-            color: "blue",
-            borderColor: "hover:border-blue-500",
-            shadowColor: "hover:shadow-[0_0_50px_rgba(59,130,246,0.4)]",
-            iconColor: "text-blue-400",
-            textColor: "group-hover:text-blue-100",
-            highlightColor: "text-blue-400",
           },
         ],
       },
@@ -162,34 +133,21 @@ export const volcanoLecture: Lecture = {
         title: "Pyroclastic Flow",
         description:
           "A fast-moving mixture of hot gases, ash, and volcanic rocks that rush down the slopes of a volcano at speeds over 100 km/h. Temperature: Can reach up to 800°C.",
-        features: [
-          {
-            title: "Extreme Heat",
-            description:
-              "Temperatures up to 800°C incinerate everything in their path.",
-          },
-          {
-            title: "High Speed",
-            description:
-              "Moves at over 100 km/h, making escape nearly impossible.",
-          },
-        ],
         effects: [
           {
-            label: "Instant Incineration",
-            description: "Anything in its path is burned immediately.",
+            label: "",
+            description: "Instant incineration of anything in its path.",
           },
           {
-            label: "Burial",
-            description: "Thick deposits of ash and rock bury areas completely.",
+            label: "",
+            description: "Destruction of forests, crops, and settlements.",
+          },
+          {
+            label: "",
+            description:
+              "Burial of areas under thick deposits of ash and rock.",
           },
         ],
-        protocol: {
-          title: "Immediate Evacuation",
-          description:
-            "Leave the danger zone immediately upon warning. There is no shelter from a pyroclastic flow.",
-          highlight: "no shelter",
-        },
         images: [
           {
             src: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800&q=80",
@@ -206,7 +164,6 @@ export const volcanoLecture: Lecture = {
         ],
       },
     },
-    // 4. Hazard Detail: Ash Fall
     {
       id: "ash-fall",
       title: "Ash Fall (Tephra Fall)",
@@ -216,38 +173,24 @@ export const volcanoLecture: Lecture = {
         title: "Ash Fall (Tephra Fall)",
         description:
           "Volcanic ash and rock fragments ejected during explosive eruptions that fall to the ground.",
-        features: [
-          {
-            title: "Heavy Accumulation",
-            description:
-              "Ash can accumulate several centimeters to meters thick.",
-          },
-          {
-            title: "Wide Distribution",
-            description:
-              "Can affect areas hundreds of kilometers from the volcano.",
-          },
-        ],
         effects: [
           {
-            label: "Roof Collapse",
-            description: "Heavy ash causes buildings to collapse.",
+            label: "",
+            description: "Roof collapse due to heavy ash accumulation.",
           },
           {
-            label: "Respiratory Problems",
-            description: "Ash reduces air quality and causes breathing difficulties.",
+            label: "",
+            description: "Reduced air quality causing respiratory problems.",
           },
           {
-            label: "Water Contamination",
-            description: "Ash contaminates water supplies.",
+            label: "",
+            description: "Flight cancellations due to low visibility.",
+          },
+          {
+            label: "",
+            description: "Contamination of water supplies.",
           },
         ],
-        protocol: {
-          title: "Protective Measures",
-          description:
-            "Stay indoors, use masks, and cover water sources. Clean ash carefully to avoid structural damage.",
-          highlight: "use masks",
-        },
         images: [
           {
             src: "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&q=80",
@@ -264,7 +207,6 @@ export const volcanoLecture: Lecture = {
         ],
       },
     },
-    // 5. Hazard Detail: Lahars
     {
       id: "lahars",
       title: "Lahars (Volcanic Mudflows)",
@@ -274,38 +216,20 @@ export const volcanoLecture: Lecture = {
         title: "Lahars (Volcanic Mudflows)",
         description:
           "Mixtures of volcanic ash, rocks, and water that flow down river valleys, often triggered by rain or melting ice.",
-        features: [
-          {
-            title: "High Mobility",
-            description:
-              "Can travel long distances down valleys and river channels.",
-          },
-          {
-            title: "Variable Speed",
-            description:
-              "Moves from slow flows to fast surges depending on conditions.",
-          },
-        ],
         effects: [
           {
-            label: "Burial of Communities",
-            description: "Mud and debris bury homes and farmlands.",
+            label: "",
+            description: "Burial of communities and farmlands.",
           },
           {
-            label: "Infrastructure Damage",
-            description: "Destroys bridges, roads, and buildings.",
+            label: "",
+            description: "Long-term river siltation and flooding.",
           },
           {
-            label: "Long-term Siltation",
-            description: "Rivers become silted, causing flooding.",
+            label: "",
+            description: "Destruction of bridges and infrastructure.",
           },
         ],
-        protocol: {
-          title: "Early Warning",
-          description:
-            "Monitor rainfall and river levels. Evacuate when lahar warnings are issued.",
-          highlight: "monitor rainfall",
-        },
         images: [
           {
             src: "https://images.unsplash.com/photo-1502396105423-424a1005e839?w=800&q=80",
@@ -322,7 +246,6 @@ export const volcanoLecture: Lecture = {
         ],
       },
     },
-    // 6. Hazard Detail: Lava Flows
     {
       id: "lava-flows",
       title: "Lava Flows",
@@ -332,34 +255,20 @@ export const volcanoLecture: Lecture = {
         title: "Lava Flows",
         description:
           "Molten rock that flows from the crater during a non-explosive eruption.",
-        features: [
-          {
-            title: "Slow Movement",
-            description:
-              "Moves slowly but relentlessly, allowing some time for evacuation.",
-          },
-          {
-            title: "High Temperature",
-            description:
-              "Extremely hot, burning everything it touches.",
-          },
-        ],
         effects: [
           {
-            label: "Burns Everything",
-            description: "Destroys vegetation, buildings, and infrastructure.",
+            label: "",
+            description: "Burns everything it touches but moves slowly.",
           },
           {
-            label: "Land Creation",
-            description: "Creates new land when it cools and solidifies.",
+            label: "",
+            description: "Destroys farmland and infrastructure.",
+          },
+          {
+            label: "",
+            description: "Creates new land when it cools.",
           },
         ],
-        protocol: {
-          title: "Safe Evacuation",
-          description:
-            "Monitor lava flow direction and speed. Evacuate early when flows are detected.",
-          highlight: "evacuate early",
-        },
         images: [
           {
             src: "https://images.unsplash.com/photo-1502396105423-424a1005e839?w=800&q=80",
@@ -376,7 +285,6 @@ export const volcanoLecture: Lecture = {
         ],
       },
     },
-    // 7. Hazard Detail: Volcanic Gases
     {
       id: "volcanic-gases",
       title: "Volcanic Gases",
@@ -386,38 +294,21 @@ export const volcanoLecture: Lecture = {
         title: "Volcanic Gases",
         description:
           "Emissions of gases such as sulfur dioxide (SO₂), carbon dioxide (CO₂), and hydrogen sulfide (H₂S) released before, during, or after eruptions.",
-        features: [
-          {
-            title: "Invisible Threat",
-            description:
-              "Many gases are colorless and odorless, making them hard to detect.",
-          },
-          {
-            title: "Long-range Impact",
-            description:
-              "Can affect areas far from the volcano through air pollution.",
-          },
-        ],
         effects: [
           {
-            label: "Poisoning",
-            description: "Causes respiratory problems and death in high concentrations.",
+            label: "",
+            description: "Poisoning of animals and humans in low-lying areas.",
           },
           {
-            label: "Acid Rain",
-            description: "Damages crops, water, and infrastructure.",
+            label: "",
+            description: "Acid rain formation damaging crops and water.",
           },
           {
-            label: "Climate Effects",
-            description: "Contributes to global cooling through atmospheric pollution.",
+            label: "",
+            description:
+              "Atmospheric pollution contributing to global cooling.",
           },
         ],
-        protocol: {
-          title: "Gas Monitoring",
-          description:
-            "Use gas masks in affected areas. Monitor air quality and follow evacuation orders.",
-          highlight: "use gas masks",
-        },
         images: [
           {
             src: "https://images.unsplash.com/photo-1541845157-a6d4d10029b7?w=800&q=80",
@@ -434,7 +325,6 @@ export const volcanoLecture: Lecture = {
         ],
       },
     },
-    // 8. Hazard Detail: Volcanic Tsunamis
     {
       id: "volcanic-tsunamis",
       title: "Volcanic Tsunamis",
@@ -444,38 +334,20 @@ export const volcanoLecture: Lecture = {
         title: "Volcanic Tsunamis",
         description:
           "Large sea waves generated by underwater eruptions, landslides, or caldera collapses.",
-        features: [
-          {
-            title: "Sudden Onset",
-            description:
-              "Can occur without warning during or after volcanic activity.",
-          },
-          {
-            title: "Destructive Power",
-            description:
-              "Waves can reach heights of several meters and travel long distances.",
-          },
-        ],
         effects: [
           {
-            label: "Coastal Flooding",
-            description: "Inundates low-lying coastal areas and communities.",
+            label: "",
+            description: "Flooding of coastal communities.",
           },
           {
-            label: "Infrastructure Damage",
-            description: "Destroys ports, harbors, and coastal infrastructure.",
+            label: "",
+            description: "Destruction of ports and fishing areas.",
           },
           {
-            label: "Island Impact",
-            description: "Affects nearby islands and distant coastlines.",
+            label: "",
+            description: "Risk to nearby islands and coastal cities.",
           },
         ],
-        protocol: {
-          title: "Coastal Evacuation",
-          description:
-            "Move to higher ground immediately when tsunami warnings are issued. Stay away from beaches.",
-          highlight: "higher ground",
-        },
         images: [
           {
             src: "https://images.unsplash.com/photo-1476900543704-4312b78632f8?w=800&q=80",
@@ -492,7 +364,6 @@ export const volcanoLecture: Lecture = {
         ],
       },
     },
-    // 9. Complete
     {
       id: "complete",
       title: "Completion",
@@ -511,13 +382,13 @@ export const volcanoLecture: Lecture = {
         {
           label: "Ignore it as normal volcanic activity.",
           isCorrect: false,
-          feedback:
-            "Increased activity could indicate an impending eruption.",
+          feedback: "Increased activity could indicate an impending eruption.",
         },
         {
           label: "Report to authorities and prepare emergency kit.",
           isCorrect: true,
-          feedback: "Correct! Monitor official warnings and prepare for evacuation.",
+          feedback:
+            "Correct! Monitor official warnings and prepare for evacuation.",
         },
       ],
     },

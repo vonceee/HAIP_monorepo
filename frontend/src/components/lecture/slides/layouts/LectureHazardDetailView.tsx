@@ -1,6 +1,6 @@
-import React from "react";
-import { THEME_STYLES } from "../../theme";
-import { ExternalLink } from "lucide-react";
+import React, { useState, useEffect, useCallback } from "react";
+import { ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
+import useEmblaCarousel from "embla-carousel-react";
 
 // Types
 export interface HazardFeature {
@@ -42,12 +42,36 @@ interface LectureHazardDetailViewProps {
 export const LectureHazardDetailView: React.FC<
   LectureHazardDetailViewProps
 > = ({ content }) => {
-  const theme = THEME_STYLES.General;
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: "center",
+  });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    const onSelect = () => {
+      setSelectedIndex(emblaApi.selectedScrollSnap());
+    };
+
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
+    onSelect();
+  }, [emblaApi]);
 
   if (!content) return null;
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start lg:items-stretch pb-10 lg:pb-0 relative lg:h-full">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start pt-10 pb-10 lg:pb-0 relative">
       {/* Vertical Divider for Large Screens */}
       <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/20 to-transparent hidden lg:block pointer-events-none" />
 
@@ -57,40 +81,19 @@ export const LectureHazardDetailView: React.FC<
           <h2 className="text-4xl md:text-6xl font-black uppercase text-white tracking-tighter leading-[0.9] drop-shadow-xl mb-4">
             {content.title}
           </h2>
-          <p className="text-xl md:text-2xl text-slate-300 font-light leading-relaxed">
+          <p className="text-xl md:text-2xl text-slate-300 font-light leading-relaxed lowercase">
             {content.description}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {content.features.map((feature, idx) => (
-            <div
-              key={idx}
-              className={`bg-white/5 p-4 rounded-2xl border-2 border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] group cursor-pointer hover:border-${theme.accentColor}/50`}
-            >
-              <div
-                className={`${theme.accentColor} font-bold text-lg uppercase mb-2 group-hover:text-white transition-colors`}
-              >
-                {feature.title}
-              </div>
-              <div className="text-slate-300 text-sm leading-snug group-hover:text-white">
-                {feature.description}
-              </div>
-            </div>
-          ))}
-        </div>
-
         <div
-          className={`bg-white/5 border-l-4 ${theme.buttonBg.replace(
-            "bg-",
-            "border-",
-          )} p-3 rounded-r-3xl hover:bg-white/10 transition-colors duration-300 shadow-md`}
+          className={`bg-white/5 border-l-4 border-primary p-3 rounded-r-3xl hover:bg-white/10 transition-colors duration-300 shadow-md`}
         >
           <h4
-            className={`text-lg font-bold ${theme.accentColor} mb-3 uppercase tracking-wide flex items-center`}
+            className={`text-lg font-bold text-primary mb-3 uppercase tracking-wide flex items-center`}
           >
             <div
-              className={`w-3 h-3 ${theme.buttonBg} rounded-sm mr-3 animate-spin`}
+              className={`w-3 h-3 bg-primary rounded-sm mr-3 animate-spin`}
             />
             Effects Analysis
           </h4>
@@ -108,63 +111,94 @@ export const LectureHazardDetailView: React.FC<
             ))}
           </ul>
         </div>
-
-        {/* Protocol — pinned to bottom on desktop via mt-auto */}
-        <div className="bg-orange-950/40 border border-orange-500/30 p-5 rounded-2xl flex items-start mt-auto hover:bg-orange-900/40 transition-colors duration-500 group hover:shadow-lg hover:shadow-orange-900/50">
-          <div>
-            <h4 className="text-orange-300 font-bold uppercase text-base mb-1 group-hover:text-white tracking-wide">
-              {content.protocol.title}
-            </h4>
-            <p className="text-slate-400 text-sm leading-relaxed group-hover:text-slate-200">
-              {content.protocol.description
-                .split(content.protocol.highlight)
-                .map((part, i, arr) => (
-                  <React.Fragment key={i}>
-                    {part}
-                    {i < arr.length - 1 && (
-                      <span className="text-white font-bold bg-orange-600 px-2 py-0.5 rounded shadow-sm">
-                        {content.protocol.highlight}
-                      </span>
-                    )}
-                  </React.Fragment>
-                ))}
-            </p>
-          </div>
-        </div>
       </div>
 
-      {/* Right Column: Images Scroll */}
-      <div className="lg:overflow-y-auto custom-scrollbar rounded-3xl bg-black/20 border border-white/5">
-        <div className="space-y-6 px-4 py-6">
-          {content.images.map((img, idx) => (
-            <div
-              key={idx}
-              className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 transition-colors group/image cursor-pointer relative shadow-lg hover:border-orange-500/30"
-            >
-              <div className="h-48 overflow-hidden relative">
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  className="w-full h-full object-cover transform group-hover/image:scale-110 transition-transform duration-700 zoomable-image cursor-zoom-in"
-                />
-                {img.sourceUrl && (
-                  <a
-                    href={img.sourceUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="absolute top-2 right-2 bg-white text-black p-3 rounded-full opacity-0 group-hover/image:opacity-100 transition-all z-20 hover:scale-110 hover:rotate-12 shadow-xl border-2 border-orange-500"
-                    title="View Source"
+      {/* Right Column: Images Carousel */}
+      <div className="lg:overflow-y-hidden rounded-3xl bg-black/20 border border-white/5 relative min-h-[400px] flex flex-col justify-center py-8">
+        <div
+          className="overflow-hidden w-full h-full flex flex-col justify-center"
+          ref={emblaRef}
+        >
+          <div className="flex w-full touch-pan-y items-center">
+            {content.images.map((img, idx) => {
+              const isActive = idx === selectedIndex;
+              return (
+                <div
+                  key={idx}
+                  className={`flex-[0_0_85%] min-w-0 md:flex-[0_0_75%] lg:flex-[0_0_80%] px-2 md:px-4 transition-all duration-500 ease-out
+                    ${isActive ? "scale-100 opacity-100" : "scale-[0.85] opacity-40 brightness-75"}
+                  `}
+                >
+                  <div
+                    className={`bg-white/5 border border-white/10 rounded-2xl overflow-hidden shadow-2xl relative
+                        ${isActive ? "hover:border-primary/50" : ""}
+                      `}
                   >
-                    <ExternalLink className="w-6 h-6" />
-                  </a>
-                )}
-              </div>
-              <div className="p-4">
-                <p className="text-base text-slate-200 font-bold mb-1">
-                  {img.caption}
-                </p>
-              </div>
-            </div>
+                    <div className="aspect-[4/3] overflow-hidden relative group/image bg-black/50 flex items-center justify-center">
+                      <img
+                        src={img.src}
+                        alt={img.alt}
+                        className="w-full h-full object-cover transform group-hover/image:scale-105 transition-transform duration-700 zoomable-image cursor-zoom-in"
+                      />
+                      {img.sourceUrl && (
+                        <a
+                          href={img.sourceUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="absolute top-3 right-3 bg-white/90 text-black p-2.5 rounded-full opacity-0 group-hover/image:opacity-100 transition-all z-20 hover:scale-110 shadow-xl border border-transparent hover:border-primary"
+                          title="View Source"
+                        >
+                          <ExternalLink className="w-5 h-5" />
+                        </a>
+                      )}
+                    </div>
+                    {isActive && (
+                      <div className="p-4 bg-gradient-to-t from-black/90 via-black/60 to-transparent absolute bottom-0 left-0 right-0 pointer-events-none">
+                        <p className="text-sm md:text-base text-slate-100 font-medium text-center drop-shadow-md pb-4 lowercase">
+                          {img.caption}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Carousel Controls */}
+        <div className="absolute top-1/2 -translate-y-1/2 left-2 md:left-4 z-10">
+          <button
+            onClick={scrollPrev}
+            className="p-2 md:p-3 rounded-full bg-black/60 backdrop-blur-sm border border-white/10 text-white hover:bg-white/10 hover:border-white/30 transition-all hover:scale-105"
+            aria-label="Previous image"
+          >
+            <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+          </button>
+        </div>
+        <div className="absolute top-1/2 -translate-y-1/2 right-2 md:right-4 z-10">
+          <button
+            onClick={scrollNext}
+            className="p-2 md:p-3 rounded-full bg-black/60 backdrop-blur-sm border border-white/10 text-white hover:bg-white/10 hover:border-white/30 transition-all hover:scale-105"
+            aria-label="Next image"
+          >
+            <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+          </button>
+        </div>
+
+        {/* Pagination Dots */}
+        <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-10">
+          {content.images.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => emblaApi?.scrollTo(idx)}
+              className={`h-1.5 md:h-2 rounded-full transition-all duration-300 ${
+                idx === selectedIndex
+                  ? `bg-current w-6 md:w-8 text-primary`
+                  : "bg-white/30 hover:bg-white/50 w-2 md:w-2.5"
+              }`}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
           ))}
         </div>
       </div>

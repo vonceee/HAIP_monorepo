@@ -9,7 +9,6 @@ export const floodLecture: Lecture = {
   topic: "Flood",
   imageUrl: image2,
   readTime: 20,
-  difficulty: "Intermediate",
   gameType: "flood-sim",
   objectives: [
     "Recognize natural warning signs of hydrometeorological hazards",
@@ -31,11 +30,11 @@ export const floodLecture: Lecture = {
       layout: "introduction",
       layoutData: {
         subTitle:
-          "are natural events driven by atmospheric, hydrological, or oceanographic processes.",
+          "are natural events caused by atmospheric, hydrological, or oceanographic processes.",
         secondaryInfo:
-          "Recognizing early warning signs of these hazards is essential for forecasting, disaster preparedness, and reducing loss of life. Even a few minutes of early action can make a big difference.",
+          "These include tropical cyclones, floods, storm surges, droughts, and monsoons. Recognizing the early warning signs of these hazards is essential for forecasting, disaster preparedness, and reducing loss of life and property. “Awareness of natural warning signs saves lives — even a few minutes of early action can make a big difference.” ",
         reference:
-          "NDRRMC (2023). Disaster Preparedness Manual. | PAGASA (2023). Hydrometeorological Hazards and Early Warning Systems.",
+          "— National Disaster Risk Reduction and Management Council (NDRRMC), 2023",
         stats: [
           {
             label: "Observe",
@@ -74,12 +73,6 @@ export const floodLecture: Lecture = {
             icon: "Home",
             image:
               "https://images.unsplash.com/photo-1525990520626-d922b0f4e428?w=800&q=80",
-            color: "blue",
-            borderColor: "hover:border-blue-500",
-            shadowColor: "hover:shadow-[0_0_50px_rgba(59,130,246,0.4)]",
-            iconColor: "text-blue-400",
-            textColor: "group-hover:text-blue-100",
-            highlightColor: "text-blue-400",
           },
           {
             title: "Health Risks",
@@ -89,12 +82,6 @@ export const floodLecture: Lecture = {
             icon: "Skull",
             image:
               "https://images.unsplash.com/photo-1632832506692-26210f845763?w=800&q=80",
-            color: "emerald",
-            borderColor: "hover:border-emerald-500",
-            shadowColor: "hover:shadow-[0_0_50px_rgba(16,185,129,0.4)]",
-            iconColor: "text-emerald-400",
-            textColor: "group-hover:text-emerald-100",
-            highlightColor: "text-emerald-400",
           },
           {
             title: "Economic Loss",
@@ -104,12 +91,6 @@ export const floodLecture: Lecture = {
             icon: "Coins",
             image:
               "https://images.unsplash.com/photo-1533285962792-0c3c5e9cb0d7?w=800&q=80",
-            color: "yellow",
-            borderColor: "hover:border-yellow-500",
-            shadowColor: "hover:shadow-[0_0_50px_rgba(234,179,8,0.4)]",
-            iconColor: "text-yellow-400",
-            textColor: "group-hover:text-yellow-100",
-            highlightColor: "text-yellow-400",
           },
         ],
       },
@@ -121,39 +102,26 @@ export const floodLecture: Lecture = {
       content: "",
       layout: "hazard-detail",
       layoutData: {
-        title: "Tropical Cyclone",
-        description:
-          "An intense circular storm originating over warm tropical oceans, characterized by strong winds, heavy rain, and dangerously low atmospheric pressure.",
-        features: [
-          {
-            title: "Sudden Pressure Drop",
-            description:
-              "A rapid drop in air pressure with rising humidity signals cyclone formation.",
-          },
-          {
-            title: "Spiraling Cloud Patterns",
-            description:
-              "PAGASA satellites detect rotating cloud systems forming over the Pacific.",
-          },
-        ],
+        title: "Signs of an Impending Tropical Cyclone",
+        description: "",
         effects: [
           {
-            label: "Storm-Force Winds",
-            description:
-              "Rapidly shifting winds uproot trees and destroy structures.",
+            label: "",
+            description: "Sudden drop in air pressure and increased humidity.",
           },
           {
-            label: "Continuous Heavy Rain",
-            description:
-              "Unrelenting rainfall for hours triggers secondary floods and landslides.",
+            label: "",
+            description: "Dark, thick clouds forming in the eastern sky.",
+          },
+          {
+            label: "",
+            description: "Strong winds shifting directions rapidly.",
+          },
+          {
+            label: "",
+            description: "Continuous heavy rain that does not stop for hours.",
           },
         ],
-        protocol: {
-          title: "Heed the Warning Signals",
-          description:
-            "PAGASA issues Signal Nos. 1–5 for affected areas. Before Typhoon Yolanda (2013) made landfall, a drastic pressure drop and spiral cloud formation were detected via satellite.",
-          highlight: "Signal Nos. 1–5",
-        },
         images: [
           {
             src: "https://images.unsplash.com/photo-1504608524841-42584120d1c7?w=800&q=80",
@@ -172,7 +140,6 @@ export const floodLecture: Lecture = {
         ],
       },
     },
-    // 4. Hazard Detail: Flood
     {
       id: "flood",
       title: "Flood",
@@ -498,114 +465,124 @@ export const floodLecture: Lecture = {
   ],
   finalQuiz: [
     {
-      "id": "q1",
-      "question": "The local weather bureau reports that a low-pressure area (LPA) has entered the Philippine Area of Responsibility (PAR). What should the barangay officials do to forecast possible hazards?",
-      "options": [
+      id: "q1",
+      question:
+        "The local weather bureau reports that a low-pressure area (LPA) has entered the Philippine Area of Responsibility (PAR). What should the barangay officials do to forecast possible hazards?",
+      options: [
         "Wait until heavy rains start before preparing.",
         "Monitor PAGASA updates and prepare for possible storm signals.",
         "Ignore the report since LPA rarely develops into a typhoon.",
-        "Focus only on temperature forecasts."
+        "Focus only on temperature forecasts.",
       ],
-      "correctAnswer": 1
+      correctAnswer: 1,
     },
     {
-      "id": "q2",
-      "question": "Meteorologists observe rapid cloud buildup and dropping air pressure in a coastal area. What can be forecasted from these conditions?",
-      "options": [
+      id: "q2",
+      question:
+        "Meteorologists observe rapid cloud buildup and dropping air pressure in a coastal area. What can be forecasted from these conditions?",
+      options: [
         "Clear and dry weather.",
         "Possible thunderstorm or heavy rainfall.",
         "Volcanic eruption nearby.",
-        "Increasing temperature in the area."
+        "Increasing temperature in the area.",
       ],
-      "correctAnswer": 1
+      correctAnswer: 1,
     },
     {
-      "id": "q3",
-      "question": "A social media post says, “A super typhoon will hit the Philippines tomorrow,” but PAGASA has not issued any warning. How can you verify the accuracy of this claim?",
-      "options": [
+      id: "q3",
+      question:
+        "A social media post says, “A super typhoon will hit the Philippines tomorrow,” but PAGASA has not issued any warning. How can you verify the accuracy of this claim?",
+      options: [
         "Share it immediately to alert others.",
         "Wait to see if it rains the next day.",
         "Check the official PAGASA or NDRRMC bulletins.",
-        "Believe the post because it has thousands of likes."
+        "Believe the post because it has thousands of likes.",
       ],
-      "correctAnswer": 2
+      correctAnswer: 2,
     },
     {
-      "id": "q4",
-      "question": "Your phone app shows a severe flood warning, but local authorities haven’t announced anything yet. What should you do to ensure accuracy before acting?",
-      "options": [
+      id: "q4",
+      question:
+        "Your phone app shows a severe flood warning, but local authorities haven’t announced anything yet. What should you do to ensure accuracy before acting?",
+      options: [
         "Compare the information with government advisories.",
         "Ignore it since there’s no official announcement.",
         "Immediately evacuate without checking.",
-        "Ask friends if they heard the same news."
+        "Ask friends if they heard the same news.",
       ],
-      "correctAnswer": 0
+      correctAnswer: 0,
     },
     {
-      "id": "q5",
-      "question": "After days of heavy rain, a hillside community experiences a landslide. What is the most likely cause of this hazard?",
-      "options": [
+      id: "q5",
+      question:
+        "After days of heavy rain, a hillside community experiences a landslide. What is the most likely cause of this hazard?",
+      options: [
         "Strong winds loosened the trees.",
         "Prolonged rainfall saturated the soil, weakening its stability.",
         "Earthquake vibrations caused the slope to collapse.",
-        "The land was too dry before the rain."
+        "The land was too dry before the rain.",
       ],
-      "correctAnswer": 1
+      correctAnswer: 1,
     },
     {
-      "id": "q6",
-      "question": "Flooding occurred in a city even after only moderate rain. What could be the main contributing factor?",
-      "options": [
+      id: "q6",
+      question:
+        "Flooding occurred in a city even after only moderate rain. What could be the main contributing factor?",
+      options: [
         "The city’s drainage system is clogged or inadequate.",
         "There was too much sunlight before the rain.",
         "The city is too far from the coast.",
-        "Wind direction caused water to pile up."
+        "Wind direction caused water to pile up.",
       ],
-      "correctAnswer": 0
+      correctAnswer: 0,
     },
     {
-      "id": "q7",
-      "question": "Weather records show that a certain province often experiences strong typhoons every last quarter of the year. What pattern can be recognized from this data?",
-      "options": [
+      id: "q7",
+      question:
+        "Weather records show that a certain province often experiences strong typhoons every last quarter of the year. What pattern can be recognized from this data?",
+      options: [
         "The area is safe during any season.",
         "The province is located along the common typhoon path during monsoon months.",
         "The typhoons are random events.",
-        "The frequency is caused by human activity."
+        "The frequency is caused by human activity.",
       ],
-      "correctAnswer": 1
+      correctAnswer: 1,
     },
     {
-      "id": "q8",
-      "question": "In the past five years, flash floods always occur shortly after intense rainfall lasting more than an hour. What does this pattern suggest?",
-      "options": [
+      id: "q8",
+      question:
+        "In the past five years, flash floods always occur shortly after intense rainfall lasting more than an hour. What does this pattern suggest?",
+      options: [
         "The floods are caused by sea-level rise.",
         "There is a predictable relationship between rainfall intensity and flooding.",
         "Floods happen by coincidence.",
-        "Rainfall has no connection to flooding."
+        "Rainfall has no connection to flooding.",
       ],
-      "correctAnswer": 1
+      correctAnswer: 1,
     },
     {
-      "id": "q9",
-      "question": "PAGASA raises a Tropical Cyclone Wind Signal No. 3 for your area. What should your family do first?",
-      "options": [
+      id: "q9",
+      question:
+        "PAGASA raises a Tropical Cyclone Wind Signal No. 3 for your area. What should your family do first?",
+      options: [
         "Go to the nearest open field to watch the winds.",
         "Secure your house, prepare a go-bag, and stay tuned to official updates.",
         "Wait for the rain to stop before preparing.",
-        "Continue normal activities as long as there’s power."
+        "Continue normal activities as long as there’s power.",
       ],
-      "correctAnswer": 1
+      correctAnswer: 1,
     },
     {
-      "id": "q10",
-      "question": "Your school is in a flood-prone area, and heavy rains have been continuous since early morning. As a student leader, what is the best decision to recommend to the principal?",
-      "options": [
+      id: "q10",
+      question:
+        "Your school is in a flood-prone area, and heavy rains have been continuous since early morning. As a student leader, what is the best decision to recommend to the principal?",
+      options: [
         "Continue classes until dismissal time.",
         "Wait for official cancellation from the mayor’s office.",
         "Suspend classes early and ensure students get home safely.",
-        "Ask everyone to stay and observe the rainfall pattern."
+        "Ask everyone to stay and observe the rainfall pattern.",
       ],
-      "correctAnswer": 2
-    }
+      correctAnswer: 2,
+    },
   ],
 };

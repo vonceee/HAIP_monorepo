@@ -2,28 +2,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Clock, BookOpen, Gamepad2, PlayCircle } from "lucide-react";
 
-import { lectures } from "../data/lectures"; // Importing from modular lecture registry
+import { lectures } from "../data/lectures"; // importing from modular lecture registry
 import { Lecture } from "../types";
 import backgroundImg from "@/assets/background-img.webp";
-
-// --- DYNAMIC STYLING MAPS ---
-const TOPIC_STYLES: Record<string, string> = {
-  Earthquake: "bg-orange-500",
-  Flood: "bg-blue-500",
-  Volcano: "bg-red-500",
-  General: "bg-slate-500",
-};
-
-const TOPIC_HOVER_STYLES: Record<string, string> = {
-  Earthquake:
-    "hover:shadow-[0_20px_40px_-5px_rgba(249,115,22,0.4)] hover:border-orange-500/50",
-  Flood:
-    "hover:shadow-[0_20px_40px_-5px_rgba(59,130,246,0.4)] hover:border-blue-500/50",
-  Volcano:
-    "hover:shadow-[0_20px_40px_-5px_rgba(239,68,68,0.4)] hover:border-red-500/50",
-  General:
-    "hover:shadow-[0_20px_40px_-5px_rgba(100,116,139,0.4)] hover:border-slate-500/50",
-};
 
 interface FeaturesProps {
   onLectureSelect?: (lecture: Lecture) => void;
@@ -65,19 +46,14 @@ export const Features = ({ onLectureSelect }: FeaturesProps) => {
         {/* Grid Layout containing the shadcn Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {lectures.map((lecture) => {
-            const colorStyle =
-              TOPIC_STYLES[lecture.topic] || TOPIC_STYLES.General;
-            const hoverStyle =
-              TOPIC_HOVER_STYLES[lecture.topic] || TOPIC_HOVER_STYLES.General;
-
             return (
               <Card
                 key={lecture.id}
                 onClick={() => onLectureSelect?.(lecture)}
-                className={`bg-card text-card-foreground shadow-lg group relative overflow-hidden flex flex-col h-full cursor-pointer transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] ${hoverStyle}`}
+                className={`bg-card text-card-foreground shadow-lg group relative overflow-hidden flex flex-col h-full cursor-pointer transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_20px_40px_-5px_hsl(var(--primary)/0.4)] hover:border-primary/50`}
               >
                 {/* Tactical Header Bar */}
-                <div className={`h-1.5 w-full ${colorStyle}`} />
+                <div className={`h-1.5 w-full bg-primary`} />
 
                 {/* Image Container */}
                 <div className="relative aspect-[16/10] bg-slate-900 w-full overflow-hidden">

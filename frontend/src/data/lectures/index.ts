@@ -5,6 +5,6 @@ import { Lecture } from "../../types";
 
 export const lectures: Lecture[] = [
   earthquakeLecture,
-  floodLecture,
   volcanoLecture,
+  floodLecture,
 ];

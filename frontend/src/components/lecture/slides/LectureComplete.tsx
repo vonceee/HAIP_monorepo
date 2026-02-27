@@ -1,30 +1,23 @@
 import React from "react";
 import { Lecture } from "../../../types";
-import { THEME_STYLES } from "../theme";
 import { CheckCircle, Home, Trophy } from "lucide-react";
-
-// Inferring ThemeColors type from the THEME_STYLES object values
-type ThemeColors = (typeof THEME_STYLES)["General"];
-
 interface LectureCompleteProps {
   lecture: Lecture;
-  theme: ThemeColors;
   onHome: () => void;
 }
 
 export const LectureComplete: React.FC<LectureCompleteProps> = ({
   lecture,
-  theme,
   onHome,
 }) => {
   return (
     <div className="flex flex-col items-center justify-center h-full min-h-[60vh] text-center space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-700">
       <div className="relative">
         <div
-          className={`absolute inset-0 ${theme.bgGradient} opacity-20 blur-3xl rounded-full animate-pulse`}
+          className={`absolute inset-0 bg-primary opacity-20 blur-3xl rounded-full animate-pulse`}
         ></div>
         <Trophy
-          className={`w-32 h-32 ${theme.accentColor} drop-shadow-[0_0_30px_rgba(255,255,255,0.3)] relative z-10`}
+          className={`w-32 h-32 text-primary drop-shadow-[0_0_30px_rgba(255,255,255,0.3)] relative z-10`}
           strokeWidth={1}
         />
         <CheckCircle
@@ -50,7 +43,7 @@ export const LectureComplete: React.FC<LectureCompleteProps> = ({
       <div className="pt-8">
         <button
           onClick={onHome}
-          className={`group relative px-8 py-4 ${theme.buttonBg} rounded-xl font-bold text-white shadow-lg hover:shadow-xl transition-all hover:scale-105 active:scale-95 overflow-hidden`}
+          className={`group relative px-8 py-4 bg-primary rounded-xl font-bold text-white shadow-lg hover:shadow-xl transition-all hover:scale-105 active:scale-95 overflow-hidden`}
         >
           <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
           <div className="flex items-center space-x-3 relative z-10">

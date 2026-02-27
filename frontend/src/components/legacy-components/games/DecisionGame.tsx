@@ -4,13 +4,9 @@ import { AlertTriangle, ArrowRight, RefreshCw, Activity } from "lucide-react";
 
 interface DecisionGameProps {
   scenarios: DecisionScenario[];
-  topic: string;
 }
 
-export const DecisionGame: React.FC<DecisionGameProps> = ({
-  scenarios,
-  topic,
-}) => {
+export const DecisionGame: React.FC<DecisionGameProps> = ({ scenarios }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [isAnswered, setIsAnswered] = useState(false);
@@ -19,40 +15,13 @@ export const DecisionGame: React.FC<DecisionGameProps> = ({
 
   const currentScenario = scenarios[currentIndex];
 
-  const getThemeColors = () => {
-    switch (topic) {
-      case "Earthquake":
-        return {
-          accent: "text-orange-400",
-          border: "border-orange-500",
-          bg: "bg-orange-500",
-          glow: "shadow-orange-500/20",
-        };
-      case "Flood":
-        return {
-          accent: "text-cyan-400",
-          border: "border-cyan-500",
-          bg: "bg-cyan-500",
-          glow: "shadow-cyan-500/20",
-        };
-      case "Volcano":
-        return {
-          accent: "text-red-400",
-          border: "border-red-500",
-          bg: "bg-red-500",
-          glow: "shadow-red-500/20",
-        };
-      default:
-        return {
-          accent: "text-emerald-400",
-          border: "border-emerald-500",
-          bg: "bg-emerald-500",
-          glow: "shadow-emerald-500/20",
-        };
-    }
+  // using the primary green theme for now
+  const theme = {
+    accent: "text-primary",
+    border: "border-primary",
+    bg: "bg-primary",
+    glow: "shadow-primary/20",
   };
-
-  const theme = getThemeColors();
 
   const handleOptionClick = (index: number) => {
     if (isAnswered) return;
