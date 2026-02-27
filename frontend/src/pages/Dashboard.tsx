@@ -1,11 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, ReactNode } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { useAuth } from "@/hooks/navbar/useAuth";
 
-const Dashboard = () => {
+const Dashboard = ({ children }: { children?: ReactNode }) => {
   const { user, loading } = useAuth();
   const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ const Dashboard = () => {
       <Navbar />
       <main className="flex-1 container mx-auto py-10">
         <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
-        <div className="bg-card p-6 rounded-lg shadow-sm border">
+        <div className="bg-card p-6 rounded-lg shadow-sm border mb-8">
           <h2 className="text-xl font-semibold mb-4">
             Welcome back, {user?.name}!
           </h2>
@@ -41,6 +41,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+        {children}
       </main>
       <Footer />
     </div>

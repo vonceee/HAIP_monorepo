@@ -20,10 +20,12 @@ import { Lecture } from "./types";
 import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashboard";
 import AuthPage from "./pages/AuthPage";
+import { useAuth } from "@/hooks/navbar/useAuth";
 import "./App.css";
 
 function App() {
   const [selectedLecture, setSelectedLecture] = useState<Lecture | null>(null);
+  const { user, loading } = useAuth();
 
   if (selectedLecture) {
     return (
@@ -34,21 +36,38 @@ function App() {
     );
   }
 
+  if (loading) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <div className="text-lg">Loading...</div>
+      </div>
+    );
+  }
+
   return (
     <Router>
       <Routes>
         <Route
           path="/"
           element={
-            <div>
-              <Navbar />
-              <Hero />
-              {/* <About /> */}
-              <Features onLectureSelect={setSelectedLecture} />
-              <HowItWorks />
-              <Footer />
-              <ScrollToTop />
-            </div>
+            user ? (
+              <>
+                <Dashboard>
+                  <Features onLectureSelect={setSelectedLecture} />
+                </Dashboard>
+                <ScrollToTop />
+              </>
+            ) : (
+              <div>
+                <Navbar />
+                <Hero />
+                {/* <About /> */}
+                <Features onLectureSelect={setSelectedLecture} />
+                <HowItWorks />
+                <Footer />
+                <ScrollToTop />
+              </div>
+            )
           }
         />
         <Route path="/login" element={<AuthPage />} />

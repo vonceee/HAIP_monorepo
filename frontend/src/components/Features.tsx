@@ -42,7 +42,7 @@ export const Features = ({ onLectureSelect }: FeaturesProps) => {
       />
 
       {/* Overlay to ensure text readability across both Light/Dark modes */}
-      <div className="absolute inset-0 z-0 bg-background/50 dark:bg-background/90 backdrop-blur-md" />
+      <div className="absolute inset-0 z-0 bg-background/75 dark:bg-background/90 backdrop-blur-md" />
 
       {/* Main Content (Elevated above background & overlay) */}
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-20 xl:px-32">
