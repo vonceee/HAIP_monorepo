@@ -63,12 +63,12 @@ export const LectureStartMenu: React.FC<LectureStartMenuProps> = ({
           >
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               {/* Left Column - Image Container */}
-              <div className="order-2 lg:order-1 relative group w-full lg:max-w-none">
+              <div className="order-2 lg:order-1 relative group">
                 {/* Glow effect */}
                 <div
                   className={`absolute -inset-4 bg-gradient-to-tr ${theme.bgGradient} rounded-[2.5rem] blur-2xl opacity-20 group-hover:opacity-40 transition duration-700`}
                 />
-                <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-black/40 flex items-center justify-center pointer-events-none">
+                <div className="xl:h-[75vh] relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-black/40 flex items-center justify-center pointer-events-none">
                   <img
                     src={lecture.imageUrl}
                     alt={lecture.title}
@@ -88,7 +88,7 @@ export const LectureStartMenu: React.FC<LectureStartMenuProps> = ({
                   </div>
                 </div>
 
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tighter leading-[1.05] text-white">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tighter leading-[1.05] text-white line-clamp-2">
                   {lecture.title}
                 </h1>
 

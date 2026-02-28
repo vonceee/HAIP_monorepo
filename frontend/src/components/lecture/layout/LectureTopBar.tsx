@@ -42,7 +42,7 @@ export const LectureTopBar: React.FC<LectureTopBarProps> = ({
           <div
             className={`px-3 py-1 bg-black/20 border border-white/10 rounded text-[10px] font-bold uppercase tracking-wider ${theme.accentColor}`}
           >
-            {topic} <span className="hidden sm:inline">Protocol</span>
+            {topic} <span className="hidden sm:inline">Hazards</span>
           </div>
         </div>
       )}

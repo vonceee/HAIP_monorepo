@@ -16,6 +16,9 @@ import { ScrollToTop } from "./components/ScrollToTop";
 // import { Team } from "./components/Team";
 // import { Testimonials } from "./components/Testimonials";
 import { LectureView } from "./components/lecture/LectureView";
+import { EarthquakeView } from "./components/lecture/slides/view/EarthquakeView";
+import { VolcanoView } from "./components/lecture/slides/view/VolcanoView";
+import { HydroView } from "./components/lecture/slides/view/HydroView";
 import { Lecture } from "./types";
 import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashboard";
@@ -28,6 +31,33 @@ function App() {
   const { user, loading } = useAuth();
 
   if (selectedLecture) {
+    if (selectedLecture.topic === "Earthquake") {
+      return (
+        <EarthquakeView
+          lecture={selectedLecture}
+          onBack={() => setSelectedLecture(null)}
+        />
+      );
+    }
+
+    if (selectedLecture.topic === "Volcano") {
+      return (
+        <VolcanoView
+          lecture={selectedLecture}
+          onBack={() => setSelectedLecture(null)}
+        />
+      );
+    }
+
+    if (selectedLecture.topic === "Flood") {
+      return (
+        <HydroView
+          lecture={selectedLecture}
+          onBack={() => setSelectedLecture(null)}
+        />
+      );
+    }
+
     return (
       <LectureView
         lecture={selectedLecture}

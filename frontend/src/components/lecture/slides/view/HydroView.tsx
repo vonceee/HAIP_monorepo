@@ -1,77 +1,108 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
-import { Lecture, SectionLayout } from "../../types";
-import { LectureTopBar } from "./layout/LectureTopBar";
-import { THEME_STYLES } from "./theme";
+import { Lecture } from "../../../../types";
+import { LectureTopBar } from "../../layout/LectureTopBar";
+import { THEME_STYLES } from "../../theme";
 import { X } from "lucide-react";
 
-import { ImageWithLoader } from "../legacy-components/ImageWithLoader";
-import { LectureStartMenu } from "./LectureStartMenu";
-import { LearningCompetenciesController } from "./learning-competencies/LearningCompetenciesController";
-import { LectureContent } from "./slides/LectureContent";
-import { LectureQuiz } from "./slides/LectureQuiz";
-import { LectureComplete } from "./slides/LectureComplete";
-import { LectureIntroduction } from "./slides/layouts/LectureIntroduction";
-import { LectureEffectAnalysis } from "./slides/layouts/LectureEffectAnalysis";
-import { LectureHazardDetail } from "./slides/layouts/LectureHazardDetail";
-import { LectureControls } from "./layout/LectureControls";
-import { LearningSimulationsController } from "./learning-simulations/LearningSimulationsController";
+import { ImageWithLoader } from "../../../legacy-components/ImageWithLoader";
+import { LectureStartMenu } from "../../LectureStartMenu";
+import { LearningCompetenciesController } from "../../learning-competencies/LearningCompetenciesController";
+import { LectureQuiz } from "../LectureQuiz";
+import { LectureComplete } from "../LectureComplete";
+import { LectureControls } from "../../layout/LectureControls";
+import { LearningSimulationsController } from "../../learning-simulations/LearningSimulationsController";
+import { HydroIntro } from "../custom/hydro/HydroIntro";
 
-interface LectureViewProps {
-  lecture: Lecture;
+import { LectureEffectAnalysis } from "../layouts/LectureEffectAnalysis";
+import { HydroHazardDetail } from "../custom/hydro/HydroHazardDetail";
+
+interface HydroViewProps {
+  lecture: Lecture; // We pass lecture for the overarching menu metadata
   onBack: () => void;
 }
 
-interface Slide {
-  type: SectionLayout;
-  title: string;
-  data?: any;
-}
-
-export const LectureView: React.FC<LectureViewProps> = ({
-  lecture,
-  onBack,
-}) => {
+export const HydroView: React.FC<HydroViewProps> = ({ lecture, onBack }) => {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [showStartMenu, setShowStartMenu] = useState(true);
-  const [showCompetencies, setShowCompetencies] = useState(false);
   const [showSimulation, setShowSimulation] = useState(false);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const contentScrollRef = useRef<HTMLDivElement>(null);
 
-  // Construct Virtual Slides Array
   const slides = useMemo(() => {
-    const s: Slide[] = [];
+    // Determine what intro content we should display natively based on hydro.ts's intro section
+    const introSection = lecture.sections.find((s) => s.id === "intro");
 
-    if (lecture.sections && lecture.sections.length > 0) {
-      lecture.sections.forEach((section) => {
-        if (section.layout === "complete") return;
+    return [
+      {
+        id: "competencies",
+        component: (
+          <LearningCompetenciesController
+            lecture={lecture}
+            onNext={() => {
+              if (contentScrollRef.current) {
+                contentScrollRef.current.scrollTop = 0;
+              }
+              setActiveSlideIndex((prev) => prev + 1);
+            }}
+          />
+        ),
+      },
+      {
+        id: "intro-1",
+        component: (
+          <HydroIntro
+            topic="Hydrometeorological Hazards"
+            content={
+              introSection?.layoutData || {
+                subTitle: "",
+                secondaryInfo: "",
+                reference: "",
+                stats: [],
+              }
+            }
+          />
+        ),
+      },
+      ...lecture.sections
+        .filter((s) => s.id !== "intro")
+        .map((section) => {
+          if (section.layout === "effects-analysis") {
+            return {
+              id: section.id,
+              component: <LectureEffectAnalysis lecture={lecture} />,
+            };
+          }
+          if (section.layout === "hazard-detail") {
+            return {
+              id: section.id,
+              component: (
+                <HydroHazardDetail content={section.layoutData as any} />
+              ),
+            };
+          }
 
-        s.push({
-          type: section.layout || "standard",
-          title: section.title,
-          data: section,
-        });
-      });
-    }
-
-    if (lecture.finalQuiz && lecture.finalQuiz.length > 0) {
-      s.push({
-        type: "final-quiz",
-        title: "",
-        data: lecture.finalQuiz,
-      });
-    }
-
-    s.push({
-      type: "complete",
-      title: "Completion",
-      data: {},
-    });
-
-    return s;
-  }, [lecture]);
+          // Fallback for custom or basic HTML slides
+          return {
+            id: section.id,
+            component: section.customComponent || (
+              <div className="p-12 text-center text-white/50">
+                Fallback View
+              </div>
+            ),
+          };
+        }),
+      {
+        id: "final-quiz",
+        component: <LectureQuiz questions={lecture.finalQuiz || []} />,
+      },
+      {
+        id: "complete",
+        component: <LectureComplete />,
+      },
+    ];
+  }, [lecture, onBack]);
 
   useEffect(() => {
     setActiveSlideIndex(0);
@@ -79,6 +110,7 @@ export const LectureView: React.FC<LectureViewProps> = ({
   }, [lecture.id]);
 
   useEffect(() => {
+    // When slide changes, scroll the content to top
     if (contentScrollRef.current) {
       contentScrollRef.current.scrollTop = 0;
     }
@@ -142,7 +174,9 @@ export const LectureView: React.FC<LectureViewProps> = ({
         theme={theme}
       />
       <div
-        className={`flex-1 overflow-y-auto w-full relative z-10 custom-scrollbar ${scrollClassName ?? ""}`}
+        className={`flex-1 overflow-y-auto w-full relative z-10 custom-scrollbar ${
+          scrollClassName ?? ""
+        }`}
       >
         {children}
       </div>
@@ -156,31 +190,10 @@ export const LectureView: React.FC<LectureViewProps> = ({
         lecture={lecture}
         onStart={() => {
           setShowStartMenu(false);
-          setShowCompetencies(true);
           setShowSimulation(false);
         }}
         onBack={onBack}
       />
-    );
-  }
-
-  // --- LEARNING COMPETENCIES SCREEN ---
-  if (showCompetencies) {
-    return (
-      <ScreenShell
-        onBack={() => {
-          setShowCompetencies(false);
-          setShowStartMenu(true);
-        }}
-      >
-        <LearningCompetenciesController
-          lecture={lecture}
-          onNext={() => {
-            setShowCompetencies(false);
-            setShowSimulation(false);
-          }}
-        />
-      </ScreenShell>
     );
   }
 
@@ -213,18 +226,7 @@ export const LectureView: React.FC<LectureViewProps> = ({
       className={`h-screen supports-[height:100dvh]:h-[100dvh] w-full flex flex-col bg-gradient-to-br ${theme.bgGradient} text-white font-sans overflow-hidden relative`}
     >
       {/* Background Layers */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 opacity-40 pointer-events-none">
-          <ImageWithLoader
-            src={lecture.imageUrl}
-            alt="Background"
-            containerClassName="w-full h-full"
-            className="w-full h-full object-cover filter blur-sm scale-110 animate-pulse"
-            style={{ animationDuration: "10s" }}
-          />
-        </div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_rgba(0,0,0,0.4)_100%)] pointer-events-none" />
-      </div>
+      <BackgroundLayers />
 
       {previewImage && (
         <div
@@ -252,6 +254,7 @@ export const LectureView: React.FC<LectureViewProps> = ({
         theme={theme}
       />
 
+      {/* Progress Bar */}
       <div className="h-1 bg-white/5 w-full flex-none z-20 relative">
         <div
           className={`h-full ${theme.buttonBg} transition-all duration-300 shadow-[0_0_10px_currentColor]`}
@@ -259,35 +262,12 @@ export const LectureView: React.FC<LectureViewProps> = ({
         />
       </div>
 
+      {/* Main Content Area */}
       <div
-        className="flex-1 overflow-y-auto lg:overflow-y-hidden w-full custom-scrollbar px-8 lg:px-12 relative z-10"
+        className="flex-1 overflow-y-auto lg:overflow-y-hidden h-full w-full custom-scrollbar relative bg-black/50 backdrop-blur-sm z-10"
         ref={contentScrollRef}
       >
-        <div className="h-full">
-          {activeSlide.type === "complete" ? (
-            <LectureComplete />
-          ) : activeSlide.type === "introduction" ? (
-            <LectureIntroduction lecture={lecture} />
-          ) : activeSlide.type === "effects-analysis" ? (
-            <LectureEffectAnalysis lecture={lecture} />
-          ) : activeSlide.type === "hazard-detail" ? (
-            <LectureHazardDetail lecture={lecture} title={activeSlide.title} />
-          ) : activeSlide.type === "final-quiz" ? (
-            <LectureQuiz questions={activeSlide.data} />
-          ) : activeSlide.type === "custom" ? (
-            <>{activeSlide.data.customComponent}</>
-          ) : (
-            <LectureContent
-              currentStep={activeSlideIndex}
-              totalSteps={slides.length}
-              content={activeSlide.data.content}
-              title={activeSlide.title}
-              theme={theme}
-              lecture={lecture}
-              onImageClick={setPreviewImage}
-            />
-          )}
-        </div>
+        <div className="h-full">{activeSlide.component}</div>
       </div>
 
       <LectureControls

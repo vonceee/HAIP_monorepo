@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Lecture } from "../../../types";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, Target, BookOpen } from "lucide-react";
+import { Target, BookOpen } from "lucide-react";
 import { THEME_STYLES } from "../theme";
+import { CheckCircle2, ArrowRight } from "lucide-react";
 
 interface LearningCompetenciesViewProps {
   lecture: Lecture;
-  onNext: () => void;
 }
 
 export const LearningCompetenciesView: React.FC<
   LearningCompetenciesViewProps
-> = ({ lecture, onNext }) => {
+> = ({ lecture }) => {
   const [isVisible, setIsVisible] = useState(false);
   const theme = THEME_STYLES.General;
 
@@ -30,30 +29,6 @@ export const LearningCompetenciesView: React.FC<
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
       }`}
     >
-      {/* Header */}
-      <div className="px-6 pt-6 pb-5 border-b border-white/8">
-        <div className="flex flex-col sm:flex-row items-start justify-between gap-4 sm:gap-6">
-          <div className="space-y-1">
-            <p
-              className={`text-xs font-bold uppercase tracking-widest ${theme.accentColor} opacity-80`}
-            >
-              Lecture Overview
-            </p>
-            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter leading-none text-white break-words">
-              {lecture.title || "Course Modules"}
-            </h2>
-          </div>
-          <div className="flex flex-wrap items-center gap-3 shrink-0 sm:pt-1">
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10">
-              <Target className="w-3.5 h-3.5 text-slate-400" />
-              <span className="text-xs font-semibold text-slate-300 tabular-nums">
-                {competencies.length} Competencies
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Main Content */}
       <div className="flex flex-col lg:flex-row flex-1 overflow-y-auto lg:overflow-hidden">
         {/* Left: Modules */}
@@ -147,23 +122,6 @@ export const LearningCompetenciesView: React.FC<
               </li>
             ))}
           </ul>
-        </div>
-      </div>
-
-      {/* Footer */}
-      <div className="shrink-0 px-6 py-4 border-t border-white/8 bg-black/20 backdrop-blur-sm">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-center sm:text-left text-slate-400 uppercase tracking-widest font-semibold">
-            Review all modules before continuing
-          </p>
-          <Button
-            onClick={onNext}
-            size="lg"
-            className={`w-full sm:w-auto min-w-[160px] font-bold text-sm h-11 uppercase tracking-widest ${theme.buttonBg} ${theme.buttonHover} text-white border-0 ring-0 rounded-xl shadow-lg transition-all`}
-          >
-            Continue
-            <ArrowRight className="ml-2 w-4 h-4" />
-          </Button>
         </div>
       </div>
     </div>

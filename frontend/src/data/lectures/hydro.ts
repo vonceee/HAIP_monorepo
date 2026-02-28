@@ -1,20 +1,15 @@
 import { Lecture } from "../../types";
 import image2 from "../../assets/lecture-cards/83465e25-4967-4630-bf67-bcbc9efe0e90.jpg";
 
-export const floodLecture: Lecture = {
-  id: "lecture-flood-101",
-  title: "Hydrometeorological Hazards",
+export const hydroLecture: Lecture = {
+  id: "lecture-hydro",
+  title: "Hydro-meteorological Hazards",
   description:
     "a deep dive into recognizing the early warning signs of tropical cyclones, floods, storm surges, landslides, and droughts.",
   topic: "Flood",
   imageUrl: image2,
   readTime: 20,
   gameType: "flood-sim",
-  objectives: [
-    "Recognize natural warning signs of hydrometeorological hazards",
-    "Identify scientific forecasting indicators used by PAGASA",
-    "Apply early-warning knowledge to reduce disaster risk",
-  ],
   competencies: [
     {
       description: "Recognize signs of impending hydrometeorological hazards.",
@@ -22,7 +17,6 @@ export const floodLecture: Lecture = {
     },
   ],
   sections: [
-    // 1. Introduction
     {
       id: "intro",
       title: "",
@@ -35,91 +29,33 @@ export const floodLecture: Lecture = {
           "These include tropical cyclones, floods, storm surges, droughts, and monsoons. Recognizing the early warning signs of these hazards is essential for forecasting, disaster preparedness, and reducing loss of life and property. “Awareness of natural warning signs saves lives — even a few minutes of early action can make a big difference.” ",
         reference:
           "— National Disaster Risk Reduction and Management Council (NDRRMC), 2023",
-        stats: [
-          {
-            label: "Observe",
-            description:
-              "Watch for natural signs like sudden pressure drops and dark cloud formations.",
-            icon: "TriangleAlert",
-          },
-          {
-            label: "Monitor",
-            description:
-              "Track PAGASA rainfall radar, flood advisories, and color-coded warnings.",
-            icon: "ShieldCheck",
-          },
-          {
-            label: "Evacuate",
-            description:
-              "Act on warning signals early — move to safety before hazards peak.",
-            icon: "ShieldAlert",
-          },
-        ],
       },
     },
-    // 2. Effects Analysis
     {
-      id: "effects",
-      title: "",
-      content: "",
-      layout: "effects-analysis",
-      layoutData: {
-        cards: [
-          {
-            title: "Property Damage",
-            description:
-              "Homes and businesses are submerged, destroying assets and displacing families.",
-            highlight: "submerged",
-            icon: "Home",
-            image:
-              "https://images.unsplash.com/photo-1525990520626-d922b0f4e428?w=800&q=80",
-          },
-          {
-            title: "Health Risks",
-            description:
-              "Contaminated water and poor sanitation lead to waterborne diseases and epidemics.",
-            highlight: "diseases",
-            icon: "Skull",
-            image:
-              "https://images.unsplash.com/photo-1632832506692-26210f845763?w=800&q=80",
-          },
-          {
-            title: "Economic Loss",
-            description:
-              "Agriculture, infrastructure, and business operations are paralyzed for weeks.",
-            highlight: "paralyzed",
-            icon: "Coins",
-            image:
-              "https://images.unsplash.com/photo-1533285962792-0c3c5e9cb0d7?w=800&q=80",
-          },
-        ],
-      },
-    },
-    // 3. Hazard Detail: Tropical Cyclone
-    {
-      id: "tropical-cyclone",
+      id: "tropical-cyclone-natural",
       title: "Tropical Cyclone",
       content: "",
       layout: "hazard-detail",
       layoutData: {
         title: "Signs of an Impending Tropical Cyclone",
         description: "",
+        effectsTitle: "Natural Signs",
         effects: [
           {
             label: "",
-            description: "Sudden drop in air pressure and increased humidity.",
+            description: "Sudden drop in air pressure and increased humidity",
           },
           {
             label: "",
-            description: "Dark, thick clouds forming in the eastern sky.",
+            description: "Dark, thick clouds forming in the eastern sky",
           },
           {
             label: "",
-            description: "Strong winds shifting directions rapidly.",
+            description: "Strong winds shifting directions rapidly",
           },
           {
             label: "",
-            description: "Continuous heavy rain that does not stop for hours.",
+            description: "Continuous heavy rain that does not stop for hours",
           },
         ],
         images: [
@@ -141,44 +77,84 @@ export const floodLecture: Lecture = {
       },
     },
     {
-      id: "flood",
+      id: "tropical-cyclone-scientific",
+      title: "Tropical Cyclone",
+      content: "",
+      layout: "hazard-detail",
+      layoutData: {
+        title: "Signs of an Impending Tropical Cyclone",
+        description: "",
+        effectsTitle: "Scientific Forecasting Signs",
+        effects: [
+          {
+            label: "",
+            description:
+              "PAGASA satellite images showing a spiraling cloud pattern over the Pacific",
+          },
+          {
+            label: "",
+            description:
+              "Weather bulletins announcing tropical depression or storm formation",
+          },
+          {
+            label: "",
+            description:
+              "Warning signals (Signal Nos. 1–5) issued for affected areas",
+          },
+        ],
+        protocol: {
+          title: "Typhoon Yolanda (2013)",
+          description:
+            "Before Typhoon Yolanda (2013) made landfall, PAGASA recorded a drastic pressure drop and spiral cloud formation detected via satellite.",
+          highlight: "drastic pressure drop",
+        },
+        reference: "PAGASA (2023), Tropical Cyclone Monitoring Manual.",
+        images: [
+          {
+            src: "https://images.unsplash.com/photo-1504608524841-42584120d1c7?w=800&q=80",
+            alt: "Tropical Cyclone Satellite View",
+            caption:
+              "Satellite image of a tropical cyclone's spiraling cloud formation.",
+            sourceUrl: "https://www.pagasa.dost.gov.ph",
+          },
+          {
+            src: "https://images.unsplash.com/photo-1569683782046-b6c8e4b3ae1a?w=800&q=80",
+            alt: "Typhoon Aftermath",
+            caption:
+              "Devastation left by a supertyphoon on a coastal community.",
+            sourceUrl: "",
+          },
+        ],
+      },
+    },
+    {
+      id: "flood-natural",
       title: "Flood",
       content: "",
       layout: "hazard-detail",
       layoutData: {
-        title: "Flood",
-        description:
-          "An overflow of water onto normally dry land, caused by continuous heavy rainfall, overflowing rivers, and overwhelmed drainage systems.",
-        features: [
-          {
-            title: "Rising River Levels",
-            description:
-              "Continuous heavy rain causes rivers and creeks to breach their banks.",
-          },
-          {
-            title: "Color-Coded Alerts",
-            description:
-              "PAGASA issues Yellow, Orange, and Red flood warnings based on rainfall intensity exceeding 50mm/hr.",
-          },
-        ],
+        title: "Signs of an Impending Flood",
+        description: "",
+        effectsTitle: "Natural Signs",
         effects: [
           {
-            label: "Overflowing Canals",
+            label: "",
             description:
-              "Saturated drainage systems spill floodwaters into streets and homes.",
+              "Continuous heavy rainfall lasts for several hours or days",
           },
           {
-            label: "Ground Saturation",
-            description:
-              "Soil softens and water seeps up, weakening foundations.",
+            label: "",
+            description: "Rising water levels in rivers and creeks",
+          },
+          {
+            label: "",
+            description: "Overflowing canals or drainage systems",
+          },
+          {
+            label: "",
+            description: "Soil softening or water seeping from the ground",
           },
         ],
-        protocol: {
-          title: "Monitor Water Level Alerts",
-          description:
-            "In Marikina, residents monitor the Marikina River using PAGASA's flood monitoring system. When the river reaches critical levels, evacuation orders are issued immediately.",
-          highlight: "critical levels",
-        },
         images: [
           {
             src: "https://images.unsplash.com/photo-1543465077-db45d34b88a5?w=800&q=80",
@@ -196,46 +172,80 @@ export const floodLecture: Lecture = {
         ],
       },
     },
-    // 5. Hazard Detail: Storm Surge
     {
-      id: "storm-surge",
+      id: "flood-scientific",
+      title: "Flood",
+      content: "",
+      layout: "hazard-detail",
+      layoutData: {
+        title: "Signs of an Impending Flood",
+        description: "",
+        effectsTitle: "Scientific Forecasting Signs",
+        effects: [
+          {
+            label: "",
+            description:
+              "PAGASA rainfall radar showing high rainfall intensity (>50mm/hr)",
+          },
+          {
+            label: "",
+            description:
+              "Flood advisories and color-coded warnings (Yellow, Orange, Red Alerts)",
+          },
+        ],
+        protocol: {
+          title: "Marikina River Monitoring",
+          description:
+            "In Marikina, residents monitor the Marikina River water level using PAGASA’s flood monitoring system.",
+          highlight: "Marikina River",
+        },
+        reference:
+          "PAGASA (2023), Flood Forecasting and Warning System for River Basins.",
+        images: [
+          {
+            src: "https://images.unsplash.com/photo-1543465077-db45d34b88a5?w=800&q=80",
+            alt: "Urban Flash Flooding",
+            caption: "Floodwaters submerging an urban street after heavy rain.",
+            sourceUrl: "",
+          },
+          {
+            src: "https://images.unsplash.com/photo-1627663708306-69457662c431?w=800&q=80",
+            alt: "Flood Rescue",
+            caption:
+              "First responders navigating floodwaters to rescue residents.",
+            sourceUrl: "",
+          },
+        ],
+      },
+    },
+    {
+      id: "storm-surge-natural",
       title: "Storm Surge",
       content: "",
       layout: "hazard-detail",
       layoutData: {
-        title: "Storm Surge",
-        description:
-          "An abnormal rise in sea level driven by a tropical cyclone's winds and low pressure, capable of inundating coastal communities with devastating speed.",
-        features: [
-          {
-            title: "Receding Shoreline",
-            description:
-              "A sudden, rapid withdrawal of the sea often precedes a destructive surge.",
-          },
-          {
-            title: "Surge Model Simulations",
-            description:
-              "PAGASA predicts surge height based on wind speed, storm trajectory, and tide levels.",
-          },
-        ],
+        title: "Signs of an Impending Storm Surge",
+        description: "",
+        effectsTitle: "Natural Signs",
         effects: [
           {
-            label: "Coastal Inundation",
+            label: "",
             description:
-              "Sea water surges inland, wiping out entire coastal barangays.",
+              "Unusually calm sea followed by a sudden rise in water level",
           },
           {
-            label: "Debris-Laden Currents",
-            description:
-              "Fast-moving surge water carries debris that increases destruction.",
+            label: "",
+            description: "Strong winds blowing toward the shore",
+          },
+          {
+            label: "",
+            description: "Rapidly receding shoreline just before the surge",
+          },
+          {
+            label: "",
+            description: "Low-pressure readings and dark clouds near the coast",
           },
         ],
-        protocol: {
-          title: "Evacuate Before the Surge",
-          description:
-            "Typhoon Yolanda's storm surge reached up to 7 meters high in Tacloban City. Evacuate coastal areas immediately when a storm surge advisory is issued — do not wait.",
-          highlight: "7 meters",
-        },
         images: [
           {
             src: "https://images.unsplash.com/photo-1505672678657-cc7037095e60?w=800&q=80",
@@ -254,46 +264,81 @@ export const floodLecture: Lecture = {
         ],
       },
     },
-    // 6. Hazard Detail: Landslide
     {
-      id: "landslide",
+      id: "storm-surge-scientific",
+      title: "Storm Surge",
+      content: "",
+      layout: "hazard-detail",
+      layoutData: {
+        title: "Signs of an Impending Storm Surge",
+        description: "",
+        effectsTitle: "Scientific Forecasting Signs",
+        effects: [
+          {
+            label: "",
+            description:
+              "PAGASA storm surge advisories issued with typhoon warnings",
+          },
+          {
+            label: "",
+            description:
+              "Model simulations predicting surge height based on wind speed and tide",
+          },
+        ],
+        protocol: {
+          title: "Typhoon Yolanda (2013)",
+          description:
+            "During Typhoon Yolanda, storm surges up to 7 meters high devastated Tacloban City.",
+          highlight: "7 meters high",
+        },
+        reference:
+          "DOST-PAGASA & JICA (2021), Storm Surge Hazard Mapping Project.",
+        images: [
+          {
+            src: "https://images.unsplash.com/photo-1505672678657-cc7037095e60?w=800&q=80",
+            alt: "Storm Surge Wave",
+            caption:
+              "Massive coastal inundation from a storm surge during a supertyphoon.",
+            sourceUrl: "",
+          },
+          {
+            src: "https://images.unsplash.com/photo-1599940778173-e276d4acb2bb?w=800&q=80",
+            alt: "Tacloban Aftermath",
+            caption:
+              "Aftermath of the Yolanda storm surge devastation in Tacloban City.",
+            sourceUrl: "https://www.pagasa.dost.gov.ph",
+          },
+        ],
+      },
+    },
+    {
+      id: "landslide-natural",
       title: "Landslide",
       content: "",
       layout: "hazard-detail",
       layoutData: {
-        title: "Landslide",
-        description:
-          "The downward movement of rock, soil, and debris on slopes, triggered by heavy and prolonged rainfall saturating the ground beyond its capacity.",
-        features: [
-          {
-            title: "Ground Cracks & Tilting",
-            description:
-              "Cracks on slopes or walls and tilting trees signal imminent slope failure.",
-          },
-          {
-            title: "Rainfall Threshold Exceeded",
-            description:
-              "Soil moisture sensors detect water saturation in landslide-prone areas above the critical threshold.",
-          },
-        ],
+        title: "Signs of an Impending Landslide",
+        description: "",
+        effectsTitle: "Natural Signs",
         effects: [
           {
-            label: "Buried Communities",
-            description:
-              "Entire villages can be consumed by cascading debris and mud.",
+            label: "",
+            description: "Cracks appearing on the ground or walls",
           },
           {
-            label: "Road Blockages",
+            label: "",
+            description: "Tilting of trees or poles",
+          },
+          {
+            label: "",
+            description: "Sudden appearance of muddy springs",
+          },
+          {
+            label: "",
             description:
-              "Transportation networks severed, cutting off rescue and aid.",
+              "Unusual sounds (like rumbling or cracking) coming from the slope",
           },
         ],
-        protocol: {
-          title: "Avoid Slopes After Heavy Rain",
-          description:
-            "The 2006 Leyte landslide was preceded by days of intense rainfall and visible ground cracks. Heed muddy springs, rumbling sounds, and slope deformation as immediate evacuation triggers.",
-          highlight: "Leyte landslide",
-        },
         images: [
           {
             src: "https://images.unsplash.com/photo-1612429917756-1ab1b843f0a5?w=800&q=80",
@@ -312,46 +357,82 @@ export const floodLecture: Lecture = {
         ],
       },
     },
-    // 7. Hazard Detail: Drought
     {
-      id: "drought",
+      id: "landslide-scientific",
+      title: "Landslide",
+      content: "",
+      layout: "hazard-detail",
+      layoutData: {
+        title: "Signs of an Impending Landslide",
+        description: "",
+        effectsTitle: "Scientific Forecasting Signs",
+        effects: [
+          {
+            label: "",
+            description:
+              "Soil moisture sensors detecting high water saturation",
+          },
+          {
+            label: "",
+            description: "Rainfall threshold exceeded in landslide-prone areas",
+          },
+          {
+            label: "",
+            description: "Ground deformation monitoring by PHIVOLCS or LGUs",
+          },
+        ],
+        protocol: {
+          title: "Leyte Landslide (2006)",
+          description:
+            "The 2006 Leyte landslide was preceded by days of intense rainfall and visible ground cracks.",
+          highlight: "visible ground cracks",
+        },
+        reference: "PHIVOLCS (2022), Landslide Susceptibility Mapping Report.",
+        images: [
+          {
+            src: "https://images.unsplash.com/photo-1612429917756-1ab1b843f0a5?w=800&q=80",
+            alt: "Landslide on Road",
+            caption:
+              "Heavy rainfall-triggered landslide blocking a mountain road.",
+            sourceUrl: "",
+          },
+          {
+            src: "https://images.unsplash.com/photo-1604598004960-5d5e70e81d29?w=800&q=80",
+            alt: "Mudslide Aftermath",
+            caption:
+              "Community buried by a debris flow following days of intense rainfall.",
+            sourceUrl: "",
+          },
+        ],
+      },
+    },
+    {
+      id: "drought-natural",
       title: "Drought",
       content: "",
       layout: "hazard-detail",
       layoutData: {
-        title: "Drought",
-        description:
-          "A prolonged period of abnormally low rainfall that leads to severe water shortages, crop failures, and environmental degradation.",
-        features: [
-          {
-            title: "Prolonged Dry Days",
-            description:
-              "Persistent hot and dry weather causes small water bodies — ponds, wells, creeks — to dry up.",
-          },
-          {
-            title: "El Niño Advisory",
-            description:
-              "PAGASA issues El Niño forecasts with low rainfall projections and declining reservoir levels.",
-          },
-        ],
+        title: "Signs of an Impending Drought",
+        description: "",
+        effectsTitle: "Natural Signs",
         effects: [
           {
-            label: "Agricultural Collapse",
-            description:
-              "Wilting crops and dying livestock devastate farming communities.",
+            label: "",
+            description: "Prolonged dry and hot days",
           },
           {
-            label: "Water Supply Crisis",
-            description:
-              "Depleted reservoirs and dams lead to water rationing in urban areas.",
+            label: "",
+            description: "Drying of small water bodies (ponds, wells, creeks)",
+          },
+          {
+            label: "",
+            description: "Wilting crops and grass",
+          },
+          {
+            label: "",
+            description: "Dusty air and increased temperature",
           },
         ],
-        protocol: {
-          title: "Act on El Niño Advisories",
-          description:
-            "PAGASA declared an El Niño event in 2019, leading to severe agricultural drought in Central Luzon. Communities stored water reserves and LGUs implemented water-rationing protocols.",
-          highlight: "El Niño",
-        },
         images: [
           {
             src: "https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?w=800&q=80",
@@ -370,97 +451,53 @@ export const floodLecture: Lecture = {
         ],
       },
     },
-    // 8. Complete
     {
-      id: "complete",
-      title: "Completion",
+      id: "drought-scientific",
+      title: "Drought",
       content: "",
-      layout: "complete",
-      layoutData: {},
-    },
-  ],
-  decisionGame: [
-    {
-      id: "scenario-1",
-      title: "Scenario 1: The Storm is Coming",
-      scenario:
-        "You notice dark, thick clouds forming in the eastern sky. The wind shifts rapidly and raindrops have been falling non-stop for 3 hours. PAGASA has just raised Signal No. 2 in your area. What do you do first?",
-      options: [
-        {
-          label: "Wait and see if it gets worse before taking action.",
-          isCorrect: false,
-          feedback:
-            "Waiting is dangerous. Signal No. 2 means destructive winds are expected — early action saves lives.",
+      layout: "hazard-detail",
+      layoutData: {
+        title: "Signs of an Impending Drought",
+        description: "",
+        effectsTitle: "Scientific Forecasting Signs",
+        effects: [
+          {
+            label: "",
+            description: "El Niño advisory from PAGASA",
+          },
+          {
+            label: "",
+            description: "Low rainfall forecasts over multiple weeks",
+          },
+          {
+            label: "",
+            description: "Decreased water level in reservoirs and dams",
+          },
+        ],
+        protocol: {
+          title: "El Niño Event (2019)",
+          description:
+            "PAGASA declared an El Niño event in 2019, leading to agricultural drought in Central Luzon.",
+          highlight: "El Niño event",
         },
-        {
-          label:
-            "Secure your home and prepare a go-bag for possible evacuation.",
-          isCorrect: true,
-          feedback:
-            "Correct! Preparing early when warning signals are raised gives you a critical safety advantage.",
-        },
-        {
-          label: "Go outside to close storm drains near your house.",
-          isCorrect: false,
-          feedback:
-            "Going outside during strong winds and heavy rain is extremely risky. Prioritize your safety indoors first.",
-        },
-      ],
-    },
-    {
-      id: "scenario-2",
-      title: "Scenario 2: Floodwaters Rising",
-      scenario:
-        "The river near your barangay has been rising steadily for 2 hours. Local officials have issued an Orange flood alert. The water is now knee-deep on the main road. What is the safest action?",
-      options: [
-        {
-          label:
-            "Drive through the flooded road to reach higher ground quickly.",
-          isCorrect: false,
-          feedback:
-            "Never drive through floodwaters — even shallow moving water can sweep a vehicle away. 6 inches can knock you down.",
-        },
-        {
-          label:
-            "Evacuate on foot to the nearest evacuation center following a pre-planned route.",
-          isCorrect: true,
-          feedback:
-            "Correct! Evacuating early on a known safe route is the best response to rising floodwaters.",
-        },
-        {
-          label: "Stay on the second floor and wait for the flood to subside.",
-          isCorrect: false,
-          feedback:
-            "Staying put during an Orange alert is risky. Floods can rise rapidly — evacuate while you still can.",
-        },
-      ],
-    },
-    {
-      id: "scenario-3",
-      title: "Scenario 3: Coastal Warning",
-      scenario:
-        "You live in a coastal barangay. The sea suddenly becomes very calm and appears to pull back from the shore. A typhoon is approaching and PAGASA has issued a storm surge advisory. What do you do?",
-      options: [
-        {
-          label:
-            "Walk to the shoreline to watch — the calm sea seems safe for now.",
-          isCorrect: false,
-          feedback:
-            "A receding shoreline is a major warning sign of an impending storm surge. Never approach the shore!",
-        },
-        {
-          label: "Immediately evacuate inland to higher elevated ground.",
-          isCorrect: true,
-          feedback:
-            "Correct! A suddenly calm or receding sea followed by a storm surge advisory demands immediate inland evacuation.",
-        },
-        {
-          label: "Board up your windows and stay inside your coastal home.",
-          isCorrect: false,
-          feedback:
-            "Structures near the coast offer little protection against surge waves that can reach 7 meters. Evacuate immediately.",
-        },
-      ],
+        reference: "PAGASA (2020), Climate Monitoring Bulletin.",
+        images: [
+          {
+            src: "https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?w=800&q=80",
+            alt: "Drought Cracked Earth",
+            caption:
+              "Severely cracked and parched farmland during an El Niño drought.",
+            sourceUrl: "",
+          },
+          {
+            src: "https://images.unsplash.com/photo-1602374585404-fc0d1fc23c69?w=800&q=80",
+            alt: "Dried Reservoir",
+            caption:
+              "A depleted reservoir exposing dry, cracked earth during prolonged drought.",
+            sourceUrl: "",
+          },
+        ],
+      },
     },
   ],
   finalQuiz: [

@@ -1,10 +1,10 @@
 import { earthquakeLecture } from "./earthquake";
-import { floodLecture } from "./flood";
+import { hydroLecture } from "./hydro";
 import { volcanoLecture } from "./volcano";
 import { Lecture } from "../../types";
 
 export const lectures: Lecture[] = [
   earthquakeLecture,
   volcanoLecture,
-  floodLecture,
+  hydroLecture,
 ];

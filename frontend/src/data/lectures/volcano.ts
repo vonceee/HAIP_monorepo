@@ -10,11 +10,6 @@ export const volcanoLecture: Lecture = {
   imageUrl: image3,
   readTime: 20,
   gameType: "volcanic-eruption-sim",
-  objectives: [
-    "Explain volcano-related hazards",
-    "Recognize eruption signs",
-    "Understand hazard impacts",
-  ],
   competencies: [
     {
       description: "Explain various volcano-related hazards",
@@ -58,72 +53,6 @@ export const volcanoLecture: Lecture = {
         ],
       },
     },
-    // 2. Effects Analysis
-    {
-      id: "effects",
-      title: "Effects Analysis",
-      content: "", // Fallback
-      layout: "effects-analysis",
-      layoutData: {
-        cards: [
-          {
-            title: "Pyroclastic Flow",
-            description:
-              "A fast-moving mixture of hot gases, ash, and volcanic rocks that rush down the slopes of a volcano at speeds over 100 km/h. Temperature: Can reach up to 800°C.",
-            highlight: "over 100 km/h",
-            icon: "Zap",
-            image:
-              "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800&q=80", // Pyroclastic
-          },
-          {
-            title: "Ash Fall",
-            description:
-              "Volcanic ash and rock fragments that fall to the ground, collapsing roofs and contaminating water.",
-            highlight: "collapsing roofs",
-            icon: "Mountain",
-            image:
-              "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&q=80", // Ash
-          },
-          {
-            title: "Lahars",
-            description:
-              "Mixtures of volcanic ash, rocks, and water that flow down valleys, burying communities.",
-            highlight: "burying communities",
-            icon: "Waves",
-            image:
-              "https://images.unsplash.com/photo-1502396105423-424a1005e839?w=800&q=80", // Lahar/Lava
-          },
-          {
-            title: "Lava Flows",
-            description:
-              "Molten rock that flows from the crater, destroying farmland and infrastructure.",
-            highlight: "destroying farmland",
-            icon: "Flame",
-            image:
-              "https://images.unsplash.com/photo-1502396105423-424a1005e839?w=800&q=80", // Lava
-          },
-          {
-            title: "Volcanic Gases",
-            description:
-              "Toxic gases like sulfur dioxide that poison air and form acid rain.",
-            highlight: "poison air",
-            icon: "Cloud",
-            image:
-              "https://images.unsplash.com/photo-1541845157-a6d4d10029b7?w=800&q=80", // Gas/Cloud
-          },
-          {
-            title: "Volcanic Tsunamis",
-            description:
-              "Large sea waves from underwater eruptions that flood coastal communities.",
-            highlight: "flood coastal communities",
-            icon: "Waves",
-            image:
-              "https://images.unsplash.com/photo-1476900543704-4312b78632f8?w=800&q=80", // Tsunami/Water
-          },
-        ],
-      },
-    },
-    // 3. Hazard Detail: Pyroclastic Flow
     {
       id: "pyroclastic-flow",
       title: "Pyroclastic Flow",
@@ -363,34 +292,6 @@ export const volcanoLecture: Lecture = {
           },
         ],
       },
-    },
-    {
-      id: "complete",
-      title: "Completion",
-      content: "",
-      layout: "complete",
-      layoutData: {},
-    },
-  ],
-  decisionGame: [
-    {
-      id: "scenario-1",
-      title: "Scenario 1: Unusual Activity",
-      scenario:
-        "You notice increased seismic activity and sulfur smell near a volcano. What should you do first?",
-      options: [
-        {
-          label: "Ignore it as normal volcanic activity.",
-          isCorrect: false,
-          feedback: "Increased activity could indicate an impending eruption.",
-        },
-        {
-          label: "Report to authorities and prepare emergency kit.",
-          isCorrect: true,
-          feedback:
-            "Correct! Monitor official warnings and prepare for evacuation.",
-        },
-      ],
     },
   ],
   finalQuiz: [

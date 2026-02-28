@@ -52,8 +52,6 @@ export const LearningSimulationsView: React.FC<
         </div>
 
         {/* Right Column: Game Card & Actions */}
-        {/* flex-1 ensures this column grows to fill available height on mobile,
-          giving `sticky bottom-0` a proper scroll container to anchor to */}
         <div className="w-full lg:flex-1 flex-1 flex flex-col gap-6 lg:max-w-2xl lg:py-0">
           {/* Game Card */}
           <div className="w-full flex-1 flex flex-col justify-center px-4 lg:px-0">
@@ -84,8 +82,8 @@ export const LearningSimulationsView: React.FC<
             </div>
           </div>
 
-          {/* Action Footer — sticky on mobile, static on lg+ */}
-          <div className="sticky bottom-0 p-4 z-20 border-t border-white/10 lg:static lg:border-0 lg:bg-transparent bg-black/80 lg:bg-none backdrop-blur-md lg:backdrop-blur-none">
+          {/* Action Footer */}
+          <div className="sticky bottom-0 p-4 z-20 border-t border-white/10 lg:mb-2 lg:static lg:border-0">
             <div className="flex items-center justify-between gap-4">
               {/* Back Button */}
               <div>

@@ -31,7 +31,8 @@ export type SectionLayout =
   | "dashboard"
   | "decision-game"
   | "final-quiz"
-  | "complete";
+  | "complete"
+  | "custom";
 
 export interface LectureSection {
   id: string;
@@ -39,6 +40,7 @@ export interface LectureSection {
   content: string; // HTML content for fallback / standard sections
   layout?: SectionLayout;
   layoutData?: any; // Structured data for specific layouts
+  customComponent?: React.ReactNode;
 }
 
 export interface DecisionOption {
@@ -61,12 +63,9 @@ export interface Lecture {
   topic: HazardTopic;
   imageUrl: string;
   bgMusicUrl?: string;
-  readTime: number; // minutes
-  objectives: string[];
+  readTime: number;
   competencies: Competency[];
   sections: LectureSection[];
-
-  decisionGame?: DecisionScenario[];
   finalQuiz?: QuizQuestion[];
   gameType: GameType;
 }

@@ -1,32 +1,14 @@
 import { Lecture } from "../../types";
 import image1 from "../../assets/lecture-cards/19e4a3c9-78f1-48f6-8d76-327cee5077d3.jpg";
-import pBXuXnF from "../../assets/earthquake/effect-analysis/pBXuXnF.jpeg";
-import P2c24Fz from "../../assets/earthquake/effect-analysis/P2c24Fz.jpeg";
-import nieyw10 from "../../assets/earthquake/effect-analysis/nieyw10.jpeg";
-// Hazard Detail Images
-import XkdS1Sh from "../../assets/earthquake/liquefaction/XkdS1Sh.jpeg";
-import ejDazPW from "../../assets/earthquake/liquefaction/ejDazPW.jpeg";
-import l1_2lNocmC from "../../assets/earthquake/landslides/2lNocmC.jpeg";
-import l2_cU3ltee from "../../assets/earthquake/landslides/cU3ltee.jpeg";
-import t1_Vs1VkOm_d from "../../assets/earthquake/tsunami/Vs1VkOm_d.jpeg";
-import t2_iaUMeRz from "../../assets/earthquake/tsunami/iaUMeRz.jpeg";
-import i1_7udUQp3 from "../../assets/earthquake/fire-infra/7udUQp3.jpeg";
-import i2_MRcTqhO from "../../assets/earthquake/fire-infra/MRcTqhO.jpeg";
-import gr1_mz2zqMV from "../../assets/earthquake/ground-rupture/mz2zqMV.jpeg";
-import gr2_nSEuU4D from "../../assets/earthquake/ground-rupture/nSEuU4D.jpeg";
 
 export const earthquakeLecture: Lecture = {
-  id: "lecture-earthquake-101",
+  id: "lecture-earthquake",
   title: "Earthquake Hazards",
   description:
     "a deep dive into primary and secondary earthquake hazards, including ground rupture, liquefaction, landslides, tsunamis, and fire failures.",
   topic: "Earthquake",
   imageUrl: image1,
   readTime: 15,
-  objectives: [
-    "Recognize real-world examples of historical earthquake",
-    "Learn safety protocols for before, during, and after an earthquake",
-  ],
   competencies: [
     {
       description: "Various Potential Earthquake Hazards",
@@ -38,330 +20,45 @@ export const earthquakeLecture: Lecture = {
     },
   ],
   sections: [
-    // 1. Introduction Slide
     {
       id: "intro",
-      title: "",
+      title: "Introduction",
       content: "",
-      layout: "introduction",
-      layoutData: {
-        subTitle: "are among the most destructive natural hazards on Earth.",
-        secondaryInfo:
-          "Their impacts go beyond ground shaking—they trigger a chain of secondary hazards that pose threats to human life, infrastructure, and the environment. Understanding these potential hazards is essential for developing predictive skills and effective disaster preparedness. ",
-        reference: "PHIVOLCS (2023). Earthquake Hazards.",
-        stats: [
-          {
-            label: "Predict",
-            description:
-              "Analyze effects to anticipate secondary hazards before they strike.",
-            icon: "TriangleAlert",
-          },
-          {
-            label: "Minimize",
-            description:
-              "Implement safety protocols to drastically reduce casualties.",
-            icon: "ShieldCheck",
-          },
-          {
-            label: "Strengthen",
-            description:
-              "Build resilient infrastructure to withstand future disasters.",
-            icon: "ShieldAlert",
-          },
-        ],
-      },
     },
-    // 2. Effects Analysis Slide
     {
       id: "effects",
-      title: "",
+      title: "Effects Analysis",
       content: "",
-      layout: "effects-analysis",
-      layoutData: {
-        cards: [
-          {
-            title: "Structural Damage",
-            description:
-              "Weakly designed buildings collapse, especially on soft soils.",
-            highlight: "soft soils",
-            icon: "Home",
-            image: pBXuXnF,
-          },
-          {
-            title: "Infrastructure Disruption",
-            description:
-              "Roads crack and utilities fail, cutting off critical networks.",
-            highlight: "critical networks",
-            icon: "Zap",
-            image: P2c24Fz,
-          },
-          {
-            title: "Psychological Stress",
-            description:
-              "Fear and trauma affect survivors long after the event.",
-            highlight: "long after",
-            icon: "HeartPulse",
-            image: nieyw10,
-          },
-        ],
-      },
     },
     {
       id: "ground-rupture",
       title: "Ground Rupture",
       content: "",
-      layout: "hazard-detail",
-      layoutData: {
-        title: "Ground Rupture",
-        description:
-          "The visible tearing or displacement of the ground surface along an active fault during an earthquake.",
-        effects: [
-          {
-            label: "Direct Structural Damage",
-            description:
-              "Buildings, bridges, and pipelines crossing fault lines are torn apart.",
-          },
-          {
-            label: "Land Use Impact",
-            description:
-              "Fault zones become uninhabitable, limiting urban expansion and zoning.",
-          },
-          {
-            label: "Economic Consequences",
-            description:
-              "Relocation and reconstruction costs increase drastically.",
-          },
-        ],
-        images: [
-          {
-            src: gr1_mz2zqMV,
-            alt: "Bohol Rupture",
-            caption: "Ground rupture in Bohol following the 2013 earthquake.",
-            sourceUrl:
-              "https://afe-adb.org/sites/default/files/Earthquake%20Risk%20and%20Preparedness%20Presentation%20ADB%2028May2013.pdf",
-          },
-          {
-            src: gr2_nSEuU4D,
-            alt: "Cotabato Rupture",
-            caption:
-              "Surface rupture observed in North Cotabato after the 2019 earthquake.",
-            sourceUrl: "https://www.youtube.com/watch?v=tSeflXdLrJE",
-          },
-          {
-            src: gr2_nSEuU4D,
-            alt: "Cotabato Rupture",
-            caption:
-              "Surface rupture observed in North Cotabato after the 2019 earthquake.",
-            sourceUrl: "https://www.youtube.com/watch?v=tSeflXdLrJE",
-          },
-        ],
-      },
     },
     {
       id: "liquefaction",
       title: "Liquefaction",
       content: "",
-      layout: "hazard-detail",
-      layoutData: {
-        title: "Liquefaction",
-        description:
-          "The process where water-saturated, loose soil behaves like a liquid during intense shaking.",
-        effects: [
-          {
-            label: "Building Instability",
-            description: "Houses, bridges, and towers sink, tilt, or collapse.",
-          },
-          {
-            label: "Underground Damage",
-            description:
-              "Bursting of pipelines and sewage systems due to soil movement.",
-          },
-          {
-            label: "Economic Disruption",
-            description:
-              "Industrial zones built on reclaimed or soft land experience high recovery costs.",
-          },
-        ],
-        images: [
-          {
-            src: XkdS1Sh,
-            alt: "Liquefaction Damage",
-            caption: "Ground failure caused by liquefaction.",
-          },
-          {
-            src: ejDazPW,
-            alt: "Tilted Building",
-            caption: "Buildings tilting due to loss of soil bearing capacity.",
-          },
-          {
-            src: XkdS1Sh,
-            alt: "Liquefaction Damage",
-            caption: "Ground failure caused by liquefaction.",
-          },
-        ],
-      },
     },
     {
       id: "landslides",
       title: "Landslides",
       content: "",
-      layout: "hazard-detail",
-      layoutData: {
-        title: "Landslides",
-        description:
-          "Downhill movement of rocks and soil triggered by ground shaking, especially in mountainous or steep terrains.",
-        effects: [
-          {
-            label: "Burial of Settlements",
-            description:
-              "Entire villages can be buried, as seen in upland communities of Luzon.",
-          },
-          {
-            label: "Isolation of Areas",
-            description: "Blocked roads hinder rescue and relief operations.",
-          },
-          {
-            label: "Environmental Damage",
-            description:
-              "Landslides destroy vegetation, leading to erosion and loss of biodiversity.",
-          },
-        ],
-        images: [
-          {
-            src: l1_2lNocmC,
-            alt: "Landslide",
-            caption: "Massive landslide triggered by seismic activity.",
-          },
-          {
-            src: l2_cU3ltee,
-            alt: "Road Blockage",
-            caption: "Road blocked by landslide debris.",
-          },
-          {
-            src: l1_2lNocmC,
-            alt: "Landslide",
-            caption: "Massive landslide triggered by seismic activity.",
-          },
-        ],
-      },
     },
     {
       id: "tsunami",
       title: "Tsunami",
       content: "",
-      layout: "hazard-detail",
-      layoutData: {
-        title: "Tsunami",
-        description:
-          "A series of large sea waves generated by undersea earthquakes that displace huge volumes of water.",
-        effects: [
-          {
-            label: "Coastal Inundation",
-            description:
-              "Flooding destroys homes, ports, and coastal infrastructure.",
-          },
-          {
-            label: "Loss of Lives",
-            description:
-              "People near the shorelines have little time to evacuate.",
-          },
-          {
-            label: "Environmental Impact",
-            description:
-              "Saltwater contamination damages crops and freshwater sources.",
-          },
-        ],
-        images: [
-          {
-            src: t1_Vs1VkOm_d,
-            alt: "Tsunami Wave",
-            caption: "Approaching tsunami wave.",
-          },
-          {
-            src: t2_iaUMeRz,
-            alt: "Tsunami Damage",
-            caption: "Aftermath of a tsunami inundation.",
-          },
-          {
-            src: t1_Vs1VkOm_d,
-            alt: "Tsunami Wave",
-            caption: "Approaching tsunami wave.",
-          },
-        ],
-      },
     },
     {
-      id: "infra-failure",
-      title: "Infrastructure Failures",
+      id: "fire-infra",
+      title: "Fire & Infrastructure Failure",
       content: "",
-      layout: "hazard-detail",
-      layoutData: {
-        title: "Infrastructure Failures",
-        description:
-          "Secondary hazards caused by damaged gas lines, power systems, and industrial facilities during or after earthquakes.",
-        effects: [
-          {
-            label: "Urban Fires",
-            description:
-              "Breakouts spread rapidly when water lines are broken.",
-          },
-          {
-            label: "Pollution",
-            description:
-              "Chemical leaks from factories contaminate the air and soil.",
-          },
-          {
-            label: "Extended Recovery",
-            description:
-              " Fire-damaged areas require longer rebuilding periods.",
-          },
-        ],
-        images: [
-          {
-            src: i1_7udUQp3,
-            alt: "Fire",
-            caption: "Fire breaking out after an earthquake.",
-          },
-          {
-            src: i2_MRcTqhO,
-            alt: "Infrastructure Damage",
-            caption: "Damaged infrastructure posing safety risks.",
-          },
-          {
-            src: i1_7udUQp3,
-            alt: "Fire",
-            caption: "Fire breaking out after an earthquake.",
-          },
-        ],
-      },
     },
     {
-      id: "complete",
-      title: "Completion",
+      id: "final-quiz",
+      title: "Final Quiz",
       content: "",
-      layout: "complete",
-      layoutData: {},
-    },
-  ],
-  decisionGame: [
-    {
-      id: "scenario-1",
-      title: "Scenario 1: Initial Shaking",
-      scenario:
-        "You are inside a tall building when the shaking starts. What do you do?",
-      options: [
-        {
-          label: "Run to the nearest exit immediately.",
-          isCorrect: false,
-          feedback:
-            "Running during shaking is dangerous due to falling debris.",
-        },
-        {
-          label: "Drop, Cover, and Hold On.",
-          isCorrect: true,
-          feedback: "Correct! This protects you from falling objects.",
-        },
-      ],
     },
   ],
   finalQuiz: [
