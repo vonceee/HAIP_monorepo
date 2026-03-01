@@ -173,13 +173,7 @@ export const LectureView: React.FC<LectureViewProps> = ({
           setShowStartMenu(true);
         }}
       >
-        <LearningCompetenciesController
-          lecture={lecture}
-          onNext={() => {
-            setShowCompetencies(false);
-            setShowSimulation(false);
-          }}
-        />
+        <LearningCompetenciesController lecture={lecture} />
       </ScreenShell>
     );
   }

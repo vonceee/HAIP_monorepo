@@ -55,17 +55,7 @@ export const EarthquakeView: React.FC<EarthquakeViewProps> = ({
     return [
       {
         id: "competencies",
-        component: (
-          <LearningCompetenciesController
-            lecture={lecture}
-            onNext={() => {
-              if (contentScrollRef.current) {
-                contentScrollRef.current.scrollTop = 0;
-              }
-              setActiveSlideIndex((prev) => prev + 1);
-            }}
-          />
-        ),
+        component: <LearningCompetenciesController lecture={lecture} />,
       },
       {
         id: "intro-1",
