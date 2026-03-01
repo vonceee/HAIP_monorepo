@@ -4,9 +4,9 @@ is an interactive web application dedicated to hazard awareness and education, i
 
 ## Key Features
 
-- **Interactive Learning Modules:** structured lessons on natural hazards (Earthquakes, Volcanoes, Hydrometeorological).
-- **3D Visualizations:** integrated Spline models.
-- **Interactive UI/UX:** built with Tailwind CSS, Shadcn UI, Embla Carousels.
+- structured lessons on natural hazards (Earthquakes, Volcanoes, Hydrometeorological).
+- integrated Spline models.
+- built with Tailwind CSS, Shadcn UI, Embla Carousels.
 
 ## 🛠️ Tech Stack
 
