@@ -1,5 +1,11 @@
 import { Lecture } from "../../types";
 import image2 from "../../assets/lecture-cards/83465e25-4967-4630-bf67-bcbc9efe0e90.jpg";
+import tc1 from "../../assets/hydro/tropical-cyclone/tc1.jpg";
+import tc2 from "../../assets/hydro/tropical-cyclone/tc2.jpg";
+import tc3 from "../../assets/hydro/tropical-cyclone/tc3.jpg";
+import f1 from "../../assets/hydro/flood/f1.jpg";
+import f2 from "../../assets/hydro/flood/f2.jpg";
+import f3 from "../../assets/hydro/flood/f3.jpg";
 
 export const hydroLecture: Lecture = {
   id: "lecture-hydro",
@@ -60,17 +66,21 @@ export const hydroLecture: Lecture = {
         ],
         images: [
           {
-            src: "https://images.unsplash.com/photo-1504608524841-42584120d1c7?w=800&q=80",
+            src: tc1,
             alt: "Tropical Cyclone Satellite View",
-            caption:
-              "Satellite image of a tropical cyclone's spiraling cloud formation.",
-            sourceUrl: "https://www.pagasa.dost.gov.ph",
+            caption: "",
+            sourceUrl: "",
           },
           {
-            src: "https://images.unsplash.com/photo-1569683782046-b6c8e4b3ae1a?w=800&q=80",
+            src: tc2,
             alt: "Typhoon Aftermath",
-            caption:
-              "Devastation left by a supertyphoon on a coastal community.",
+            caption: "",
+            sourceUrl: "",
+          },
+          {
+            src: tc3,
+            alt: "Typhoon Aftermath",
+            caption: "",
             sourceUrl: "",
           },
         ],
@@ -111,17 +121,21 @@ export const hydroLecture: Lecture = {
         reference: "PAGASA (2023), Tropical Cyclone Monitoring Manual.",
         images: [
           {
-            src: "https://images.unsplash.com/photo-1504608524841-42584120d1c7?w=800&q=80",
+            src: tc1,
             alt: "Tropical Cyclone Satellite View",
-            caption:
-              "Satellite image of a tropical cyclone's spiraling cloud formation.",
-            sourceUrl: "https://www.pagasa.dost.gov.ph",
+            caption: "",
+            sourceUrl: "",
           },
           {
-            src: "https://images.unsplash.com/photo-1569683782046-b6c8e4b3ae1a?w=800&q=80",
+            src: tc2,
             alt: "Typhoon Aftermath",
-            caption:
-              "Devastation left by a supertyphoon on a coastal community.",
+            caption: "",
+            sourceUrl: "",
+          },
+          {
+            src: tc3,
+            alt: "Typhoon Aftermath",
+            caption: "",
             sourceUrl: "",
           },
         ],
@@ -157,16 +171,21 @@ export const hydroLecture: Lecture = {
         ],
         images: [
           {
-            src: "https://images.unsplash.com/photo-1543465077-db45d34b88a5?w=800&q=80",
+            src: f1,
             alt: "Urban Flash Flooding",
-            caption: "Floodwaters submerging an urban street after heavy rain.",
+            caption: "",
             sourceUrl: "",
           },
           {
-            src: "https://images.unsplash.com/photo-1627663708306-69457662c431?w=800&q=80",
+            src: f2,
             alt: "Flood Rescue",
-            caption:
-              "First responders navigating floodwaters to rescue residents.",
+            caption: "",
+            sourceUrl: "",
+          },
+          {
+            src: f3,
+            alt: "Flood Rescue",
+            caption: "",
             sourceUrl: "",
           },
         ],
@@ -203,16 +222,21 @@ export const hydroLecture: Lecture = {
           "PAGASA (2023), Flood Forecasting and Warning System for River Basins.",
         images: [
           {
-            src: "https://images.unsplash.com/photo-1543465077-db45d34b88a5?w=800&q=80",
+            src: f1,
             alt: "Urban Flash Flooding",
-            caption: "Floodwaters submerging an urban street after heavy rain.",
+            caption: "",
             sourceUrl: "",
           },
           {
-            src: "https://images.unsplash.com/photo-1627663708306-69457662c431?w=800&q=80",
+            src: f2,
             alt: "Flood Rescue",
-            caption:
-              "First responders navigating floodwaters to rescue residents.",
+            caption: "",
+            sourceUrl: "",
+          },
+          {
+            src: f3,
+            alt: "Flood Rescue",
+            caption: "",
             sourceUrl: "",
           },
         ],

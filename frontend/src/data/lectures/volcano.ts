@@ -1,5 +1,23 @@
 import { Lecture } from "../../types";
 import image3 from "../../assets/lecture-cards/cfdc22bb-2d99-4f5c-9705-2d2e998726f3.jpg";
+import pf1 from "../../assets/volcano/pyroclastic-flow/pf1.jpg";
+import pf2 from "../../assets/volcano/pyroclastic-flow/pf2.jpg";
+import pf3 from "../../assets/volcano/pyroclastic-flow/pf3.jpg";
+import af1 from "../../assets/volcano/ash-fall/af1.jpg";
+import af2 from "../../assets/volcano/ash-fall/af2.jpg";
+import af3 from "../../assets/volcano/ash-fall/af3.jpg";
+import lh1 from "../../assets/volcano/lahars/lh1.jpg";
+import lh2 from "../../assets/volcano/lahars/lh2.jpg";
+import lh3 from "../../assets/volcano/lahars/lh3.jpg";
+import lf1 from "../../assets/volcano/lava-flow/lf1.jpg";
+import lf2 from "../../assets/volcano/lava-flow/lf2.jpg";
+import lf3 from "../../assets/volcano/lava-flow/lf3.jpg";
+import vg1 from "../../assets/volcano/volcanic-gases/vg1.jpg";
+import vg2 from "../../assets/volcano/volcanic-gases/vg2.jpg";
+import vg3 from "../../assets/volcano/volcanic-gases/vg3.jpg";
+import vt1 from "../../assets/volcano/volcanic-tsunami/vt1.jpg";
+import vt2 from "../../assets/volcano/volcanic-tsunami/vt2.jpg";
+import vt3 from "../../assets/volcano/volcanic-tsunami/vt3.jpeg";
 
 export const volcanoLecture: Lecture = {
   id: "lecture-volcano-101",
@@ -79,16 +97,24 @@ export const volcanoLecture: Lecture = {
         ],
         images: [
           {
-            src: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800&q=80",
+            src: pf1,
             alt: "Volcanic Cloud",
-            caption: "Pyroclastic cloud descending a mountain slope.",
-            sourceUrl: "",
+            caption: "",
+            sourceUrl:
+              "https://education.nationalgeographic.org/resource/hazards-pyroclastic-flows/",
           },
           {
-            src: "https://images.unsplash.com/photo-1541845157-a6d4d10029b7?w=800&q=80",
+            src: pf2,
             alt: "Volcanic Landscape",
-            caption: "Aftermath of volcanic flows.",
-            sourceUrl: "",
+            caption: "",
+            sourceUrl:
+              "https://www.internetgeography.net/topics/what-are-lahars-and-pyroclastic-flows/",
+          },
+          {
+            src: pf3,
+            alt: "Volcanic Landscape",
+            caption: "",
+            sourceUrl: "https://www.britannica.com/science/pyroclastic-flow",
           },
         ],
       },
@@ -122,15 +148,21 @@ export const volcanoLecture: Lecture = {
         ],
         images: [
           {
-            src: "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&q=80",
+            src: af1,
             alt: "Ash Fall",
-            caption: "Ash covering streets and buildings.",
+            caption: "",
             sourceUrl: "",
           },
           {
-            src: "https://images.unsplash.com/photo-1541845157-a6d4d10029b7?w=800&q=80",
+            src: af2,
             alt: "Ash Cleanup",
-            caption: "Residents cleaning volcanic ash.",
+            caption: "",
+            sourceUrl: "",
+          },
+          {
+            src: af3,
+            alt: "Ash Cleanup",
+            caption: "",
             sourceUrl: "",
           },
         ],
@@ -161,15 +193,21 @@ export const volcanoLecture: Lecture = {
         ],
         images: [
           {
-            src: "https://images.unsplash.com/photo-1502396105423-424a1005e839?w=800&q=80",
+            src: lh1,
             alt: "Lahar Flow",
-            caption: "Mudflow descending a valley.",
+            caption: "",
             sourceUrl: "",
           },
           {
-            src: "https://images.unsplash.com/photo-1541845157-a6d4d10029b7?w=800&q=80",
+            src: lh2,
             alt: "Lahar Damage",
-            caption: "Aftermath of lahar destruction.",
+            caption: "",
+            sourceUrl: "",
+          },
+          {
+            src: lh3,
+            alt: "Lahar Damage",
+            caption: "",
             sourceUrl: "",
           },
         ],
@@ -200,15 +238,21 @@ export const volcanoLecture: Lecture = {
         ],
         images: [
           {
-            src: "https://images.unsplash.com/photo-1502396105423-424a1005e839?w=800&q=80",
+            src: lf1,
             alt: "Lava Flow",
-            caption: "Molten lava flowing down a slope.",
+            caption: "",
             sourceUrl: "",
           },
           {
-            src: "https://images.unsplash.com/photo-1541845157-a6d4d10029b7?w=800&q=80",
+            src: lf2,
             alt: "Lava Field",
-            caption: "Cooled lava forming new land.",
+            caption: "",
+            sourceUrl: "",
+          },
+          {
+            src: lf3,
+            alt: "Lava Field",
+            caption: "",
             sourceUrl: "",
           },
         ],
@@ -240,15 +284,21 @@ export const volcanoLecture: Lecture = {
         ],
         images: [
           {
-            src: "https://images.unsplash.com/photo-1541845157-a6d4d10029b7?w=800&q=80",
-            alt: "Volcanic Plume",
-            caption: "Gas emissions from a volcano.",
+            src: vg1,
+            alt: "Gas Monitoring",
+            caption: "",
             sourceUrl: "",
           },
           {
-            src: "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&q=80",
+            src: vg2,
             alt: "Gas Monitoring",
-            caption: "Scientists monitoring volcanic gases.",
+            caption: "",
+            sourceUrl: "",
+          },
+          {
+            src: vg3,
+            alt: "Gas Monitoring",
+            caption: "",
             sourceUrl: "",
           },
         ],
@@ -279,16 +329,24 @@ export const volcanoLecture: Lecture = {
         ],
         images: [
           {
-            src: "https://images.unsplash.com/photo-1476900543704-4312b78632f8?w=800&q=80",
+            src: vt1,
             alt: "Tsunami Wave",
-            caption: "Large wave approaching the coast.",
-            sourceUrl: "",
+            caption: "",
+            sourceUrl: "https://www.nature.com/articles/d41586-023-01272-x",
           },
           {
-            src: "https://images.unsplash.com/photo-1541845157-a6d4d10029b7?w=800&q=80",
-            alt: "Coastal Damage",
-            caption: "Aftermath of tsunami destruction.",
-            sourceUrl: "",
+            src: vt2,
+            alt: "Tsunami Wave",
+            caption: "",
+            sourceUrl:
+              "https://www.geomar.de/en/news/article/rare-but-devastating-when-volcanoes-trigger-tsunamis",
+          },
+          {
+            src: vt3,
+            alt: "Tsunami Wave",
+            caption: "",
+            sourceUrl:
+              "https://www.gfz.de/en/section/physics-of-earthquakes-and-volcanoes/overview/detailpage-section-news/ein-verbessertes-tsunami-fruehwarnsystem-fuer-indonesien",
           },
         ],
       },
