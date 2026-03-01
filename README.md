@@ -1,4 +1,4 @@
-# HAIP (Hazard Awareness and Interactive Learning Project)
+# HAIP (Hazard Awareness Interactive Project)
 
 is an interactive web application dedicated to hazard awareness and education, it provides users with engaging learning modules on various natural hazards, including Earthquakes, Volcanoes, and Hydrometeorological.
 
