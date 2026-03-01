@@ -1,20 +1,16 @@
 # HAIP (Hazard Awareness and Interactive Learning Project)
 
-HAIP is a comprehensive, interactive web application dedicated to hazard awareness and education. It provides users with engaging learning modules on various natural hazards, including Earthquakes, Volcanoes, and Hydrometeorological events.
+is an interactive web application dedicated to hazard awareness and education, it provides users with engaging learning modules on various natural hazards, including Earthquakes, Volcanoes, and Hydrometeorological.
 
-The project incorporates modern web technologies, 3D visualizations (via Spline), and interactive components to deliver an immersive educational experience.
+## Key Features
 
-## ✨ Key Features
-
-- **Interactive Learning Modules:** In-depth, structured lessons on natural hazards (Earthquakes, Volcanoes, Hydrometeorological).
-- **3D Visualizations:** Integrated Spline models to visually explain complex geographical and meteorological phenomena.
-- **Interactive UI/UX:** Built with a modern design system using Tailwind CSS and Shadcn UI, including dynamic elements like Embla Carousels and flippable hazard effect cards.
-- **Decision Games & Quizzes:** Scenario-based interactive elements to test the user's practical knowledge and hazard response skills.
-- **Progress Tracking & Competencies:** Defined learning competencies and progression tracking across different specific topic modules.
+- **Interactive Learning Modules:** structured lessons on natural hazards (Earthquakes, Volcanoes, Hydrometeorological).
+- **3D Visualizations:** integrated Spline models.
+- **Interactive UI/UX:** built with Tailwind CSS, Shadcn UI, Embla Carousels.
 
 ## 🛠️ Tech Stack
 
-This project is structured as a monorepo containing both the frontend and backend applications.
+this project is structured as a monorepo containing both the frontend and backend applications.
 
 **Frontend:**
 
@@ -41,11 +37,9 @@ HAIP_monorepo/
 
 ## 🚀 Getting Started
 
-Follow these steps to get the project up and running on your local machine.
-
 ### Prerequisites
 
-Ensure you have the following installed:
+ensure you have the following installed:
 
 - [Node.js](https://nodejs.org/) (v18+ recommended)
 - [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
@@ -54,53 +48,53 @@ Ensure you have the following installed:
 
 ### Setting up the Backend
 
-1. Navigate to the backend directory:
+1. navigate to the backend directory:
    ```bash
    cd backend
    ```
-2. Install PHP dependencies:
+2. install PHP dependencies:
    ```bash
    composer install
    ```
-3. Install frontend dependencies configured for Laravel (if necessary):
+3. install frontend dependencies configured for Laravel (if necessary):
    ```bash
    npm install
    ```
-4. Set up your environment file:
+4. set up your environment file:
    ```bash
    cp .env.example .env
    ```
-   _Configure your database and correct environment settings in the `.env` file._
-5. Generate the application key:
+   _configure your database and correct environment settings in the `.env` file._
+5. generate the application key:
    ```bash
    php artisan key:generate
    ```
-6. Run database migrations:
+6. run database migrations:
    ```bash
    php artisan migrate
    ```
-7. Start the backend development server:
+7. start the backend development server:
    ```bash
    php artisan serve
    ```
-   _Alternatively, you can run `npm run dev` in the backend directory to utilize concurrent services as defined in `composer.json`._
+   _alternatively, you can run `npm run dev` in the backend directory to utilize concurrent services as defined in `composer.json`._
 
 ### Setting up the Frontend
 
-1. Open a new terminal and navigate to the frontend directory:
+1. open a new terminal and navigate to the frontend directory:
    ```bash
    cd frontend
    ```
-2. Install Node.js dependencies:
+2. install Node.js dependencies:
    ```bash
    npm install
    ```
-3. Start the frontend development server:
+3. start the frontend development server:
    ```bash
    npm run dev
    ```
-   _The frontend will typically be accessible at `http://localhost:5173`._
+   _the frontend will typically be accessible at `http://localhost:5173`._
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+this project is licensed under the MIT License.
