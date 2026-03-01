@@ -13,43 +13,40 @@ interface FAQProps {
 
 const FAQList: FAQProps[] = [
   {
-    question: "Is this template free?",
-    answer: "Yes. It is a free ChadcnUI template.",
+    question: "What is HAIP?",
+    answer:
+      "HAIP (Hazard Awareness Interactive Play) is a learning platform designed to teach youth about natural hazards, such as earthquakes and volcanic eruptions, through interactive lectures and mini-games.",
     value: "item-1",
   },
   {
-    question: "Lorem ipsum dolor sit amet consectetur adipisicing elit?",
+    question: "What age group is HAIP designed for?",
     answer:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint labore quidem quam? Consectetur sapiente iste rerum reiciendis animi nihil nostrum sit quo, modi quod.",
+      "HAIP is primarily designed for children and young adults making learning fun and accessible, but the educational content is valuable for anyone looking to learn more about comprehensive disaster readiness.",
     value: "item-2",
   },
   {
-    question:
-      "Lorem ipsum dolor sit amet  Consectetur natus dolores minus quibusdam?",
+    question: "Are these learning modules free?",
     answer:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore qui nostrum reiciendis veritatis necessitatibus maxime quis ipsa vitae cumque quo?",
+      "Yes! All our interactive modules are completely free to access to ensure crucial safety and hazard information is available to everyone.",
     value: "item-3",
   },
   {
-    question: "Lorem ipsum dolor sit amet, consectetur adipisicing elit?",
-    answer: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    question: "How do the interactive learning modules work?",
+    answer:
+      "Each module contains a mix of illustrated lessons, scientific facts, and interactive simulations that test the learner's hazard awareness and decision making in real-world scenarios.",
     value: "item-4",
   },
   {
-    question:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur natus?",
+    question: "Can teachers use HAIP in their classrooms?",
     answer:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint labore quidem quam? Consectetur sapiente iste rerum reiciendis animi nihil nostrum sit quo, modi quod.",
+      "Absolutely! HAIP is an excellent supplementary tool for educators teaching earth sciences, geography, or disaster readiness.",
     value: "item-5",
   },
 ];
 
 export const FAQ = () => {
   return (
-    <section
-      id="faq"
-      className="container py-24 sm:py-32"
-    >
+    <section id="faq" className="container py-24 sm:py-32">
       <h2 className="text-3xl md:text-4xl font-bold mb-4">
         Frequently Asked{" "}
         <span className="bg-gradient-to-b from-primary/60 to-primary text-transparent bg-clip-text">
@@ -57,16 +54,9 @@ export const FAQ = () => {
         </span>
       </h2>
 
-      <Accordion
-        type="single"
-        collapsible
-        className="w-full AccordionRoot"
-      >
+      <Accordion type="single" collapsible className="w-full AccordionRoot">
         {FAQList.map(({ question, answer, value }: FAQProps) => (
-          <AccordionItem
-            key={value}
-            value={value}
-          >
+          <AccordionItem key={value} value={value}>
             <AccordionTrigger className="text-left">
               {question}
             </AccordionTrigger>

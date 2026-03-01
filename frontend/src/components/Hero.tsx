@@ -5,7 +5,7 @@ import backgroundImg from "@/assets/background-img.webp";
 export function Hero() {
   return (
     <section className="w-full min-h-[100dvh] lg:h-screen lg:max-h-[100dvh] flex flex-col justify-center bg-background pt-24 pb-12 md:pt-0">
-      <div className="container mx-auto xl:max-w-7xl grid items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16">
+      <div className="container mx-auto xl:max-w-6xl grid items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16">
         {/* Text */}
         <div className="flex flex-col gap-6 md:gap-8 lg:pr-8">
           <h1 className="text-balance text-4xl font-extrabold leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl">
@@ -38,7 +38,7 @@ export function Hero() {
           </div>
 
           {/* Trust Bar */}
-          <div className="flex items-center gap-4 sm:gap-6 pt-4 md:pt-6">
+          <div className="flex items-center gap-4 sm:gap-6">
             <div className="flex flex-col">
               <span className="text-xl sm:text-2xl font-bold text-foreground">
                 50+
